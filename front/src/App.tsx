@@ -1,8 +1,8 @@
 import React from 'react';
-import Input from './components/Input';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import Promotion from './pages/Promotion';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Promotion/>}/>
+          <Route path='/login' element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </div>
