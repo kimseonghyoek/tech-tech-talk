@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import Promotion from './pages/Promotion';
 import Login from './pages/Login';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
         </Routes>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }
