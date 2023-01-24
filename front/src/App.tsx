@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router';
 import Promotion from './pages/Promotion';
 import Login from './pages/Login';
 import Footer from './components/Footer';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Promotion/>}/>
           <Route path='/login' element={<Login/>}/>
+          <Route path='/signup' element={<Signup/>} />
         </Routes>
       </BrowserRouter>
       <Footer/>

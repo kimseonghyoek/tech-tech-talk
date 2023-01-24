@@ -3,6 +3,8 @@ import styled from "styled-components";
 import palette from "../palette";
 import Input from "./Input";
 import Button from "./Button";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -114,51 +116,104 @@ const Container = styled.div`
       }
     }
   }
+
+  .check-sign {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+
+    p {
+      padding: 0rem 0.9rem;
+      font-size: 1.3rem;
+    }
+  }
 `;
 
 const public_url = process.env.PUBLIC_URL;
 
-function LoginForm() {
+function LoginForm(): JSX.Element {
+  const location = useLocation();
+  console.log(location.pathname);
 
-  return (
-    <Container>
-      <div className="logo-layout">
-        <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
-        <h1>Tech-Tech-Talk</h1>
-      </div>
-      <form>
-        <div className="inputs">
-          <p>아이디 (영문과 숫자)</p>
-          <Input placeholder="" onChange={""} />
+  if (location.pathname === "/login") {
+    return (
+      <Container>
+        <div className="logo-layout">
+          <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
+          <h1>Tech-Tech-Talk</h1>
         </div>
-        <div className="inputs">
-          <p>비밀번호 (특수문자 포함 8자 이상)</p>
-          <Input placeholder="" onChange={""} />
+        <form>
+          <div className="inputs">
+            <p>아이디 (영문과 숫자)</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <div className="inputs">
+            <p>비밀번호 (특수문자 포함 8자 이상)</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <Button id="login-btn" text="로그인" />
+        </form>
+        <div className="login-info">
+          <Link to="/signup">
+            <p>회원가입</p>
+          </Link>
         </div>
-        <Button id="login-btn" text="로그인" />
-      </form>
-      <div className="login-info">
-        <a href="#">
-          <p>회원가입</p>
-        </a>
-      </div>
-      <hr />
-      <div className="social-login">
-        <h2>소셜 로그인(Developing...)</h2>
-        <ul className="social-btn">
-          <li>
-            <Button id="naver-btn" text="네이버 로그인" />
-          </li>
-          <li>
-            <Button id="kakao-btn" text="카카오 로그인" />
-          </li>
-          <li>
-            <Button id="google-btn" text="구글 로그인" />
-          </li>
-        </ul>
-      </div>
-    </Container>
-  );
+        <hr />
+        <div className="social-login">
+          <h2>소셜 로그인(Developing...)</h2>
+          <ul className="social-btn">
+            <li>
+              <Button id="naver-btn" text="네이버 로그인" />
+            </li>
+            <li>
+              <Button id="kakao-btn" text="카카오 로그인" />
+            </li>
+            <li>
+              <Button id="google-btn" text="구글 로그인" />
+            </li>
+          </ul>
+        </div>
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        <div className="logo-layout">
+          <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
+          <h1>Tech-Tech-Talk</h1>
+        </div>
+        <form>
+          <div className="inputs">
+            <p>닉네임 (특수문자 제외 20자)</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <div className="inputs">
+            <p>아이디 (영문과 숫자)</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <div className="inputs">
+            <p>비밀번호 (특수문자 포함 8자 이상)</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <div className="inputs">
+            <p>비밀번호 재확인</p>
+            <Input placeholder="" onChange={""} />
+          </div>
+          <div className="check-sign">
+            <input type="checkbox"/>
+            <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
+          </div>
+          <Button id="login-btn" text="회원가입" />
+        </form>
+      </Container>
+    );
+  }
 }
 
 export default LoginForm;
