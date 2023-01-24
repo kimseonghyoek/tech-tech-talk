@@ -1,6 +1,5 @@
 import React from 'react';
 import LoginForm from '../components/LoginForm';
-import Login from './Login';
 import styled from 'styled-components';
 
 const Container = styled.div`

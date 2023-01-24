@@ -13,9 +13,9 @@ const StyledInput = styled.input`
 function Input(props: InputComponentsProps) {
   return (
     <>
-      <StyledInput placeholder={props.placeholder}/>
+      <StyledInput placeholder={props.placeholder} onChange={props.onChange}/>
     </>
   )
 }
 
-export default Input;
+export default React.memo(Input);

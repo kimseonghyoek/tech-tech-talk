@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import palette from "../palette";
 import Input from "./Input";
@@ -139,7 +139,37 @@ const public_url = process.env.PUBLIC_URL;
 
 function LoginForm(): JSX.Element {
   const location = useLocation();
-  console.log(location.pathname);
+
+  const [userName, setName] = useState<string>('');
+  const [userEmail, setEmail] = useState<string>('');
+  const [userPw, setPw] = useState<string>('');
+  const [rePw, setRepw] = useState<string>('');
+  const [check, setCheck] = useState<boolean>(false);
+
+  const checkSignd = (): any => {
+    if(!check) {
+      setCheck(true);
+    }
+    if(check) {
+      setCheck(false);
+    }
+  }
+
+  const changeName = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setName(e.target.value);
+  }
+
+  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setEmail(e.target.value);
+  }
+
+  const changePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setPw(e.target.value);
+  }
+
+  const changeRePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setRepw(e.target.value);
+  }
 
   if (location.pathname === "/login") {
     return (
@@ -157,7 +187,7 @@ function LoginForm(): JSX.Element {
             <p>비밀번호 (특수문자 포함 8자 이상)</p>
             <Input placeholder="" onChange={""} />
           </div>
-          <Button id="login-btn" text="로그인" />
+          <Button disabled={false} id="login-btn" text="로그인" />
         </form>
         <div className="login-info">
           <Link to="/signup">
@@ -169,13 +199,13 @@ function LoginForm(): JSX.Element {
           <h2>소셜 로그인(Developing...)</h2>
           <ul className="social-btn">
             <li>
-              <Button id="naver-btn" text="네이버 로그인" />
+              <Button disabled={false} id="naver-btn" text="네이버 로그인" />
             </li>
             <li>
-              <Button id="kakao-btn" text="카카오 로그인" />
+              <Button disabled={false} id="kakao-btn" text="카카오 로그인" />
             </li>
             <li>
-              <Button id="google-btn" text="구글 로그인" />
+              <Button disabled={false} id="google-btn" text="구글 로그인" />
             </li>
           </ul>
         </div>
@@ -191,25 +221,25 @@ function LoginForm(): JSX.Element {
         <form>
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
-            <Input placeholder="" onChange={""} />
+            <Input placeholder="" onChange={changeName} />
           </div>
           <div className="inputs">
             <p>아이디 (영문과 숫자)</p>
-            <Input placeholder="" onChange={""} />
+            <Input placeholder="" onChange={changeEmail} />
           </div>
           <div className="inputs">
             <p>비밀번호 (특수문자 포함 8자 이상)</p>
-            <Input placeholder="" onChange={""} />
+            <Input placeholder="" onChange={changePw} />
           </div>
           <div className="inputs">
             <p>비밀번호 재확인</p>
-            <Input placeholder="" onChange={""} />
+            <Input placeholder="" onChange={changeRePw} />
           </div>
           <div className="check-sign">
-            <input type="checkbox"/>
+            <input type="checkbox" checked={check} onChange={checkSignd}/>
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
-          <Button id="login-btn" text="회원가입" />
+          <Button disabled={!check} id="login-btn" text="회원가입" />
         </form>
       </Container>
     );
