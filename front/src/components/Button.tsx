@@ -10,10 +10,10 @@ const StyeldButton = styled.button`
   margin: 1rem;
 `;
 
-function Button({ text, id }: { text: string, id: string }): JSX.Element {
+function Button({ text, id, disabled }: { text: string, id: string, disabled: boolean }): JSX.Element {
   return (
     <>
-      <StyeldButton id={id}>{text}</StyeldButton>
+      <StyeldButton disabled={disabled} id={id}>{text}</StyeldButton>
     </>
   );
 }
