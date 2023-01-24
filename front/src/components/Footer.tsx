@@ -22,7 +22,7 @@ function Footer(): JSX.Element {
   return (
     <Container>
       <div>
-        <h1>Tech-Tech-Talk - Dev 2023 ~ </h1>
+        <h1>Tech-Tech-Talk _ Dev 2023 ~ </h1>
         <p>Develop by Overloper</p>
       </div>
     </Container>
