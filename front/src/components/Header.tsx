@@ -3,6 +3,7 @@ import styled from "styled-components";
 import palette from "../palette";
 import { Desktop, Mobile, Tablet } from "../responsive";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 const CustomHeader = styled.div`
   padding-top: 1rem;
@@ -44,6 +45,14 @@ const CustomHeader = styled.div`
 
       img {
         width: 9rem;
+      }
+
+      #header-login {
+        background-color: ${palette.main_color4};
+        border-radius: 0.5rem;
+        font-size: 1.3rem;
+        width: 7rem;
+        color: ${palette.white}
       }
     }
 
@@ -96,7 +105,7 @@ function Header() {
             </ul>
 
             <Link to="/login">
-              <p>로그인 / 회원가입</p>
+              <Button disabled={false} id="header-login" text="로그인"/>
             </Link>
           </>
         </Desktop>

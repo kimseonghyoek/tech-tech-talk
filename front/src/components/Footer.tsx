@@ -8,6 +8,7 @@ const Container = styled.div`
   align-items: center;
   height: 14rem;
   background-color: ${palette.main_color2};
+  margin-top: 3.5rem;
 
   h1 {
     text-align: center;
@@ -26,7 +27,7 @@ function Footer(): JSX.Element {
     <Container>
       <div>
         <h1>Tech-Tech-Talk _ Dev 2023 ~ </h1>
-        <a href={my_github_link}><p>Develop by Overloper</p></a>
+        <a href={my_github_link}><p>- Develop & Design by Overloper</p></a>
       </div>
     </Container>
   );
