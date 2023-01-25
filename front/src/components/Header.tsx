@@ -1,14 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import palette from "../palette";
-import { Desktop } from "../responsive";
+import { Desktop, Mobile, Tablet } from "../responsive";
 import { Link } from "react-router-dom";
 
 const CustomHeader = styled.div`
+  padding-top: 1rem;
+  position: sticky;
+  top: -1rem;
   display: flex;
   width: 100%;
   height: 10.5rem;
   flex-direction: column;
+  background-color: ${palette.white};
   .top-item {
     display: flex;
     justify-content: center;
