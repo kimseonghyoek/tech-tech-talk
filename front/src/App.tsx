@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Footer from "./components/Footer";
 import Signup from "./pages/Signup";
 import Header from "./components/Header";
+import NotFound from "./pages/error/404";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Promotion />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/*" element={<NotFound/>} />
         </Routes>
         <Footer />
       </BrowserRouter>
