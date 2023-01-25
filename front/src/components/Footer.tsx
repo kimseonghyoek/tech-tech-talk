@@ -19,11 +19,14 @@ const Container = styled.div`
 `;
 
 function Footer(): JSX.Element {
+
+  const my_github_link = "https://github.com/kimseonghyoek/";
+
   return (
     <Container>
       <div>
         <h1>Tech-Tech-Talk _ Dev 2023 ~ </h1>
-        <p>Develop by Overloper</p>
+        <a href={my_github_link}><p>Develop by Overloper</p></a>
       </div>
     </Container>
   );
