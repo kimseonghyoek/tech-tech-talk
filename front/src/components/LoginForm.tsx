@@ -171,6 +171,24 @@ function LoginForm(): JSX.Element {
     setRepw(e.target.value);
   }
 
+  // submit
+  const submit = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    if (userName === "") {
+      alert("닉네임이 빈 칸 입니다.");
+    };
+    if (userEmail === "") {
+      alert("이메일이 빈 칸 입니다.");
+    }
+    if (userPw === "") {
+      alert("비밀번호가 빈 칸 입니다.");
+    }
+    if (userPw !== rePw) {
+      alert("비밀번호가 서로 다릅니다.");
+    }
+  }
+
   if (location.pathname === "/login") {
     return (
       <Container>
@@ -218,7 +236,7 @@ function LoginForm(): JSX.Element {
           <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
           <h1>Tech-Tech-Talk</h1>
         </div>
-        <form>
+        <form onSubmit={submit}>
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeName} />
