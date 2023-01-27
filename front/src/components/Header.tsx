@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import palette from "../palette";
-import { Desktop, Mobile, Tablet } from "../responsive";
+import { Desktop, Tablet } from "../responsive";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const CustomHeader = styled.div`
   padding-top: 1rem;
@@ -52,7 +54,7 @@ const CustomHeader = styled.div`
         border-radius: 0.5rem;
         font-size: 1.3rem;
         width: 7rem;
-        color: ${palette.white}
+        color: ${palette.white};
       }
     }
 
@@ -81,7 +83,7 @@ function Header() {
       </div>
       <div className="main">
         <Link to="/">
-          <img src={`${process.env.PUBLIC_URL}/imgs/ttt.png`}/>
+          <img src={`${process.env.PUBLIC_URL}/imgs/ttt.png`} alt="logo" />
           {/* <h1>Tech-Tech-Talk</h1> */}
         </Link>
         <Desktop>
@@ -103,12 +105,16 @@ function Header() {
                 <p>그 외 제품</p>
               </li>
             </ul>
-
             <Link to="/login">
-              <Button disabled={false} id="header-login" text="로그인"/>
+              <Button disabled={false} id="header-login" text="로그인" />
             </Link>
           </>
         </Desktop>
+        <Tablet>
+          <>
+            <FontAwesomeIcon icon={faBars} />
+          </>
+        </Tablet>
       </div>
     </CustomHeader>
   );
