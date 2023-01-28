@@ -72,9 +72,27 @@ const CustomHeader = styled.div`
       }
     }
   }
+
+  .tablet-main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    img {
+      margin: 0rem 7rem;
+    }
+
+    svg {
+      width: 7.2rem;
+      margin: 1rem;
+    }
+  }
 `;
 
 function Header() {
+  const public_url = process.env.PUBLIC_URL;
+
   return (
     <CustomHeader>
       <div className="top-item">
@@ -82,12 +100,12 @@ function Header() {
         <p>중고거래</p>
       </div>
       <div className="main">
-        <Link to="/">
-          <img src={`${process.env.PUBLIC_URL}/imgs/ttt.png`} alt="logo" />
-          {/* <h1>Tech-Tech-Talk</h1> */}
-        </Link>
         <Desktop>
           <>
+            <Link to="/">
+              <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
+              {/* <h1>Tech-Tech-Talk</h1> */}
+            </Link>
             <ul>
               <li>
                 <p>소프트웨어</p>
@@ -112,7 +130,16 @@ function Header() {
         </Desktop>
         <Tablet>
           <>
-            <FontAwesomeIcon icon={faBars} />
+            <div className="tablet-main">
+            <FontAwesomeIcon icon={faBars} size="2x"/>
+              <Link to="/">
+                <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
+                {/* <h1>Tech-Tech-Talk</h1> */}
+              </Link>
+              <Link to="/login">
+              <Button disabled={false} id="header-login" text="로그인" />
+            </Link>
+            </div>
           </>
         </Tablet>
       </div>
