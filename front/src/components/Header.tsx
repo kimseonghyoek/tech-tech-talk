@@ -77,15 +77,24 @@ const CustomHeader = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 
-    img {
+    /* img {
       margin: 0rem 7rem;
+    } */
+
+    button {
+      border-radius: 0.5rem;
+      width: 100%;
+      background-color: ${palette.main_color4};
+      margin: 0%;
+      font-size: 1.3rem;
+      color: ${palette.white};
     }
 
-    svg {
-      width: 7.2rem;
-      margin: 1rem;
+    .side-box {
+      margin: 2rem;
+      width: 7.5rem;
     }
   }
 `;
@@ -128,17 +137,22 @@ function Header() {
             </Link>
           </>
         </Desktop>
+        
         <Tablet>
           <>
             <div className="tablet-main">
-            <FontAwesomeIcon icon={faBars} size="2x"/>
+              <div className="side-box">
+              <FontAwesomeIcon icon={faBars} size="2x" />
+              </div>
               <Link to="/">
                 <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
                 {/* <h1>Tech-Tech-Talk</h1> */}
               </Link>
-              <Link to="/login">
-              <Button disabled={false} id="header-login" text="로그인" />
-            </Link>
+              <div className="side-box">
+                <Link to="/login">
+                  <Button disabled={false} id="m-header-login" text="로그인" />
+                </Link>
+              </div>
             </div>
           </>
         </Tablet>
