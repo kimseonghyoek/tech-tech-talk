@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import palette from "../palette";
-import { Desktop, Tablet } from "../responsive";
+import palette from "../../palette";
+import { Desktop, Tablet } from "../../responsive";
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useRecoilState } from "recoil";
+import HeaderItem from "./HeaderItem";
+import { showItem } from "../../recoil/store";
 
 const CustomHeader = styled.div`
   padding-top: 1rem;
@@ -16,6 +19,7 @@ const CustomHeader = styled.div`
   height: 10.5rem;
   flex-direction: column;
   background-color: ${palette.white};
+  
   .top-item {
     display: flex;
     justify-content: center;
@@ -97,10 +101,29 @@ const CustomHeader = styled.div`
       width: 7.5rem;
     }
   }
+
+  .header-items {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: ${palette.white};
+
+    ul {
+      padding: 0%;
+    }
+  }
 `;
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
+
+  // state
+  const [show_item, setShow] = useRecoilState<boolean>(showItem);
+
+  const changeShowItem = () => {
+    setShow(!show_item);
+    console.log(show_item);
+  };
 
   return (
     <CustomHeader>
@@ -137,12 +160,16 @@ function Header() {
             </Link>
           </>
         </Desktop>
-        
+
         <Tablet>
           <>
             <div className="tablet-main">
               <div className="side-box">
-              <FontAwesomeIcon icon={faBars} size="2x" />
+                <FontAwesomeIcon
+                  icon={faBars}
+                  size="2x"
+                  onClick={changeShowItem}
+                />
               </div>
               <Link to="/">
                 <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
@@ -157,6 +184,17 @@ function Header() {
           </>
         </Tablet>
       </div>
+      {show_item ? (
+        <div className="header-items">
+          <ul>
+            <HeaderItem url="#" item="소프트웨어"/>
+            <HeaderItem url="#" item="키보드"/>
+            <HeaderItem url="#" item="마우스"/>
+            <HeaderItem url="#" item="PC 부품"/>
+            <HeaderItem url="#" item="그 외 제품"/>
+          </ul>
+        </div>
+      ) : null}
     </CustomHeader>
   );
 }
