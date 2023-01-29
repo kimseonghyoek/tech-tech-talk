@@ -5,6 +5,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
+import { error } from "console";
 
 const Container = styled.div`
   display: flex;
@@ -171,22 +172,19 @@ function LoginForm(): JSX.Element {
     setRepw(e.target.value);
   }
 
+  const submitSignup = (e: React.ChangeEvent<HTMLFormElement>): any => {
+    e.preventDefault();
+  }
+
+  const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
+    e.preventDefault();
+  }
+
   // submit
   const submit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (userName === "") {
-      alert("닉네임이 빈 칸 입니다.");
-    };
-    if (userEmail === "") {
-      alert("이메일이 빈 칸 입니다.");
-    }
-    if (userPw === "") {
-      alert("비밀번호가 빈 칸 입니다.");
-    }
-    if (userPw !== rePw) {
-      alert("비밀번호가 서로 다릅니다.");
-    }
+
+    // location.pathname 에 따라서 제출할 함수가 달라짐.
   }
 
   if (location.pathname === "/login") {
