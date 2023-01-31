@@ -174,7 +174,7 @@ function LoginForm(): JSX.Element {
   };
   const checkEmail = () => {
     const email_regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(userEmail.match(email_regExp || userEmail.length >= 51)) {
+    if(userEmail.match(email_regExp) || userEmail.length >= 51) {
       alert("이메일 형식에 맞지 않습니다.");
     } else if (userEmail === "") {
       alert("이메일이 공백입니다.");
@@ -185,6 +185,14 @@ function LoginForm(): JSX.Element {
     setPw(e.target.value);
   };
   const checkPw = () => {
+    const pw_regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    if(!userPw.match(pw_regExp) || userPw.length >= 30) {
+      alert("비밀번호 형식에 맞지 않습니다.");
+    } else if (userPw === "") {
+      alert("비밀번호가 공백입니다.");
+    } else if (userPw !== rePw) {
+      alert("비밀번호 재확인에 실패하셨습니다.");
+    }
   }
 
   const changeRePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
@@ -194,6 +202,8 @@ function LoginForm(): JSX.Element {
   const submitSignup = (e: React.ChangeEvent<HTMLFormElement>): any => {
     e.preventDefault();
     checkName();
+    checkEmail();
+    checkPw()
   };
 
   const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
@@ -209,7 +219,7 @@ function LoginForm(): JSX.Element {
         </div>
         <form>
           <div className="inputs">
-            <p>아이디 (영문과 숫자)</p>
+            <p>이메일 (이메일 주소)</p>
             <Input placeholder="" onChange={""} />
           </div>
           <div className="inputs">
@@ -253,7 +263,7 @@ function LoginForm(): JSX.Element {
             <Input placeholder="" onChange={changeName} />
           </div>
           <div className="inputs">
-            <p>아이디 (영문과 숫자)</p>
+            <p>이메일 (이메일 주소)</p>
             <Input placeholder="" onChange={changeEmail} />
           </div>
           <div className="inputs">
