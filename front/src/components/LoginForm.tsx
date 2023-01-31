@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 import styled from "styled-components";
 import palette from "../palette";
@@ -125,7 +126,7 @@ const Container = styled.div`
     align-items: center;
 
     input {
-      width: 1.7rem;
+    width: 1.7rem;
       height: 1.7rem;
     }
 
@@ -141,51 +142,63 @@ const public_url = process.env.PUBLIC_URL;
 function LoginForm(): JSX.Element {
   const location = useLocation();
 
-  const [userName, setName] = useState<string>('');
-  const [userEmail, setEmail] = useState<string>('');
-  const [userPw, setPw] = useState<string>('');
-  const [rePw, setRepw] = useState<string>('');
+  const [userName, setName] = useState<string>("");
+  const [userEmail, setEmail] = useState<string>("");
+  const [userPw, setPw] = useState<string>("");
+  const [rePw, setRepw] = useState<string>("");
   const [check, setCheck] = useState<boolean>(false);
 
   const checkSignd = (): any => {
-    if(!check) {
+    if (!check) {
       setCheck(true);
     }
-    if(check) {
+    if (check) {
       setCheck(false);
     }
-  }
+  };
 
   const changeName = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setName(e.target.value);
+  };
+  const checkName = () => {
+    const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+    if (userName.match(name_regExp) || userName.length >= 21) {
+      alert("닉네임 형식에 맞지 않습니다.");
+    } else if (userName === "") {
+      alert("닉네임이 공백입니다.");
+    }
   }
 
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setEmail(e.target.value);
+  };
+  const checkEmail = () => {
+    const email_regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if(userEmail.match(email_regExp || userEmail.length >= 51)) {
+      alert("이메일 형식에 맞지 않습니다.");
+    } else if (userEmail === "") {
+      alert("이메일이 공백입니다.");
+    }
   }
 
   const changePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setPw(e.target.value);
+  };
+  const checkPw = () => {
   }
 
   const changeRePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setRepw(e.target.value);
-  }
+  };
 
   const submitSignup = (e: React.ChangeEvent<HTMLFormElement>): any => {
     e.preventDefault();
-  }
+    checkName();
+  };
 
   const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
     e.preventDefault();
-  }
-
-  // submit
-  const submit = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // location.pathname 에 따라서 제출할 함수가 달라짐.
-  }
+  };
 
   if (location.pathname === "/login") {
     return (
@@ -234,7 +247,7 @@ function LoginForm(): JSX.Element {
           <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
           <h1>Tech-Tech-Talk</h1>
         </div>
-        <form onSubmit={submit}>
+        <form onSubmit={submitSignup}>
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeName} />
@@ -252,7 +265,7 @@ function LoginForm(): JSX.Element {
             <Input placeholder="" onChange={changeRePw} />
           </div>
           <div className="check-sign">
-            <input type="checkbox" checked={check} onChange={checkSignd}/>
+            <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
           <Button disabled={!check} id="login-btn" text="회원가입" />
