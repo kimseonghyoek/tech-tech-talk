@@ -13,13 +13,14 @@ const StyledInput = styled.input`
 function Input(props: InputComponentsProps) {
   return (
     <>
-      <StyledInput placeholder={props.placeholder} onChange={props.onChange} type={props.type}/>
+      <StyledInput placeholder={props.placeholder} onChange={props.onChange} type={props.type} />
     </>
   )
 }
 
 Input.defaultProps = {
-  type: 'none'
+  type: 'none',
+  ref: 'none',
 }
 
 export default React.memo(Input);
