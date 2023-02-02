@@ -8,13 +8,16 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { error } from "console";
 import { Container } from "./style";
-import err_msg from '../../err_msg/error_msg';
+import err_msg from "../../err_msg/error_msg";
 import InputMsg from "../input/InputMsg";
+import axios from "axios";
 
 const public_url = process.env.PUBLIC_URL;
 
 function LoginForm(): JSX.Element {
   const location = useLocation();
+
+  let post = true;
 
   const [userName, setName] = useState<string>(" ");
   const [userEmail, setEmail] = useState<string>(" ");
@@ -37,40 +40,49 @@ function LoginForm(): JSX.Element {
   const checkName = (): string => {
     const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
     if (userName.match(name_regExp) || userName.length >= 21) {
+      post = false;
       return err_msg.WRONG_NAME_FORMAT;
     } else if (userName === "") {
+      post = false;
       return err_msg.EMPTY_NAME_SPACE;
     }
     return "";
-  }
+  };
 
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setEmail(e.target.value);
   };
   const checkEmail = (): string => {
-    const email_regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if(userEmail.match(email_regExp) || userEmail.length >= 51) {
-      return err_msg.WRONG_EMAIL_FORMAT
+    const email_regExp =
+      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if (!userEmail.match(email_regExp) || userEmail.length >= 51) {
+      post = false;
+      return err_msg.WRONG_EMAIL_FORMAT;
     } else if (userEmail === "") {
+      post = false;
       return err_msg.EMPTY_EMAIL_SPACE;
     }
-    return ""
-  }
+    return "";
+  };
 
   const changePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setPw(e.target.value);
   };
   const checkPw = (): string => {
-    const pw_regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-    if(!userPw.match(pw_regExp) || userPw.length >= 30) {
+    const pw_regExp =
+      /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    if (!userPw.match(pw_regExp) || userPw.length >= 30) {
+      post = false;
       return err_msg.WRONG_PW_FORMAT;
     } else if (userPw === "") {
+      post = false;
       return err_msg.EMPTY_PW_SPACE;
     } else if (userPw !== rePw) {
+      post = false;
       return err_msg.FAIL_MATCH_PW;
     }
     return "";
-  }
+  };
 
   const changeRePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setRepw(e.target.value);
@@ -82,7 +94,18 @@ function LoginForm(): JSX.Element {
     checkEmail();
     checkPw();
 
-    
+    if (post === true) {
+      axios.post("/signup/post", {
+        data: {
+          userName ,userEmail, userPw
+        }
+      }).then((res) => {
+        console.log(res);
+        alert("가입 성공")
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
   };
 
   const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
@@ -140,24 +163,24 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeName} />
-            <InputMsg msg={checkName()}/>
+            <InputMsg msg={checkName()} />
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
             <Input placeholder="" onChange={changeEmail} />
-            <InputMsg msg={checkEmail()}/>
+            <InputMsg msg={checkEmail()} />
           </div>
           <div className="inputs">
             <p>비밀번호 (특수문자 포함 8자 이상)</p>
             <Input placeholder="" onChange={changePw} type="password" />
-            <InputMsg msg={checkPw()}/>
+            <InputMsg msg={checkPw()} />
           </div>
           <div className="inputs">
             <p>비밀번호 재확인</p>
-            <Input placeholder="" onChange={changeRePw} type="password"/>
+            <Input placeholder="" onChange={changeRePw} type="password" />
           </div>
           <div className="check-sign">
-            <input type="checkbox" checked={check} onChange={checkSignd}/>
+            <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
           <Button disabled={!check} id="login-btn" text="회원가입" />
