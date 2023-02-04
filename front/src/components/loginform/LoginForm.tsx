@@ -4,7 +4,7 @@ import styled from "styled-components";
 import palette from "../../palette";
 import Input from "../input/Input";
 import Button from "../Button";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { error } from "console";
 import { Container } from "./style";
@@ -16,6 +16,7 @@ const public_url = process.env.PUBLIC_URL;
 
 function LoginForm(): JSX.Element {
   const location = useLocation();
+  const movePage = useNavigate();
 
   let post = true;
 
@@ -101,7 +102,8 @@ function LoginForm(): JSX.Element {
         }
       }).then((res) => {
         console.log(res);
-        alert("가입 성공")
+        alert("회원가입이 정상적으로 처리 되었습니다.");
+        movePage("/login");
       }).catch((err) => {
         console.log(err);
       })
