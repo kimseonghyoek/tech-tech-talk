@@ -1,4 +1,4 @@
-const mysql = require("mysql2");
+import mysql from "mysql2";
 
 const conn = mysql.createPool({
   host: 'localhost',
@@ -8,14 +8,4 @@ const conn = mysql.createPool({
   database: 'tech',
 });
 
-// const conn = (callback) => {
-//   info.getConnection((err, conn) => {
-//     if(!err) {
-//       console.log("연결 성공");
-//     } else if(err) {
-//       console.log("연결 실패");
-//     }
-//   });
-// }
-
-module.exports = conn;
+export default conn;

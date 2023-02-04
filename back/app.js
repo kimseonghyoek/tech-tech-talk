@@ -1,10 +1,12 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 const app = express();
-const cors = require('cors');
-const signupRouter = require('./Router/signupRouter');
+import cors from 'cors';
+import signupRouter from './Router/signupRouter.js';
 
 const PORT = 8000;
+const __dirname = path.resolve();
+
 app.set("view engine", "html");
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../front/build")));
