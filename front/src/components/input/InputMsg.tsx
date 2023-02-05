@@ -16,4 +16,4 @@ function InputMsg({ msg }: { msg: string}): JSX.Element {
   )
 };
 
-export default InputMsg;
+export default React.memo(InputMsg);
