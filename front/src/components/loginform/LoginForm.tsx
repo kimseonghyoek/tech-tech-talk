@@ -20,7 +20,7 @@ function LoginForm(): JSX.Element {
 
   let post = true;
 
-  const [userName, setName] = useState<string>(" ");
+  const [userName, setName] = useState<string>("");
   const [userEmail, setEmail] = useState<string>(" ");
   const [userPw, setPw] = useState<string>(" ");
   const [rePw, setRepw] = useState<string>("");
@@ -78,7 +78,11 @@ function LoginForm(): JSX.Element {
     } else if (userPw === "") {
       post = false;
       return err_msg.EMPTY_PW_SPACE;
-    } else if (userPw !== rePw) {
+    }
+    return "";
+  };
+  const reCheckPw = (): string => {
+    if (userPw !== rePw) {
       post = false;
       return err_msg.FAIL_MATCH_PW;
     }
@@ -96,22 +100,47 @@ function LoginForm(): JSX.Element {
     checkPw();
 
     if (post === true) {
-      axios.post("/signup/post", {
-        data: {
-          userName ,userEmail, userPw
-        }
-      }).then((res) => {
-        console.log(res);
-        alert("회원가입이 정상적으로 처리 되었습니다.");
-        movePage("/login");
-      }).catch((err) => {
-        console.log(err);
-      })
+      axios
+        .post("/signup/post", {
+          data: {
+            userName,
+            userEmail,
+            userPw,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          alert("회원가입이 정상적으로 처리 되었습니다.");
+          movePage("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
     e.preventDefault();
+    checkEmail();
+    checkPw();
+
+    if (post === true) {
+      axios
+        .post("/login/post", {
+          data: {
+            userEmail,
+            userPw,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          alert("로그인 완료.");
+          movePage("/");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   if (location.pathname === "/login") {
@@ -121,14 +150,16 @@ function LoginForm(): JSX.Element {
           <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
           <h1>Tech-Tech-Talk</h1>
         </div>
-        <form>
+        <form onSubmit={submitLogin}>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
-            <Input placeholder="" onChange={""} />
+            <Input placeholder="" onChange={changeEmail} />
+            <InputMsg msg={checkEmail()} />
           </div>
           <div className="inputs">
-            <p>비밀번호 (특수문자 포함 8자 이상)</p>
-            <Input placeholder="" onChange={""} />
+            <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
+            <Input type="password" placeholder="" onChange={changePw} />
+            <InputMsg msg={checkPw()} />
           </div>
           <Button disabled={false} id="login-btn" text="로그인" />
         </form>
@@ -173,13 +204,14 @@ function LoginForm(): JSX.Element {
             <InputMsg msg={checkEmail()} />
           </div>
           <div className="inputs">
-            <p>비밀번호 (특수문자 포함 8자 이상)</p>
+            <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
             <Input placeholder="" onChange={changePw} type="password" />
             <InputMsg msg={checkPw()} />
           </div>
           <div className="inputs">
             <p>비밀번호 재확인</p>
             <Input placeholder="" onChange={changeRePw} type="password" />
+            <InputMsg msg={reCheckPw()} />
           </div>
           <div className="check-sign">
             <input type="checkbox" checked={check} onChange={checkSignd} />
