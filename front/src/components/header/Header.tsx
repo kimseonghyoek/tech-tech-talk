@@ -9,6 +9,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from "recoil";
 import HeaderItem from "./HeaderItem";
 import { showItem } from "../../recoil/store";
+import PreUser from "../user/PreUser";
 
 const CustomHeader = styled.div`
   padding-top: 1rem;
@@ -19,7 +20,7 @@ const CustomHeader = styled.div`
   height: 10.5rem;
   flex-direction: column;
   background-color: ${palette.white};
-  
+
   .top-item {
     display: flex;
     justify-content: center;
@@ -114,7 +115,9 @@ const CustomHeader = styled.div`
   }
 `;
 
-function Header() {
+type isLogin = { login: boolean };
+
+function Header(props: isLogin) {
   const public_url = process.env.PUBLIC_URL;
 
   // state
@@ -155,8 +158,15 @@ function Header() {
                 <p>그 외 제품</p>
               </li>
             </ul>
+            {/* User info 페이지 개발 완료시 url 교체 */}
             <Link to="/login">
-              <Button disabled={false} id="header-login" text="로그인" />
+              {props.login ? (
+                <PreUser />
+              ) : (
+                <Link to="/login">
+                  <Button disabled={false} id="m-header-login" text="로그인" />
+                </Link>
+              )}
             </Link>
           </>
         </Desktop>
@@ -176,9 +186,17 @@ function Header() {
                 {/* <h1>Tech-Tech-Talk</h1> */}
               </Link>
               <div className="side-box">
-                <Link to="/login">
-                  <Button disabled={false} id="m-header-login" text="로그인" />
-                </Link>
+                {props.login ? (
+                  <PreUser />
+                ) : (
+                  <Link to="/login">
+                    <Button
+                      disabled={false}
+                      id="m-header-login"
+                      text="로그인"
+                    />
+                  </Link>
+                )}
               </div>
             </div>
           </>
@@ -187,16 +205,20 @@ function Header() {
       {show_item ? (
         <div className="header-items">
           <ul>
-            <HeaderItem url="#" item="소프트웨어"/>
-            <HeaderItem url="#" item="키보드"/>
-            <HeaderItem url="#" item="마우스"/>
-            <HeaderItem url="#" item="PC 부품"/>
-            <HeaderItem url="#" item="그 외 제품"/>
+            <HeaderItem url="#" item="소프트웨어" />
+            <HeaderItem url="#" item="키보드" />
+            <HeaderItem url="#" item="마우스" />
+            <HeaderItem url="#" item="PC 부품" />
+            <HeaderItem url="#" item="그 외 제품" />
           </ul>
         </div>
       ) : null}
     </CustomHeader>
   );
 }
+
+Header.defaultProps = {
+  login: false,
+};
 
 export default Header;

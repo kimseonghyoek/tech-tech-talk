@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import Header from "./components/header/Header";
 import NotFound from "./pages/error/404";
 import { RecoilRoot } from "recoil";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/*" element={<NotFound />} />
+            <Route path="/test" element={<Test/> }/>
           </Routes>
           <Footer />
         </BrowserRouter>
