@@ -1,4 +1,8 @@
 export default {
+  WRONG_NICK_FORMAT: "이름 형식에 맞지 않습니다.",
+  EMPTY_NICK_SPACE: "이름이 공백입니다.",
+  WRONG_NUMBER_FORMAT: "번호 형식에 맞지 않습니다.",
+  EMPTY_NUMBER_SPACE: "번호가 공백입니다.",
   WRONG_NAME_FORMAT: "닉네임 형식에 맞지 않습니다.",
   EMPTY_NAME_SPACE: "닉네임이 공백입니다.",
   WRONG_EMAIL_FORMAT: "이메일 형식에 맞지 않습니다.",
