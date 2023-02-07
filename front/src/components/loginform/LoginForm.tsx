@@ -21,6 +21,8 @@ function LoginForm(): JSX.Element {
   let post = true;
 
   const [userName, setName] = useState<string>("");
+  const [userNumber, setNumber] = useState<string>("");
+  const [userNickName, setNickName] = useState<string>("");
   const [userEmail, setEmail] = useState<string>(" ");
   const [userPw, setPw] = useState<string>(" ");
   const [rePw, setRepw] = useState<string>("");
@@ -35,6 +37,35 @@ function LoginForm(): JSX.Element {
     }
   };
 
+  const changeNickName = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setNickName(e.target.value);
+  }
+  const checkNickName = (): string => {
+    const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+    if(userNickName.match(name_regExp) || userNickName.length >= 51) {
+      post = false;
+      return err_msg.WRONG_NAME_FORMAT;
+    } else if (userNickName === "") {
+      return err_msg.EMPTY_NAME_SPACE;
+    }
+    return ""
+  };
+
+  const changeNumber = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    setNumber(e.target.value);
+  };
+  const checkNumber = (): string => {
+    const number_regExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    if(!userNumber.match(number_regExp) || userNumber.length >= 12) {
+      post = false;
+      return err_msg.WRONG_NUMBER_FORMAT;
+    } else if (userNumber === "") {
+      return err_msg.EMPTY_NUMBER_SPACE;
+    }
+    return "";
+  }
+
+
   const changeName = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setName(e.target.value);
   };
@@ -42,10 +73,10 @@ function LoginForm(): JSX.Element {
     const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
     if (userName.match(name_regExp) || userName.length >= 21) {
       post = false;
-      return err_msg.WRONG_NAME_FORMAT;
+      return err_msg.WRONG_NICK_FORMAT;
     } else if (userName === "") {
       post = false;
-      return err_msg.EMPTY_NAME_SPACE;
+      return err_msg.EMPTY_NICK_SPACE;
     }
     return "";
   };
@@ -106,6 +137,8 @@ function LoginForm(): JSX.Element {
             userName,
             userEmail,
             userPw,
+            userNickName,
+            userNumber
           },
         })
         .then((res) => {
@@ -194,9 +227,19 @@ function LoginForm(): JSX.Element {
         </div>
         <form onSubmit={submitSignup}>
           <div className="inputs">
+            <p>이름</p>
+            <Input placeholder="" onChange={changeName}/>
+            <InputMsg msg={checkName()}/>
+          </div>
+          <div className="inputs">
+            <p>전화번호</p>
+            <Input placeholder="" onChange={changeNumber}/>
+            <InputMsg msg={checkNumber()} />
+          </div>
+          <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
-            <Input placeholder="" onChange={changeName} />
-            <InputMsg msg={checkName()} />
+            <Input placeholder="" onChange={changeNickName} />
+            <InputMsg msg={checkNickName()} />
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
