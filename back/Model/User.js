@@ -5,11 +5,15 @@ export default {
     const email = userDto.userEmail;
     const name = userDto.userName;
     const pw = userDto.hashed;
+    const nickname = userDto.userNickName;
+    const phone_num = userDto.userNumber;
     //급한대로 Insert 파라미터 뭉치기(나중에 개선 작업)
     const sqlInsert = {
       email: email,
       name: name,
       pw: pw,
+      nickname: nickname,
+      phone_num: phone_num
     };
     return new Promise((resolve, reject) => {
       conn.getConnection((err, con) => {

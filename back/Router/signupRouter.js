@@ -5,11 +5,11 @@ import UserService from "../Service/User.js";
 const userService = new UserService();
 
 router.post("/post", async (req, res, next) => {  
-  const { userName, userEmail, userPw } = req.body.data;
+  const { userName, userEmail, userPw, userNickName, userNumber } = req.body.data;
   const salt = 12;
   const hashed = await bcrypt.hash(userPw, salt);
   const userDto = {
-    userEmail, userName, hashed
+    userEmail, userName, hashed, userNickName, userNumber
   }
   userService.Signup(userDto);
 
