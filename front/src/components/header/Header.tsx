@@ -163,9 +163,7 @@ function Header(props: isLogin) {
               {props.login ? (
                 <PreUser />
               ) : (
-                <Link to="/login">
-                  <Button disabled={false} id="m-header-login" text="로그인" />
-                </Link>
+                <Button disabled={false} id="header-login" text="로그인" />
               )}
             </Link>
           </>
