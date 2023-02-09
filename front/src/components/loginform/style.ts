@@ -68,7 +68,7 @@ export const Container = styled.div`
         font-weight: lighter;
         color: ${palette.black};
         margin: 0;
-        font-size: 13px;
+        font-size: 1.3rem;
       }
     }
   }
