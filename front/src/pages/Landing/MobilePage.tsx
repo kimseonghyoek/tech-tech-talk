@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Mobile(): JSX.Element {
+function MobilePage(): JSX.Element {
   return (
     <div>
       <p>Mobile Landing page</p>
@@ -8,4 +8,4 @@ function Mobile(): JSX.Element {
   );
 };
 
-export default Mobile;
+export default MobilePage;
