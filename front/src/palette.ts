@@ -10,6 +10,7 @@ export default {
   naver_color: "#00bf18",
   kakao_color: "#fae301",
   pro_back: "#7286D3",
+  pro_back2: "#8EA7E9",
   pro_color1: "#F9F871",
   pro_color2: "#B6E37C",
 }
