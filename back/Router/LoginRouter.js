@@ -1,12 +1,14 @@
 import express from "express";
+import passport from "passport";
 const router = express.Router();
 
-router.post("/post", (req, res, next) => {
-  const data = req.body;
-  console.log(data);
-  
-  res.send("잘받음");
+router.post("/post", async(req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  });
+  res.send({msg: "login"});
   res.end();
-});
+})
 
 export default router;
