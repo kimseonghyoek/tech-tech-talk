@@ -4,6 +4,7 @@ const app = express();
 import cors from 'cors';
 import signupRouter from './Router/signupRouter.js';
 import LoginRouter from './Router/LoginRouter.js';
+import ManageRouter from './Router/ManageRouter.js';
 import passport from 'passport'
 import expressSession from 'express-session';
 
@@ -16,7 +17,7 @@ app.use(express.static(path.join(__dirname, "../front/build")));
 app.use(expressSession({
   secret: "TEST"
 }));
-app.use(cors({ credentials: true, origin: "http://localhost:3000"}));
+app.use(cors({ credentials: true, origin: "http://localhost:3000"}))  ;
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/signup", signupRouter);
 app.use("/login", LoginRouter);
+app.use("/user", ManageRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../front/build/index.html"));
