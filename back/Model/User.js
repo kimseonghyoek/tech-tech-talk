@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import conn from "../DB/db.js";
 
 export default {
@@ -13,7 +14,7 @@ export default {
       name: name,
       pw: pw,
       nickname: nickname,
-      phone_num: phone_num
+      phone_num: phone_num,
     };
     return new Promise((resolve, reject) => {
       conn.getConnection((err, con) => {
@@ -52,6 +53,31 @@ export default {
               }
             }
           );
+        }
+        con.release();
+      });
+    });
+  },
+
+  getAllUser: () => {
+    return new Promise((resolve, reject) => {
+      conn.getConnection((err, con) => {
+        if (err) {
+          console.log(err);
+        } else {
+          const sql = `SELECT nickname FROM user_table`;
+          con.query(sql, (err, rows) => {
+            if (err) {
+              console.log(err);
+              reject(err);
+            } else if (rows.length === 0) {
+              console.log("회원이 없습니다.");
+              reject({ msg: "no_user" });
+            } else {
+              console.log(rows);
+              resolve(rows);
+            }
+          });
         }
         con.release();
       });
