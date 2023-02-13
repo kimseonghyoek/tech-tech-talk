@@ -1,7 +1,5 @@
 import passport from "passport";
-import passportLocal from "passport-local";
-
-const LocalStrategy = passportLocal.Strategy;
+import localStrategy from "./localstrategy";
 
 const index = () => {
   passport.serializeUser((user, done) => {
@@ -10,6 +8,9 @@ const index = () => {
 
   passport.deserializeUser((user, done) => {
     done(null, user);
+    localStrategy();
   });
   
 }
+
+export default index;

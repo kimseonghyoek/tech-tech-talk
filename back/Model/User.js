@@ -32,6 +32,7 @@ export default {
               if (rows.length) {
                 console.log("회원이 존재합니다.");
                 console.log(`---${rows.length}---`);
+                console.log(rows);
                 reject(rows.length);
               } else if (rows.length === 0) {
                 console.log("회원이 없습니다.");
