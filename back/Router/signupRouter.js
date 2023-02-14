@@ -1,7 +1,7 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import bcrypt from "bcrypt";
-import UserService from "../Service/User.js";
+const bcrypt = require("bcrypt");
+const UserService = require("../Service/User.js");
 const userService = new UserService();
 
 router.post("/post", async (req, res, next) => {  
@@ -17,4 +17,4 @@ router.post("/post", async (req, res, next) => {
   res.end();
 });
 
-export default router;
+module.exports = router;

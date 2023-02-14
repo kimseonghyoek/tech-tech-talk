@@ -1,7 +1,6 @@
-import { resolve } from "path";
-import conn from "../DB/db.js";
+const conn = require("../DB/db.js");
 
-export default {
+module.exports = {
   createUser: (userDto) => {
     const email = userDto.userEmail;
     const name = userDto.userName;

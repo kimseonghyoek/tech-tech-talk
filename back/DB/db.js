@@ -1,4 +1,4 @@
-import mysql from "mysql2";
+const mysql = require("mysql2");
 
 const conn = mysql.createPool({
   host: 'localhost',
@@ -8,4 +8,4 @@ const conn = mysql.createPool({
   database: 'tech',
 });
 
-export default conn;
+module.exports = conn;

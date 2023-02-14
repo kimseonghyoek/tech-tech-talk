@@ -1,6 +1,6 @@
-import users from "../Model/user.js";
+const users = require("../Model/user.js");
 
-export default class UserService {
+module.exports = class UserService {
   async Signup(user) {
     const userRecord = await users.createUser(user);
     return { user: userRecord };
@@ -8,6 +8,7 @@ export default class UserService {
 
   async getAllUser() {
     const userRecord = await users.getAllUser();
+    console.log("test")
     return userRecord;
   };
 };

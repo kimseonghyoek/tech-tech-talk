@@ -1,16 +1,29 @@
-import passport from "passport";
-import localStrategy from "./localstrategy";
+const passport = require("passport");
+const local = require("./localstrategy");
+const conn = require("../DB/db");
+const Strategy  = require("passport-local").Strategy;
 
-const index = () => {
+module.exports = () => {
   passport.serializeUser((user, done) => {
-    done(null, user);
+    console.log("ㅁㄴㅇㄻㄴㅇㄻㄴㄹ")
+    console.log(err)
+    console.log("serialize User ", user);
+    done(null, user.id);
   });
 
-  passport.deserializeUser((user, done) => {
-    done(null, user);
-    localStrategy();
+  passport.deserializeUser((id, done) => {
+    console.log("deserializeUser id", id);
+    let userInfo;
+    const sql = "SELECT * FROM user_table where email=?";
+    conn.query(sql, id, (err, result) => {
+      if (err) {
+        console.log("에러야");
+      }
+      console.log("deserializeUser mysql result : ", result);
+      const json = JSON.stringify(result[0]);
+      userInfo = JSON.parse(json);
+      done(null, userInfo);
+    });
   });
-  
-}
-
-export default index;
+  local();
+};
