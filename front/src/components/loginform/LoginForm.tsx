@@ -1,12 +1,9 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
-import styled from "styled-components";
-import palette from "../../palette";
 import Input from "../input/Input";
 import Button from "../Button";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { error } from "console";
 import { Container } from "./style";
 import err_msg from "../../err_msg/error_msg";
 import InputMsg from "../input/InputMsg";
@@ -39,16 +36,16 @@ function LoginForm(): JSX.Element {
 
   const changeNickName = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setNickName(e.target.value);
-  }
+  };
   const checkNickName = (): string => {
     const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-    if(userNickName.match(name_regExp) || userNickName.length >= 51) {
+    if (userNickName.match(name_regExp) || userNickName.length >= 51) {
       post = false;
       return err_msg.WRONG_NAME_FORMAT;
     } else if (userNickName === "") {
       return err_msg.EMPTY_NAME_SPACE;
     }
-    return ""
+    return "";
   };
 
   const changeNumber = (e: React.ChangeEvent<HTMLInputElement>): any => {
@@ -56,15 +53,14 @@ function LoginForm(): JSX.Element {
   };
   const checkNumber = (): string => {
     const number_regExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
-    if(!userNumber.match(number_regExp) || userNumber.length >= 12) {
+    if (!userNumber.match(number_regExp) || userNumber.length >= 12) {
       post = false;
       return err_msg.WRONG_NUMBER_FORMAT;
     } else if (userNumber === "") {
       return err_msg.EMPTY_NUMBER_SPACE;
     }
     return "";
-  }
-
+  };
 
   const changeName = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setName(e.target.value);
@@ -138,7 +134,7 @@ function LoginForm(): JSX.Element {
             userEmail,
             userPw,
             userNickName,
-            userNumber
+            userNumber,
           },
         })
         .then((res) => {
@@ -160,10 +156,8 @@ function LoginForm(): JSX.Element {
     if (post === true) {
       axios
         .post("/login/post", {
-          data: {
-            userEmail,
-            userPw,
-          },
+          email: userEmail,
+          pw: userPw,
         })
         .then((res) => {
           console.log(res);
@@ -172,6 +166,7 @@ function LoginForm(): JSX.Element {
         })
         .catch((err) => {
           console.log(err);
+          alert("로그인 실패");
         });
     }
   };
@@ -228,12 +223,12 @@ function LoginForm(): JSX.Element {
         <form onSubmit={submitSignup}>
           <div className="inputs">
             <p>이름</p>
-            <Input placeholder="" onChange={changeName}/>
-            <InputMsg msg={checkName()}/>
+            <Input placeholder="" onChange={changeName} />
+            <InputMsg msg={checkName()} />
           </div>
           <div className="inputs">
             <p>전화번호</p>
-            <Input placeholder="" onChange={changeNumber}/>
+            <Input placeholder="" onChange={changeNumber} />
             <InputMsg msg={checkNumber()} />
           </div>
           <div className="inputs">
