@@ -12,6 +12,7 @@ import { RecoilRoot } from "recoil";
 import Test from "./pages/Test";
 import DevManage from "./pages/DevManage";
 import Setting from "./pages/setting/Setting";
+import User from "./pages/user/User";
 
 function App() {
   return (
@@ -23,10 +24,11 @@ function App() {
             <Route path="/" element={<Promotion />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/*" element={<NotFound />} />
+            <Route path="/user" element={<User/>}/>
             <Route path="/test" element={<Test/> }/>
             <Route path="/setting" element={<Setting/>}/>
             <Route path="/manage" element={<DevManage/> }/>
+            <Route path="/*" element={<NotFound />} />
           </Routes>
           <Footer />
         </BrowserRouter>
