@@ -11,6 +11,7 @@ import NotFound from "./pages/error/404";
 import { RecoilRoot } from "recoil";
 import Test from "./pages/Test";
 import DevManage from "./pages/DevManage";
+import Setting from "./pages/setting/Setting";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/test" element={<Test/> }/>
+            <Route path="/setting" element={<Setting/>}/>
             <Route path="/manage" element={<DevManage/> }/>
           </Routes>
           <Footer />
