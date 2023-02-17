@@ -4,52 +4,28 @@ import palette from "../../palette";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
   width: 100%;
-  font-family: "Jua", sans-serif;
+  height: 100%;
 
-  .first-page {
+  .introd-site {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: ${palette.pro_back};
     width: 100%;
-    height: 95vh;
+    height: 100vh;
 
     span {
-      h2 {
-        margin: 1rem;
-        text-align: center;
-        font-size: 4.5rem;
-        color: ${palette.white};
-        font-weight: lighter;
+      p {
+        margin: 1rem 0rem;
+        font-size: 2.5rem;
+        color: ${palette.main_color4};
+        font-weight: bold;
       }
+
       h1 {
-        margin: 1rem;
-        text-align: center;
-        font-size: 5.5rem;
-        color: ${palette.white};
-        font-weight: lighter;
+        margin: 0.5rem 0rem;
+        font-size: 3.5rem;
       }
     }
-
-    img {
-      margin: 5rem;
-    }
-  }
-
-  .second-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: ${palette.pro_back2};
-    width: 100%;
-    height: 95vh;
   }
 `;
 
@@ -57,15 +33,11 @@ function DesktopPage(): JSX.Element {
   const public_url = process.env.PUBLIC_URL;
   return (
     <Container>
-      <div className="first-page">
+      <div className="introd-site">
         <span>
-          <h2>IT 기술이나 전자장비가 궁금해?</h2>
-          <h1>여기에 모든게 다 IT다!</h1>
+          <p>IT 기술과 장비가 궁금해?</p>
+          <h1>Tech-Tech-Talk 으로 들어와!</h1>
         </span>
-        <img src={`${public_url}/imgs/ttt.png`} alt="" />
-      </div>
-      <div className="second-page">
-        <h1>Test</h1>
       </div>
     </Container>
   );
