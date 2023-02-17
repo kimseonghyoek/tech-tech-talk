@@ -33,6 +33,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    margin: 3rem;
 
     .inputs {
       margin: 20px;
