@@ -8,7 +8,6 @@ const Container = styled.div`
   align-items: center;
   height: 14rem;
   background-color: ${palette.main_color2};
-  margin-top: 3.5rem;
 
   h1 {
     text-align: center;
