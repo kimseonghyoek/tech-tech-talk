@@ -17,4 +17,10 @@ function Button({ text, id, disabled }: { text: string, id: string, disabled: bo
     </>
   );
 }
+
+Button.defaultProps = {
+  disabled: false,
+  id: null
+}
+
 export default Button;
