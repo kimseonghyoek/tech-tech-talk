@@ -8,6 +8,7 @@ const manageRouter = require("./Router/manageRouter");
 const passportConfig = require("./passport/index");
 const passport = require("passport");
 const expressSession = require("express-session");
+require("dotenv").config();
 const PORT = 8000;
 
 app.set("view engine", "html");
@@ -16,7 +17,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static(path.join(__dirname, "../front/build")));
 app.use(
   expressSession({
-    secret: "TEST",
+    secret: process.env.COOKIE_SECRET,
   })
 );
 app.use(passport.initialize());
