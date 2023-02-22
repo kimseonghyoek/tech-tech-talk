@@ -14,6 +14,7 @@ import DevManage from "./pages/DevManage";
 import Setting from "./pages/setting/Setting";
 import User from "./pages/user/User";
 import Comm from "./pages/comm/Community";
+import UsedMarket from "./pages/used/UsedMarket";
 
 function App() {
   return (
@@ -26,11 +27,12 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/user" element={<User/>}/>
+            <Route path="/comm" element={<Comm/> } />
+            <Route path="/used" element={<UsedMarket/> }/>
             <Route path="/test" element={<Test/> }/>
             <Route path="/setting" element={<Setting/>}/>
             <Route path="/manage" element={<DevManage/> }/>
             <Route path="/*" element={<NotFound />} />
-            <Route path="comm" element={<Comm/> } />
           </Routes>
           <Footer />
         </BrowserRouter>

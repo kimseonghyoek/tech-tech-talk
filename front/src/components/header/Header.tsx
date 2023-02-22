@@ -29,9 +29,14 @@ const CustomHeader = styled.div`
     height: 35%;
     background-color: ${palette.white};
     border-bottom: 0.1rem solid ${palette.main_color2};
-    p {
-      font-size: 1.2rem;
-      padding: 0rem 2rem;
+
+    a {
+      color: ${palette.black};
+      text-decoration: none;
+      p {
+        font-size: 1.2rem;
+        padding: 0rem 2rem;
+      }
     }
   }
 
@@ -131,8 +136,12 @@ function Header(props: isLogin) {
   return (
     <CustomHeader>
       <div className="top-item">
-        <p>커뮤니티</p>
-        <p>중고거래</p>
+        <Link to="/comm">
+          <p>커뮤니티</p>
+        </Link>
+        <Link to="/used">
+          <p>중고거래</p>
+        </Link>
       </div>
       <div className="main">
         <Desktop>
