@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import palette from "../../palette";
 import Button from "../../components/Button";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -84,8 +85,12 @@ function DesktopPage(): JSX.Element {
               원하는 분은 중고거래로.
             </p>
             <div className="buttons">
-              <Button text="커뮤니티" />
-              <Button text="중고거래" />
+              <Link to="/comm">
+                <Button text="커뮤니티" />
+              </Link>
+              <Link to="/used">
+                <Button text="중고거래" />
+              </Link>
             </div>
           </span>
         </div>
