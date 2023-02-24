@@ -15,15 +15,17 @@ app.set("view engine", "html");
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static(path.join(__dirname, "../front/build")));
+passportConfig();
 app.use(
   expressSession({
     secret: process.env.COOKIE_SECRET,
-  })
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true },
+  }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
-passportConfig();
-
 app.get("/", (req, res) => {
   res.sendFile("index.html");
 });

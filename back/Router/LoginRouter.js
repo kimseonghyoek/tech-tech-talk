@@ -6,8 +6,20 @@ router.post(
   "/post",
   (req, res, next) => {
     console.log(req.body)
-    passport.authenticate("local", {
-      session: false,
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        console.error(err);
+        next(err);
+      }
+      if (info) {
+        return res.status(401).send(info.reason);
+      }
+      return req.login(user, (loginErr) => {
+        if (loginErr) {
+          return next(loginErr);
+        };
+        return res.redirect("/");
+      });
     })(req, res, next);
   },
   (req, res) => {

@@ -5,8 +5,6 @@ const Strategy  = require("passport-local").Strategy;
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
-    console.log("ㅁㄴㅇㄻㄴㅇㄻㄴㄹ")
-    console.log(err)
     console.log("serialize User ", user);
     done(null, user.id);
   });
