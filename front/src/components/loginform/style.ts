@@ -33,7 +33,6 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 3rem;
 
     .inputs {
       margin: 20px;
@@ -49,7 +48,7 @@ export const Container = styled.div`
     }
 
     #login-btn {
-      margin-top: 2rem;
+      margin: 2rem;
       width: 38.5rem;
       height: 6rem;
       background-color: ${palette.main_color3};
