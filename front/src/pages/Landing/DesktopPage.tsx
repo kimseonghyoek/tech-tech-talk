@@ -26,6 +26,7 @@ const Container = styled.div`
       align-items: center;
 
       img {
+        border-radius: 5%;
         width: 25rem;
         height: 25rem;
       }
