@@ -11,11 +11,11 @@ const expressSession = require("express-session");
 require("dotenv").config();
 const PORT = 8000;
 
+passportConfig();
 app.set("view engine", "html");
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.static(path.join(__dirname, "../front/build")));
-passportConfig();
 app.use(
   expressSession({
     secret: process.env.COOKIE_SECRET,
