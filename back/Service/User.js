@@ -8,7 +8,6 @@ module.exports = class UserService {
 
   async getAllUser() {
     const userRecord = await users.getAllUser();
-    console.log("test")
     return userRecord;
   };
 };

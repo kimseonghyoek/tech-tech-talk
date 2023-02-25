@@ -9,11 +9,11 @@ module.exports = () => {
     done(null, user);
   });
 
-  passport.deserializeUser((id, done) => {
-    console.log("deserializeUser id", id);
+  passport.deserializeUser((email, done) => {
+    console.log("deserializeUser email", email);
     let userInfo;
     const sql = "SELECT * FROM user_table where email=?";
-    conn.query(sql, id, (err, result) => {
+    conn.query(sql, email, (err, result) => {
       if (err) {
         console.log("에러야");
       }
