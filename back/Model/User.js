@@ -74,7 +74,7 @@ module.exports = {
               console.log("회원이 없습니다.");
               reject({ msg: "no_user" });
             } else {
-              console.log(rows);
+              // console.log(rows);
               resolve(rows);
             }
           });

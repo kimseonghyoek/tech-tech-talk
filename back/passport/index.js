@@ -23,5 +23,6 @@ module.exports = () => {
       done(null, userInfo);
     });
   });
+  
   local();
 };
