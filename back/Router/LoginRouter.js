@@ -17,10 +17,11 @@ router.post(
         if (info) {
           return res.status(401).send(info.reason);
         }
-        return req.login(user, (loginErr) => {
+        req.login(user, (loginErr) => {
           if (loginErr) {
             return next(loginErr);
           }
+          console.log("isAuthenticated: ", req.isAuthenticated());
           return res.redirect("/");
         });
       }
