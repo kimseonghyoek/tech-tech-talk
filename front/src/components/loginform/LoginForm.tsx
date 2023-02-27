@@ -165,8 +165,13 @@ function LoginForm(): JSX.Element {
           movePage("/");
         })
         .catch((err) => {
-          console.log(err);
-          alert("로그인 실패");
+          const err_msg = err.response.data;
+          console.log(err_msg);
+          if (err_msg === 'not_match_pw') {
+            alert("비밀번호가 다릅니다");
+          } else if (err_msg === 'no_user') {
+            alert("이메일이 존재하지 않습니다.");
+          }
         });
     }
   };
