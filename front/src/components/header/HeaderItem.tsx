@@ -8,6 +8,7 @@ const Container = styled.li`
   justify-content: center;
   list-style: none;
   align-items: center;
+  width: 100%;
 
   a {
      color: ${palette.black};
