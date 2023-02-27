@@ -15,7 +15,7 @@ module.exports = () => {
     const sql = "SELECT * FROM user_table where email=?";
     conn.query(sql, email, (err, result) => {
       if (err) {
-        console.log("에러야");
+        console.log("error");
       }
       console.log("deserializeUser mysql result : ", result);
       const json = JSON.stringify(result[0]);

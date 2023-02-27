@@ -10,36 +10,35 @@ module.exports = () => {
         usernameField: "email",
         passwordField: "pw",
       },
-      async (email, password, done) => {
-        console.log(`===${password}===`);
+      (email, password, done) => {
         try {
           const sql = `SELECT * FROM user_table WHERE email=?`;
           conn.query(sql, email, (err, rows) => {
             if (err) {
               console.log(err);
-              done(err);
+              return done(err);
             }
             if (rows.length === 0) {
-              console.log("---no user---");
-              done(null, false, { msg: "no_user" });
+              console.log("no_user");
+              return done(null, false, { message: "no_user" });
             } else if (rows) {
-              console.log(rows);
               const sql = `SELECT pw FROM user_table where email=?`;
               conn.query(sql, email, (err, rows) => {
                 if (err) {
                   console.log(err);
+                  return done(err);
                 }
-                if (rows.length === 0) {
+                if (rows) {
                   console.log(rows);
-                  done(null, false, { msg: "err" });
-                } else if (rows) {
                   const pw = rows[0].pw;
                   const match = bcrypt.compareSync(password, pw);
                   if (match) {
-                    done(null, email);
+                    return done(null, email);
                   } else {
-                    done(null, false, { msg: "not_match_pw" });
+                    return done(null, false, { message: "not_match_pw" });
                   }
+                } else if (rows.length === 0) {
+                  return done(null, false, { message: "no_user" });
                 }
               });
             }

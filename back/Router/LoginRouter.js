@@ -6,7 +6,6 @@ const router = express.Router();
 router.post(
   "/post", isNotLoggedIn,
   (req, res, next) => {
-    console.log(req.body);
     passport.authenticate(
       "local", {session: true},
       (err, user, info) => {
@@ -15,7 +14,7 @@ router.post(
           next(err);
         }
         if (info) {
-          return res.status(401).send(info.reason);
+          return res.status(401).send(info.message);
         }
         req.login(user, (loginErr) => {
           if (loginErr) {
