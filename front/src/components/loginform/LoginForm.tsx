@@ -8,6 +8,8 @@ import { Container } from "./style";
 import err_msg from "../../err_msg/error_msg";
 import InputMsg from "../input/InputMsg";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { checkLogin } from "../../recoil/store";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -24,6 +26,12 @@ function LoginForm(): JSX.Element {
   const [userPw, setPw] = useState<string>(" ");
   const [rePw, setRepw] = useState<string>("");
   const [check, setCheck] = useState<boolean>(false);
+
+  const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
+
+  const changeLoginState = () => {
+    setLogin(!check_login);
+  }
 
   const checkSignd = (): any => {
     if (!check) {
@@ -160,8 +168,7 @@ function LoginForm(): JSX.Element {
           pw: userPw,
         })
         .then((res) => {
-          console.log(res);
-          alert("로그인 완료.");
+          changeLoginState();
           movePage("/");
         })
         .catch((err) => {

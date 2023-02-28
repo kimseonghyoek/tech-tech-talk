@@ -1,13 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
-import palette from '../../palette';
+import React from "react";
+import styled from "styled-components";
+import palette from "../../palette";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: center;
-  
+
   .info {
     overflow: hidden;
     white-space: nowrap;
@@ -22,21 +23,23 @@ const Container = styled.div`
 `;
 
 // 유저 이미지는 고려중.
-type UserInfoProps = { img: string, name: string }
+type UserInfoProps = { img: string; name: string };
 
 function PreUser(props: UserInfoProps): JSX.Element {
   return (
     <Container>
-      <div className='info'>
-        <p>{props.name} 님</p>
-      </div>
+      <Link to="/user">
+        <div className="info">
+          <p>{props.name} 님</p>
+        </div>
+      </Link>
     </Container>
-  )
-};
+  );
+}
 
 PreUser.defaultProps = {
   name: "USER_NAME",
-  img: "/"
-}
+  img: "/",
+};
 
 export default PreUser;

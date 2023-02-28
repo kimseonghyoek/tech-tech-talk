@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import palette from "../../palette";
 import { Desktop, Tablet } from "../../responsive";
 import { Link } from "react-router-dom";
 import Button from "../Button";
@@ -8,17 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from "recoil";
 import HeaderItem from "./HeaderItem";
-import { showItem } from "../../recoil/store";
+import { checkLogin, showItem } from "../../recoil/store";
 import PreUser from "../user/PreUser";
 import CustomHeader from './style';
 
-type isLogin = { login: boolean };
-
-function Header(props: isLogin) {
+function Header() {
   const public_url = process.env.PUBLIC_URL;
 
   // state
   const [show_item, setShow] = useRecoilState<boolean>(showItem);
+  const [check_login] = useRecoilState<boolean>(checkLogin);
 
   const changeShowItem = () => {
     setShow(!show_item);
@@ -61,7 +58,7 @@ function Header(props: isLogin) {
             </ul>
             {/* User info 페이지 개발 완료시 url 교체 */}
             <Link to="/login">
-              {props.login ? (
+              {check_login ? (
                 <PreUser />
               ) : (
                 <Button disabled={false} id="header-login" text="로그인" />
@@ -85,7 +82,7 @@ function Header(props: isLogin) {
                 {/* <h1>Tech-Tech-Talk</h1> */}
               </Link>
               <div className="side-box">
-                {props.login ? (
+                {check_login ? (
                   <PreUser />
                 ) : (
                   <Link to="/login">
