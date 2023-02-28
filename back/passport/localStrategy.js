@@ -29,7 +29,6 @@ module.exports = () => {
                   return done(err);
                 }
                 if (rows) {
-                  console.log(rows);
                   const pw = rows[0].pw;
                   const match = bcrypt.compareSync(password, pw);
                   if (match) {
