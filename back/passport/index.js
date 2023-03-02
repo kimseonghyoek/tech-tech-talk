@@ -16,11 +16,11 @@ module.exports = () => {
     conn.query(sql, email, (err, result) => {
       if (err) {
         console.log("error");
+        done(err);
       }
-      console.log("deserializeUser mysql result : ", result);
       const json = JSON.stringify(result[0]);
       userInfo = JSON.parse(json);
-      done(null, userInfo);
+      done(null, userInfo.email);
     });
   });
   
