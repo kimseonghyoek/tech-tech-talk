@@ -20,6 +20,7 @@ router.post(
           if (loginErr) {
             return next(loginErr);
           }
+          console.log("=========== login router ===========");
           console.log("isAuthenticated: ", req.isAuthenticated());
           return res.redirect("/");
         });
