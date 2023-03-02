@@ -14,7 +14,7 @@ const PORT = 8000;
 
 app.set("view engine", "html");
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "true" }));
+app.use(cors({ credentials: true, origin: "localhost:3000" }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "../front/build")));
 passportConfig();
@@ -23,7 +23,7 @@ app.use(
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true },
+    cookie: { secure: false },
   }),
 );
 app.use(passport.initialize());
