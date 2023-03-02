@@ -169,7 +169,8 @@ function LoginForm(): JSX.Element {
         })
         .then((res) => {
           changeLoginState();
-          movePage("/");
+          // 로그인 유지 기능 개발전까지 redirect는 user로
+          movePage("/user");
         })
         .catch((err) => {
           const err_msg = err.response.data;
