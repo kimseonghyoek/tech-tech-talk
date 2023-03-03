@@ -179,6 +179,9 @@ function LoginForm(): JSX.Element {
             alert("비밀번호가 다릅니다");
           } else if (err_msg === 'no_user') {
             alert("이메일이 존재하지 않습니다.");
+          } else if (err_msg === "is_loggedin") {
+            // 일단 중복일 경우 alret
+            alert("로그인이 이미 되어있습니다.");
           }
         });
     }
