@@ -2,7 +2,8 @@ exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.status(403).send("please login");
+    console.log("===== not login =====")
+    res.status(403).send("not_login");
   }
 }
 
@@ -10,6 +11,7 @@ exports.isNotLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     next();
   } else {
-    console.log("is loggedin");
+    console.log("===== is loggedin =====");
+    res.status(403).send("is_loggedin")
   }
 }
