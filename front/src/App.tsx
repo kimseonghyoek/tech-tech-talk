@@ -15,28 +15,31 @@ import Setting from "./pages/setting/Setting";
 import User from "./pages/user/User";
 import Comm from "./pages/comm/Community";
 import UsedMarket from "./pages/used/UsedMarket";
+import { CookiesProvider } from "react-cookie";
 
 function App() {
   return (
     <div className="App">
-      <RecoilRoot>
-        <BrowserRouter>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Promotion />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/user" element={<User/>}/>
-            <Route path="/comm" element={<Comm/> } />
-            <Route path="/used" element={<UsedMarket/> }/>
-            <Route path="/test" element={<Test/> }/>
-            <Route path="/setting" element={<Setting/>}/>
-            <Route path="/manage" element={<DevManage/> }/>
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </RecoilRoot>
+      <CookiesProvider>
+        <RecoilRoot>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Promotion />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/comm" element={<Comm />} />
+              <Route path="/used" element={<UsedMarket />} />
+              <Route path="/test" element={<Test />} />
+              <Route path="/setting" element={<Setting />} />
+              <Route path="/manage" element={<DevManage />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </RecoilRoot>
+      </CookiesProvider>
     </div>
   );
 }

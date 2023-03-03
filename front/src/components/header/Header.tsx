@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Desktop, Tablet } from "../../responsive";
+import { Desktop, Tablet } from "../../util/responsive";
 import { Link } from "react-router-dom";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

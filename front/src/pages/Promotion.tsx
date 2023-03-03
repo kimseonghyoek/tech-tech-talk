@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import palette from "../palette";
-import { Desktop, Mobile, Tablet } from "../responsive";
+import { Desktop, Mobile, Tablet } from "../util/responsive";
 import DesktopPage from "./Landing/DesktopPage";
 import MobilePage from "./Landing/MobilePage";
 
