@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get("/user", (req, res, next) => {
+router.get("/get", (req, res, next) => {
   console.log("===== user router =====")
 });
 
