@@ -1,3 +1,9 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000'
+const baseAPI = (url: string, options: any) => {
+  axios.create({baseURL: url, ...options});
+}
+
+const authAPI  = (url: string, options: any) => {
+  
+}
