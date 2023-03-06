@@ -15,6 +15,7 @@ router.post("/post", async (req, res, next) => {
 
   res.send({ msg: "success_signup" });
   res.end();
+  next();
 });
 
 module.exports = router;
