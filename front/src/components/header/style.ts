@@ -57,6 +57,15 @@ const style = styled.div`
         height: 4rem;
         color: ${palette.white};
       }
+
+      #header-logout {
+        background-color: ${palette.main_color3};
+        border-radius: 0.5rem;
+        font-size: 1.3rem;
+        width: 7rem;
+        height: 4rem;
+        color: ${palette.white};
+      }
     }
 
     ul {

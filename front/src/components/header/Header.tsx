@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
 import PreUser from "../user/PreUser";
-import CustomHeader from './style';
+import CustomHeader from "./style";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -59,7 +59,7 @@ function Header() {
             {/* User info 페이지 개발 완료시 url 교체 */}
             <Link to="/login">
               {check_login ? (
-                <PreUser />
+                <Button disabled={false} id="header-logout" text="로그아웃" />
               ) : (
                 <Button disabled={false} id="header-login" text="로그인" />
               )}
@@ -83,7 +83,7 @@ function Header() {
               </Link>
               <div className="side-box">
                 {check_login ? (
-                  <PreUser />
+                  <Button disabled={false} id="header-logout" text="로그아웃" />
                 ) : (
                   <Link to="/login">
                     <Button
