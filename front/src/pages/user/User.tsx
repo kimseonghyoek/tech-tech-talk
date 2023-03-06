@@ -1,10 +1,14 @@
 import axios from "axios";
-import React from "react";
 import styled from "styled-components";
+import { getCookie } from "../../util/cookie";
 
 const Container = styled.div`
   display: flex;
   flex: 1;
+
+  h1 {
+    font-size: 3rem;
+  }
 `;
 
 function User(): JSX.Element {
@@ -17,14 +21,13 @@ function User(): JSX.Element {
       .catch((err) => {
         console.log(err);
       });
-      
   };
 
   getUser();
 
   return (
     <Container>
-      <p>User Page</p>
+      <h1>User Page</h1>
     </Container>
   );
 }
