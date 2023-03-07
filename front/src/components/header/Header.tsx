@@ -15,12 +15,14 @@ function Header() {
 
   // state
   const [show_item, setShow] = useRecoilState<boolean>(showItem);
-  const [check_login] = useRecoilState<boolean>(checkLogin);
+  const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
   const changeShowItem = () => {
     setShow(!show_item);
     console.log(show_item);
   };
+
+  console.log(check_login);
 
   return (
     <CustomHeader>
@@ -57,13 +59,14 @@ function Header() {
               </li>
             </ul>
             {/* User info 페이지 개발 완료시 url 교체 */}
-            <Link to="/login">
-              {check_login ? (
-                <Button disabled={false} id="header-logout" text="로그아웃" />
-              ) : (
+
+            {check_login ? (
+              <Button disabled={false} id="header-logout" text="로그아웃" />
+            ) : (
+              <Link to="login">
                 <Button disabled={false} id="header-login" text="로그인" />
-              )}
-            </Link>
+              </Link>
+            )}
           </>
         </Desktop>
 

@@ -38,6 +38,15 @@ const style = styled.div`
     justify-content: center;
     border-bottom: 0.1rem solid ${palette.main_color2};
 
+    #header-logout {
+      background-color: ${palette.main_color3};
+      border-radius: 0.5rem;
+      font-size: 1.3rem;
+      width: 7rem;
+      height: 4rem;
+      color: ${palette.white};
+    }
+
     a {
       display: center;
       justify-center: center;
@@ -51,15 +60,6 @@ const style = styled.div`
 
       #header-login {
         background-color: ${palette.main_color4};
-        border-radius: 0.5rem;
-        font-size: 1.3rem;
-        width: 7rem;
-        height: 4rem;
-        color: ${palette.white};
-      }
-
-      #header-logout {
-        background-color: ${palette.main_color3};
         border-radius: 0.5rem;
         font-size: 1.3rem;
         width: 7rem;
