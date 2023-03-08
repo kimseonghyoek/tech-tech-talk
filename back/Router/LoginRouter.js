@@ -36,4 +36,8 @@ router.post(
   }
 );
 
+router.post("/logout", (req, res) => {
+  console.log("back logout");
+}) 
+
 module.exports = router;
