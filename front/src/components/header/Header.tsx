@@ -9,6 +9,7 @@ import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
 import PreUser from "../user/PreUser";
 import CustomHeader from "./style";
+import axios from "axios";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -17,12 +18,17 @@ function Header() {
   const [show_item, setShow] = useRecoilState<boolean>(showItem);
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
+  const sendLogout = () => {
+    console.log("logout");
+    axios.post("/login/logout").then((res) => {
+      console.log(res);
+    });
+  }
+
   const changeShowItem = () => {
     setShow(!show_item);
     console.log(show_item);
   };
-
-  console.log(check_login);
 
   return (
     <CustomHeader>
@@ -64,7 +70,7 @@ function Header() {
               <Button disabled={false} id="header-logout" text="로그아웃" />
             ) : (
               <Link to="login">
-                <Button disabled={false} id="header-login" text="로그인" />
+                <Button disabled={false} id="header-login" text="로그인" onClick={sendLogout()}/>
               </Link>
             )}
           </>
