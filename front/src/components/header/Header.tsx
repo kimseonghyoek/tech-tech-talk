@@ -25,6 +25,10 @@ function Header() {
     });
   }
 
+  const logEvent = () => {
+    console.log("Log Event!!!");
+  }
+
   const changeShowItem = () => {
     setShow(!show_item);
     console.log(show_item);
@@ -65,12 +69,11 @@ function Header() {
               </li>
             </ul>
             {/* User info 페이지 개발 완료시 url 교체 */}
-
             {check_login ? (
-              <Button disabled={false} id="header-logout" text="로그아웃" />
+              <Button disabled={false} id="header-logout" text="로그아웃" onClick={() => { logEvent() } } />
             ) : (
               <Link to="login">
-                <Button disabled={false} id="header-login" text="로그인" onClick={sendLogout()}/>
+                <Button disabled={false} id="header-login" text="로그인" />
               </Link>
             )}
           </>
