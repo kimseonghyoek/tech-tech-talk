@@ -13,7 +13,7 @@ const StyeldButton = styled.button`
 function Button({ text, id, disabled, onClick }: { text: string, id: string, disabled: boolean, onClick: any }): JSX.Element {
   return (
     <>
-      <StyeldButton disabled={disabled} id={id}>{text}</StyeldButton>
+      <StyeldButton disabled={disabled} onClick={onClick} id={id}>{text}</StyeldButton>
     </>
   );
 }
