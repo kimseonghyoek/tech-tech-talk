@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type InputComponentsProps = { placeholder: string, onChange: any, type: string }
+type InputComponentsProps = { placeholder: string, onChange: any, type: string };
 
 const StyledInput = styled.input`
   font-size: 14px;
