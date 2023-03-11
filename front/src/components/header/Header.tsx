@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Desktop, Tablet } from "../../util/responsive";
 import { Link } from "react-router-dom";
 import Button from "../Button";
@@ -7,7 +6,6 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useRecoilState } from "recoil";
 import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
-import PreUser from "../user/PreUser";
 import CustomHeader from "./style";
 import axios from "axios";
 
@@ -71,10 +69,10 @@ function Header() {
             {/* User info 페이지 개발 완료시 url 교체 */}
 
             {check_login ? (
-              <Button disabled={false} id="header-logout" text="로그아웃" />
+              <Button disabled={false} id="header-logout" text="로그아웃" onClick={logEvent}/>
             ) : (
               <Link to="login">
-                <Button disabled={false} id="header-login" text="로그인" onClick={logEvent}/>
+                <Button disabled={false} id="header-login" text="로그인" />
               </Link>
             )}
           </>
