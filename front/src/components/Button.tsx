@@ -15,7 +15,7 @@ type ButtonProps = { text: string, id: string, disabled: boolean, onClick: any }
 function Button(props: ButtonProps): JSX.Element {
   return (
     <>
-      <StyeldButton disabled={props.disabled} onClick={props.onClick} id={props.id}>
+      <StyeldButton disabled={props.disabled} onClick={() => props.onClick} id={props.id}>
         {props.text}
       </StyeldButton>
     </>
