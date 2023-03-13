@@ -21,11 +21,11 @@ function Header() {
     axios.post("/login/logout").then((res) => {
       console.log(res);
     });
-  }
+  };
 
   const logEvent = () => {
     console.log("Log Event!!!");
-  }
+  };
 
   const changeShowItem = () => {
     setShow(!show_item);
@@ -69,7 +69,12 @@ function Header() {
             {/* User info 페이지 개발 완료시 url 교체 */}
 
             {check_login ? (
-              <Button disabled={false} id="header-logout" text="로그아웃" onClick={logEvent}/>
+              <Button
+                disabled={false}
+                id="header-logout"
+                text="로그아웃"
+                onPress={logEvent}
+              />
             ) : (
               <Link to="login">
                 <Button disabled={false} id="header-login" text="로그인" />
@@ -94,7 +99,12 @@ function Header() {
               </Link>
               <div className="side-box">
                 {check_login ? (
-                  <Button disabled={false} id="header-logout" text="로그아웃" />
+                  <Button
+                    disabled={false}
+                    id="header-logout"
+                    text="로그아웃"
+                    onPress={logEvent()}
+                  />
                 ) : (
                   <Link to="/login">
                     <Button
