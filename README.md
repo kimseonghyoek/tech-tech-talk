@@ -21,4 +21,4 @@ text logo
 ## 🦾 Back
 #### - 사용 기술
 * 그냥 express.js 를 사용
-* 아마 mysql을 사용할 예정.
+* docker 환경에서 mysql 사용 중
