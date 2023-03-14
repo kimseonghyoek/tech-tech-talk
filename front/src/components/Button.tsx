@@ -10,12 +10,24 @@ const StyeldButton = styled.button`
   margin: 1rem;
 `;
 
-type ButtonProps = { text: string, id: string, disabled: boolean, onPress: any };
+type ButtonProps = {
+  text: string;
+  id: string;
+  disabled: boolean;
+  onClicks: () => void;
+};
 
 function Button(props: ButtonProps): JSX.Element {
+  const checkClick = (e: React.MouseEvent<HTMLElement>) => {
+    props.onClicks();}
+
   return (
     <>
-      <StyeldButton disabled={props.disabled} onClick={() => props.onPress} id={props.id}>
+      <StyeldButton
+        disabled={props.disabled}
+        onClick={checkClick}
+        id={props.id}
+      >
         {props.text}
       </StyeldButton>
     </>
@@ -25,7 +37,7 @@ function Button(props: ButtonProps): JSX.Element {
 Button.defaultProps = {
   disabled: false,
   id: null,
-  onPress: {},
+  onClicks: {},
 };
 
 export default Button;
