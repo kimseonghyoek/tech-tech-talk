@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 
 const StyeldButton = styled.button`
@@ -10,22 +10,24 @@ const StyeldButton = styled.button`
   margin: 1rem;
 `;
 
-type ButtonProps = {
+interface btnProps {
   text: string;
   id: string;
   disabled: boolean;
-  onClicks: () => void;
-};
+  onClick: () => MouseEventHandler<HTMLButtonElement>;
+}
 
-function Button(props: ButtonProps): JSX.Element {
-  const checkClick = (e: React.MouseEvent<HTMLElement>) => {
-    props.onClicks();}
+function Button(props: btnProps): JSX.Element {
+
+  const clicks = () => {
+    props.onClick();
+  }
 
   return (
     <>
       <StyeldButton
         disabled={props.disabled}
-        onClick={checkClick}
+        onClick={clicks}
         id={props.id}
       >
         {props.text}
@@ -37,7 +39,7 @@ function Button(props: ButtonProps): JSX.Element {
 Button.defaultProps = {
   disabled: false,
   id: null,
-  onClicks: {},
+  onClick: {},
 };
 
 export default Button;
