@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from "react";
 import styled from "styled-components";
 
@@ -18,8 +19,10 @@ type ButtonProps = {
 };
 
 function Button(props: ButtonProps): JSX.Element {
-  const checkClick = (e: React.MouseEvent<HTMLElement>) => {
-    props.onClicks();}
+  const checkClick = () => {
+    props.onClicks;
+    console.log(props.onClicks);
+  };
 
   return (
     <>
@@ -27,7 +30,7 @@ function Button(props: ButtonProps): JSX.Element {
         disabled={props.disabled}
         onClick={checkClick}
         id={props.id}
-      >
+      > 
         {props.text}
       </StyeldButton>
     </>
