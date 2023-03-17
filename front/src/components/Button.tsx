@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import React from "react";
+=======
+import React, { MouseEventHandler } from "react";
+>>>>>>> f74709585be53bd66799742fa0907e7cc9e46f4a
 import styled from "styled-components";
 
 const StyeldButton = styled.button`
@@ -11,24 +15,32 @@ const StyeldButton = styled.button`
   margin: 1rem;
 `;
 
-type ButtonProps = {
+interface btnProps {
   text: string;
   id: string;
   disabled: boolean;
-  onClicks: () => void;
-};
+  onClick: () => MouseEventHandler<HTMLButtonElement>;
+}
 
+<<<<<<< HEAD
 function Button(props: ButtonProps): JSX.Element {
   const checkClick = () => {
     props.onClicks;
     console.log(props.onClicks);
   };
+=======
+function Button(props: btnProps): JSX.Element {
+
+  const clicks = () => {
+    props.onClick();
+  }
+>>>>>>> f74709585be53bd66799742fa0907e7cc9e46f4a
 
   return (
     <>
       <StyeldButton
         disabled={props.disabled}
-        onClick={checkClick}
+        onClick={clicks}
         id={props.id}
       > 
         {props.text}
@@ -40,7 +52,7 @@ function Button(props: ButtonProps): JSX.Element {
 Button.defaultProps = {
   disabled: false,
   id: null,
-  onClicks: {},
+  onClick: {},
 };
 
 export default Button;

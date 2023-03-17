@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import palette from "../../palette";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { getCookie } from "../../util/cookie";
 
 const Container = styled.div`
   display: flex;
@@ -26,6 +28,15 @@ const Container = styled.div`
 type UserInfoProps = { img: string; name: string };
 
 function PreUser(props: UserInfoProps): JSX.Element {
+
+  axios.get("/user", {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Beaber ${getCookie}`
+    },
+    withCredentials: true
+  });
+
   return (
     <Container>
       <Link to="/user">

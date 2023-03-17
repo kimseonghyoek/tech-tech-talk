@@ -8,6 +8,7 @@ import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
 import CustomHeader from "./style";
 import axios from "axios";
+import React from "react";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -73,7 +74,9 @@ function Header() {
                 disabled={false}
                 id="header-logout"
                 text="로그아웃"
-                onPress={logEvent}
+                onClicks={() => {
+                  console.log("test")
+                }}
               />
             ) : (
               <Link to="login">
@@ -103,7 +106,6 @@ function Header() {
                     disabled={false}
                     id="header-logout"
                     text="로그아웃"
-                    onPress={logEvent()}
                   />
                 ) : (
                   <Link to="/login">
