@@ -20,7 +20,7 @@ type ButtonProps = {
 
 function Button(props: ButtonProps): JSX.Element {
   const checkClick = () => {
-    props.onClicks;
+    props.onClicks();
     console.log(props.onClicks);
   };
 

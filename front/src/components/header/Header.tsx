@@ -75,7 +75,7 @@ function Header() {
                 id="header-logout"
                 text="로그아웃"
                 onClicks={() => {
-                  console.log("test")
+                  logEvent();
                 }}
               />
             ) : (
