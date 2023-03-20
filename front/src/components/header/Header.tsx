@@ -74,7 +74,7 @@ function Header() {
                 disabled={false}
                 id="header-logout"
                 text="로그아웃"
-                onClick={logEvent}
+                onClick={sendLogout}
               />
             ) : (
               <Link to="login">
