@@ -38,6 +38,8 @@ router.post(
 
 router.post("/logout", (req, res) => {
   console.log("back logout");
+  res.clearCookie('connect.sid');
+  res.send({ msg: "logout"});
 }) 
 
 module.exports = router;
