@@ -16,6 +16,7 @@ import User from "./pages/user/User";
 import Comm from "./pages/comm/Community";
 import UsedMarket from "./pages/used/UsedMarket";
 import { CookiesProvider } from "react-cookie";
+import Software from "./pages/comm/softwares/Software";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/user" element={<User />} />
               <Route path="/comm" element={<Comm />} />
+              <Route path="/comm/softwares" element={<Software/>}/>
               <Route path="/used" element={<UsedMarket />} />
               <Route path="/test" element={<Test />} />
               <Route path="/setting" element={<Setting />} />
