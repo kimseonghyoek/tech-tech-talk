@@ -24,10 +24,6 @@ function Header() {
     });
   };
 
-  const logEvent = () => {
-    console.log("Log Event!!!");
-  };
-
   const changeShowItem = () => {
     setShow(!show_item);
     console.log(show_item);
@@ -51,9 +47,11 @@ function Header() {
               {/* <h1>Tech-Tech-Talk</h1> */}
             </Link>
             <ul>
-              <li>
-                <p>소프트웨어</p>
-              </li>
+              <Link to={"/comm/softwares"}>
+                <li>
+                  <p>소프트웨어</p>
+                </li>
+              </Link>
               <li>
                 <p>키보드</p>
               </li>
@@ -100,11 +98,7 @@ function Header() {
               </Link>
               <div className="side-box">
                 {check_login ? (
-                  <Button
-                    disabled={false}
-                    id="header-logout"
-                    text="로그아웃"
-                  />
+                  <Button disabled={false} id="header-logout" text="로그아웃" />
                 ) : (
                   <Link to="/login">
                     <Button
