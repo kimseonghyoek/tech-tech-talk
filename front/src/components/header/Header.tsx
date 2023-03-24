@@ -8,7 +8,6 @@ import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
 import CustomHeader from "./style";
 import axios from "axios";
-import React from "react";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -18,7 +17,7 @@ function Header() {
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
   const sendLogout = () => {
-    console.log("logout");
+    setLogin(!check_login);
     axios.post("/login/logout").then((res) => {
       console.log(res);
     });
