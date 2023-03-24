@@ -8,7 +8,7 @@ const Container = styled.p`
   margin: 0.2rem !important;
 `;
 
-function InputMsg({ msg }: { msg: string}): JSX.Element {
+function InputMsg({ msg }: { msg: string | undefined}): JSX.Element {
   return (
     <Container>
       {msg}
