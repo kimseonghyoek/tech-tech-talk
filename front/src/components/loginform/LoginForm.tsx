@@ -10,6 +10,7 @@ import InputMsg from "../input/InputMsg";
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { checkLogin } from "../../recoil/store";
+import { ValidateCommon } from "../../util/common/Validate";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -240,7 +241,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>이름</p>
             <Input placeholder="" onChange={changeName} />
-            <InputMsg msg={checkName()} />
+            <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
           </div>
           <div className="inputs">
             <p>전화번호</p>
@@ -250,7 +251,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeNickName} />
-            <InputMsg msg={checkNickName()} />
+            <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
