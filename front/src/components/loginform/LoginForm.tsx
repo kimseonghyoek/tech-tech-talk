@@ -23,7 +23,7 @@ function LoginForm(): JSX.Element {
   const [userName, setName] = useState<string>("");
   const [userNumber, setNumber] = useState<string>("");
   const [userNickName, setNickName] = useState<string>("");
-  const [userEmail, setEmail] = useState<string>(" ");
+  const [userEmail, setEmail] = useState<string>("");
   const [userPw, setPw] = useState<string>(" ");
   const [rePw, setRepw] = useState<string>("");
   const [check, setCheck] = useState<boolean>(false);
@@ -251,12 +251,12 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeNickName} />
-            <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
+            {/* <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} /> */}
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
             <Input placeholder="" onChange={changeEmail} />
-            <InputMsg msg={checkEmail()} />
+            <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
             <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
