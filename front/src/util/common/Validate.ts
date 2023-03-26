@@ -9,12 +9,12 @@ interface validate {
 export const ValidateCommon: validate = {
   nameValidate: function(name: string, post: boolean) {
     const name_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
-    if(name.match(name_regExp) || name.length >= 51) {
+    if(name.match(name_regExp) || name.length >= 21) {
       post = false;
-      return error_msg.WRONG_NAME_FORMAT;
+      return error_msg.WRONG_NICK_FORMAT;
     } else if (name === "") {
       post = false;
-      return error_msg.EMPTY_NAME_SPACE;
+      return error_msg.EMPTY_NICK_SPACE;
     }
     return "";
   },
