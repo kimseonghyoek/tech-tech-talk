@@ -4,6 +4,7 @@ import error_msg from "../../err_msg/error_msg";
 interface validate {
   nameValidate: (name: string, post: boolean) => string | undefined;
   emailValidate: (email: string, post: boolean) => string | undefined;
+  nicknameValidate: (nickname: string, post: boolean) => string | undefined;
 }
 
 export const ValidateCommon: validate = {
@@ -29,4 +30,15 @@ export const ValidateCommon: validate = {
     }
     return "";
   },
+  nicknameValidate: function(nickname: string, post: boolean) {
+    const nickname_regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+    if(nickname.match(nickname_regExp) || nickname.length >= 35) {
+        post = false;
+        return error_msg.WRONG_NAME_FORMAT;
+    } else if (nickname === "") {
+        post = false;
+        return error_msg.EMPTY_NAME_SPACE;
+    }
+    return "";
+  }
 };
