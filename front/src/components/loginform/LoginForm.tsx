@@ -246,7 +246,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>전화번호</p>
             <Input placeholder="" onChange={changeNumber} />
-            <InputMsg msg={checkNumber()} />
+            <InputMsg msg={ValidateCommon.phonenumValidate(userNumber, post)} />
           </div>
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
