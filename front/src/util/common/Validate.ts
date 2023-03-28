@@ -5,6 +5,7 @@ interface validate {
   nameValidate: (name: string, post: boolean) => string | undefined;
   emailValidate: (email: string, post: boolean) => string | undefined;
   nicknameValidate: (nickname: string, post: boolean) => string | undefined;
+  phonenumValidate: (phonenum: string, post: boolean) => string | undefined;
 }
 
 export const ValidateCommon: validate = {
@@ -40,5 +41,15 @@ export const ValidateCommon: validate = {
         return error_msg.EMPTY_NAME_SPACE;
     }
     return "";
-  }
+  },
+  phonenumValidate(phonenum: string, post: boolean) {
+    const number_regExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    if(!phonenum.match(number_regExp) || phonenum.length >= 12) {
+      post = false;
+      return error_msg.WRONG_NUMBER_FORMAT;
+    } else if (phonenum === "") {
+      return error_msg.EMPTY_NUMBER_SPACE;
+    }
+    return "";
+  },
 };
