@@ -51,9 +51,11 @@ function Header() {
                   <p>소프트웨어</p>
                 </li>
               </Link>
-              <li>
-                <p>키보드</p>
-              </li>
+              <Link to={"/comm/keyboard"}>
+                <li>
+                  <p>키보드</p>
+                </li>
+              </Link>
               <li>
                 <p>마우스</p>
               </li>
