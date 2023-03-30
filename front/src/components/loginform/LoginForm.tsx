@@ -261,7 +261,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
             <Input placeholder="" onChange={changePw} type="password" />
-            <InputMsg msg={checkPw()} />
+            <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
           <div className="inputs">
             <p>비밀번호 재확인</p>
