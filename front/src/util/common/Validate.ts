@@ -6,6 +6,7 @@ interface validate {
   emailValidate: (email: string, post: boolean) => string | undefined;
   nicknameValidate: (nickname: string, post: boolean) => string | undefined;
   phonenumValidate: (phonenum: string, post: boolean) => string | undefined;
+  passwordValidate: (pw: string, post: boolean) => string | undefined;
 }
 
 export const ValidateCommon: validate = {
@@ -51,5 +52,15 @@ export const ValidateCommon: validate = {
       return error_msg.EMPTY_NUMBER_SPACE;
     }
     return "";
+  },
+  passwordValidate(pw: string, post: boolean) {
+      const pw_regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+      if (!pw.match(pw_regExp) || pw.length >= 30) {
+        post = false;
+        return error_msg.WRONG_PW_FORMAT;
+      } else if (pw === "") {
+        return error_msg.EMPTY_PW_SPACE;
+      }
+      return "";
   },
 };
