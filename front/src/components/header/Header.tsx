@@ -56,15 +56,21 @@ function Header() {
                   <p>키보드</p>
                 </li>
               </Link>
-              <li>
-                <p>마우스</p>
-              </li>
-              <li>
-                <p>PC 부품</p>
-              </li>
-              <li>
-                <p>그 외 제품</p>
-              </li>
+              <Link to={"/comm/mouse"}>
+                <li>
+                  <p>마우스</p>
+                </li>
+              </Link>
+              <Link to={"/comm/pc"}>
+                <li>
+                  <p>PC 부품</p>
+                </li>
+              </Link>
+              <Link to={"/comm/other"}>
+                <li>
+                  <p>그 외 제품</p>
+                </li>
+              </Link>
             </ul>
             {/* User info 페이지 개발 완료시 url 교체 */}
 
