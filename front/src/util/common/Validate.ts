@@ -29,7 +29,7 @@ export const ValidateCommon: validate = {
   emailValidate: function (email: string, post: boolean) {
     const email_regExp =
       /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if (email.match(email_regExp) || email.length >= 51) {
+    if (!email.match(email_regExp) || email.length >= 51) {
       post = false;
       return error_msg.WRONG_EMAIL_FORMAT;
     } else if (email === "") {
