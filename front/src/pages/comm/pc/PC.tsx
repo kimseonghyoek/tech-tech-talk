@@ -1,11 +1,11 @@
 import Container from "../Style";
 
-function KeyBoard(): JSX.Element {
+function PC(): JSX.Element {
   return (
     <Container>
-      <h1>Keyboard</h1>
+      <h1>PC</h1>
     </Container>
   )
 }
 
-export default KeyBoard;
+export default PC;

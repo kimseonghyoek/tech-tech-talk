@@ -1,8 +1,10 @@
+import Container from "../Style";
+
 function Software(): JSX.Element {
   return (
-    <div>
-      <h1>software comm</h1>
-    </div>
+    <Container>
+      <h1>Software comm</h1>
+    </Container>
   )
 }
 

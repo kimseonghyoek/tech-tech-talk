@@ -1,11 +1,11 @@
 import Container from "../Style";
 
-function KeyBoard(): JSX.Element {
+function Mouse(): JSX.Element {
   return (
     <Container>
-      <h1>Keyboard</h1>
+      <h1>Mouse</h1>
     </Container>
   )
 }
 
-export default KeyBoard;
+export default Mouse;
