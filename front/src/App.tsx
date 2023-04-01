@@ -18,6 +18,9 @@ import UsedMarket from "./pages/used/UsedMarket";
 import { CookiesProvider } from "react-cookie";
 import Software from "./pages/comm/softwares/Software";
 import KeyBoard from "./pages/comm/keyboard/KeyBoard";
+import Mouse from "./pages/comm/mouse/Mouse";
+import PC from "./pages/comm/pc/PC";
+import Other from "./pages/comm/other/Other";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
               <Route path="/comm" element={<Comm />} />
               <Route path="/comm/softwares" element={<Software/>}/>
               <Route path="/comm/keyboard" element={<KeyBoard/>}/>
+              <Route path="/comm/mouse" element={<Mouse/>} />
+              <Route path="/comm/pc" element={<PC/>}/>
+              <Route path="/comm/other" element={<Other/>}/>
               <Route path="/used" element={<UsedMarket />} />
               <Route path="/test" element={<Test />} />
               <Route path="/setting" element={<Setting />} />
