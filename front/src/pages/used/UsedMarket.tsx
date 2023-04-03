@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from "../Styled";
 
 function UsedMarket(): JSX.Element {
   return (
-    <div>
-      <p>used-market page</p>
-    </div>
+    <Container>
+      <h1>used-market page</h1>
+    </Container>
   )
 }
 
