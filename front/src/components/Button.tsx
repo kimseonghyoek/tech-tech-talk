@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const StyeldButton = styled.button`
   width: 5.5rem;
-  height: 4vh;
+  height: 5vh;
   font-size: 18px;
   font-weight: bold;
   border: none;
