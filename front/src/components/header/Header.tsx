@@ -8,6 +8,7 @@ import HeaderItem from "./HeaderItem";
 import { checkLogin, showItem } from "../../recoil/store";
 import CustomHeader from "./style";
 import axios from "axios";
+import LocalStorage from "../../util/localstorage";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -18,6 +19,7 @@ function Header() {
 
   const sendLogout = () => {
     setLogin(!check_login);
+    LocalStorage("login", "login");
     axios.post("/login/logout").then((res) => {
       console.log(res);
     });
