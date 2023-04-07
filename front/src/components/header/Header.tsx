@@ -19,7 +19,7 @@ function Header() {
 
   const sendLogout = () => {
     setLogin(!check_login);
-    LocalStorage("login", "login");
+    LocalStorage.SetLocalStorage("login", "login");
     axios.post("/login/logout").then((res) => {
       console.log(res);
     });
