@@ -5,6 +5,10 @@ const LocalStorage = {
   
   GetLocalStorage: (key: string) => {
     localStorage.getItem(key);
+  },
+
+  DelLocalStorage: (key: string) => {
+    localStorage.removeItem(key);
   }
 };
 
