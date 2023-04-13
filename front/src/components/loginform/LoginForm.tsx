@@ -11,6 +11,7 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
+import LocalStorage from "../../util/localstorage";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -103,7 +104,8 @@ function LoginForm(): JSX.Element {
         })
         .then((res) => {
           changeLoginState();
-          // 로그인 유지 기능 개발전까지 redirect는 user로
+          LocalStorage.DelLocalStorage("logout");
+          LocalStorage.SetLocalStorage("login", "login");
           movePage("/user");
         })
         .catch((err) => {
