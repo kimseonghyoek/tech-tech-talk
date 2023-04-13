@@ -1,6 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
 import { getCookie } from "../../util/cookie";
+import LocalStorage from "../../util/localstorage";
 
 const Container = styled.div`
   display: flex;
@@ -13,14 +14,7 @@ const Container = styled.div`
 
 function User(): JSX.Element {
   const getUser = () => {
-    axios
-      .get("/user/get")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(localStorage.getItem("login"));
   };
 
   getUser();
