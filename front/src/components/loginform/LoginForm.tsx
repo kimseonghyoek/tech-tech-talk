@@ -186,7 +186,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
             <Input placeholder="" onChange={changeNickName} />
-            <InputMsg msg={ValidateCommon.nicknameValidate(userEmail, post)} />
+            <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
