@@ -10,3 +10,6 @@ create table user_table (
     phonenum varchar(11) not null,
     pw varchar(100) not null
 );
+
+-- user_table의 phonenum 컬럼의 이름을 phone_num으로 변경.
+alter table user_table change phonenum phone_num varchar(11);
