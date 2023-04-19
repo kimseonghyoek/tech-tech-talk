@@ -1,5 +1,5 @@
 import { Desktop, Tablet } from "../../util/responsive";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,8 @@ import LocalStorage from "../../util/localstorage";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
+  const location = useLocation();
+  const movePage = useNavigate();
 
   // state
   const [show_item, setShow] = useRecoilState<boolean>(showItem);
@@ -23,6 +25,7 @@ function Header() {
     LocalStorage.SetLocalStorage("logout", "not-login");
     axios.post("/login/logout").then((res) => {
       console.log(res);
+      return movePage("/");
     });
   };
 
@@ -75,8 +78,6 @@ function Header() {
                 </li>
               </Link>
             </ul>
-            {/* User info 페이지 개발 완료시 url 교체 */}
-
             {check_login ? (
               <Button
                 disabled={false}
