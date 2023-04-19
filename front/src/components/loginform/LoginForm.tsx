@@ -106,6 +106,7 @@ function LoginForm(): JSX.Element {
           changeLoginState();
           LocalStorage.DelLocalStorage("logout");
           LocalStorage.SetLocalStorage("login", "login");
+          sessionStorage.setItem("email", userEmail);
           movePage("/user");
         })
         .catch((err) => {
