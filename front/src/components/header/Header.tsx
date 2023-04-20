@@ -79,12 +79,8 @@ function Header() {
               </Link>
             </ul>
             {check_login ? (
-              <Button
-                disabled={false}
-                id="header-logout"
-                text="로그아웃"
-                onClick={sendLogout}
-              />
+              <p>{
+                sessionStorage.getItem("email")}</p>
             ) : (
               <Link to="login">
                 <Button disabled={false} id="header-login" text="로그인" />
@@ -109,7 +105,7 @@ function Header() {
               </Link>
               <div className="side-box">
                 {check_login ? (
-                  <Button disabled={false} id="header-logout" text="로그아웃" />
+                  <p>TEST</p>
                 ) : (
                   <Link to="/login">
                     <Button

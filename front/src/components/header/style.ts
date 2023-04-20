@@ -105,6 +105,10 @@ const style = styled.div`
     .side-box {
       margin: 2rem;
       width: 7.5rem;
+
+      p {
+        color: #c0c0c0;
+      }
     }
   }
 
