@@ -19,16 +19,19 @@ router.post(
         req.login(user, (loginErr) => {
           if (loginErr) {
             return next(loginErr);
+          } else {
+            console.log(req.user);
+            console.log("=========== login router ===========");
+            console.log("isAuthenticated: ", req.isAuthenticated());
+            return res.redirect("/");
           }
-          console.log("=========== login router ===========");
-          console.log("isAuthenticated: ", req.isAuthenticated());
-          return res.redirect("/");
         });
       }
     )(req, res, next);
   },
   (req, res) => {
     if (req.user) {
+      console.log("탔다!!!");
       const user = { email: req.user.email, nickname: req.user.nickname };
       res.send(user);
     }
