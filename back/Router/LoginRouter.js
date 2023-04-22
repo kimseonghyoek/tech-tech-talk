@@ -21,8 +21,6 @@ router.post(
             return next(loginErr);
           } else {
             console.log(req.user);
-            console.log("=========== login router ===========");
-            console.log("isAuthenticated: ", req.isAuthenticated());
             return res.redirect("/");
           }
         });
@@ -31,7 +29,6 @@ router.post(
   },
   (req, res) => {
     if (req.user) {
-      console.log("탔다!!!");
       const user = { email: req.user.email, nickname: req.user.nickname };
       res.send(user);
     }
