@@ -24,7 +24,7 @@ module.exports = () => {
               console.log("no_user");
               return done(null, false, { message: "no_user" });
             } else if (rows) {
-              const sql = `SELECT pw FROM user_table where email=?`;
+              const sql = `SELECT * FROM user_table where email=?`;
               conn.query(sql, email, (err, rows) => {
                 if (err) {
                   console.log(err);
@@ -34,7 +34,7 @@ module.exports = () => {
                   const pw = rows[0].pw;
                   const match = bcrypt.compareSync(password, pw);
                   if (match) {
-                    return done(null, email);
+                    return done(null, rows);
                   } else {
                     return done(null, false, { message: "not_match_pw" });
                   }
