@@ -20,8 +20,12 @@ router.post(
           if (loginErr) {
             return next(loginErr);
           } else {
-            console.log(req.user);
-            return res.redirect("/");
+            const data = {
+              email: req.user[0].email,
+              nickname: req.user[0].nickname
+            }
+            console.log(req.user[0].email);
+            return res.send(data).end();
           }
         });
       }
