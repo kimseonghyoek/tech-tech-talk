@@ -6,24 +6,27 @@ import LocalStorage from "../../util/localstorage";
 const Container = styled.div`
   display: flex;
   flex: 1;
+  justify-content: center;
 
-  h1 {
-    font-size: 3rem;
+  #user-info {
+    
   }
 `;
 
 function User(): JSX.Element {
-  const getUser = () => {
-    console.log(localStorage.getItem("login"));
-  };
-
-  getUser();
+  // const getUser = {
+  //   getUserInfo: () => {
+  //     axios("info", )
+  //   }
+  // }
 
   return (
     <Container>
-      <h1>User Page</h1>
+      <div id="user-info">
+        user
+      </div>
     </Container>
   );
-}
+} 
 
 export default User;
