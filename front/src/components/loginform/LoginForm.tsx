@@ -103,10 +103,11 @@ function LoginForm(): JSX.Element {
           pw: userPw,
         })
         .then((res) => {
-          changeLoginState();
-          LocalStorage.DelLocalStorage("logout");
-          LocalStorage.SetLocalStorage("login", "login");
-          sessionStorage.setItem("email", userEmail);
+          setLogin(!check_login);
+          const user = res.data;
+          console.log(user);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("nickname", user.nickname);
           movePage("/user");
         })
         .catch((err) => {
@@ -138,7 +139,7 @@ function LoginForm(): JSX.Element {
             <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
-            <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
+            <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
             <Input type="password" placeholder="" onChange={changePw} />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
@@ -195,7 +196,7 @@ function LoginForm(): JSX.Element {
             <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
-            <p>비밀번호 (영 대문자,소문자, 특수문자 포함 8자 이상)</p>
+            <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
             <Input placeholder="" onChange={changePw} type="password" />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
