@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const cors = require("cors");
 const signupRouter = require("./Router/signupRouter");
-const loginRouter = require("./Router/loginRouter");
+const loginRouter = require("./Router/LoginRouter");
 const manageRouter = require("./Router/manageRouter");
 const userRouter = require("./Router/userRouter");
 const passportConfig = require("./passport/index");
@@ -16,12 +16,13 @@ const PORT = 8000;
 app.set("view engine", "html");
 app.use(express.json());
 app.use(cors({ credentials: true, origin: "localhost:3000" }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, "../front/build")));
 passportConfig();
 app.use(
   expressSession({
     secret: process.env.COOKIE_SECRET,
+    name: "Cookie!",
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false },
