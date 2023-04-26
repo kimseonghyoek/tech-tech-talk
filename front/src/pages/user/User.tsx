@@ -7,24 +7,30 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
+`;
 
-  #user-info {
-    
+const UserInfo = styled.div`
+  h1 {
+    font-weight: bold;
   }
 `;
 
 function User(): JSX.Element {
-  // const getUser = {
-  //   getUserInfo: () => {
-  //     axios("info", )
-  //   }
-  // }
+  const getUser = {
+    getUserInfo: () => {
+      axios.get("/").then((res) => {
+        console.log(res);
+      })
+    }
+  }
+
+  getUser.getUserInfo();
 
   return (
     <Container>
-      <div id="user-info">
-        user
-      </div>
+      <UserInfo>
+        User 입니다.
+      </UserInfo>
     </Container>
   );
 } 
