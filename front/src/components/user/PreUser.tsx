@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import palette from "../../palette";
 import { Link } from "react-router-dom";
@@ -25,17 +25,9 @@ const Container = styled.div`
 `;
 
 // 유저 이미지는 고려중.
-type UserInfoProps = { img: string; name: string };
+type UserInfoProps = { img: string; name: string|null };
 
 function PreUser(props: UserInfoProps): JSX.Element {
-
-  axios.get("/user", {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Beaber ${getCookie}`
-    },
-    withCredentials: true
-  });
 
   return (
     <Container>
