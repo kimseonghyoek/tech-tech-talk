@@ -9,6 +9,7 @@ import { checkLogin, showItem } from "../../recoil/store";
 import CustomHeader from "./style";
 import axios from "axios";
 import LocalStorage from "../../util/localstorage";
+import DropDown from "../dropdown/DropDown";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
@@ -18,16 +19,6 @@ function Header() {
   // state
   const [show_item, setShow] = useRecoilState<boolean>(showItem);
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
-
-  const sendLogout = () => {
-    setLogin(!check_login);
-    LocalStorage.DelLocalStorage("login");
-    LocalStorage.SetLocalStorage("logout", "not-login");
-    axios.post("/login/logout").then((res) => {
-      console.log(res);
-      return movePage("/");
-    });
-  };
 
   const changeShowItem = () => {
     setShow(!show_item);
@@ -79,8 +70,7 @@ function Header() {
               </Link>
             </ul>
             {check_login ? (
-              <p>{
-                sessionStorage.getItem("email")}</p>
+              <DropDown title={sessionStorage.getItem("nickname")}/>
             ) : (
               <Link to="login">
                 <Button disabled={false} id="header-login" text="로그인" />

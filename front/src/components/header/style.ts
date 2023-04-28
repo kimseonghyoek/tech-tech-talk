@@ -49,7 +49,7 @@ const style = styled.div`
 
     a {
       display: center;
-      justify-center: center;
+      justify-content : center;
       align-items: center;
       color: ${palette.black};
       text-decoration: none;
