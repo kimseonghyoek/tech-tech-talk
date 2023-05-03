@@ -1,6 +1,10 @@
 import react, { useState } from "react";
 import styled from "styled-components";
 import palette from "../../palette";
+import cookie from "react-cookie";
+import axios from "axios";
+import { useRecoilState } from "recoil";
+import { checkLogin } from "../../recoil/store";
 
 export type DropProps = {
   title: string | null;
@@ -29,6 +33,12 @@ const Container = styled.article`
 
 const DropDown = (props: DropProps) => {
   const [visibleItem, setVisible] = useState(false);
+  const [logout, setLogout] = useRecoilState(checkLogin);
+
+  const Logout = () => {
+    axios.post("/login/logout");
+    setLogout(!logout)
+  }
 
   const ChangeVisible = () => {
     setVisible(!visibleItem);
@@ -38,7 +48,7 @@ const DropDown = (props: DropProps) => {
     <Container onMouseEnter={ChangeVisible} onMouseLeave={ChangeVisible}>
       <h3> {props.title}</h3>
       {
-        visibleItem ? (<p>asdfasdf</p>) : (null)
+        visibleItem ? (<h3 onClick={Logout}>로그아웃</h3>) : (null)
       }
     </Container>
   );
