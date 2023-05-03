@@ -12,6 +12,7 @@ import { useRecoilState } from "recoil";
 import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
 import LocalStorage from "../../util/localstorage";
+import useInput from "../../hooks/useInput";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -31,6 +32,8 @@ function LoginForm(): JSX.Element {
 
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
+  const [name, setNames] = useInput("");
+
   const changeLoginState = () => {
     setLogin(!check_login);
   }
@@ -47,7 +50,6 @@ function LoginForm(): JSX.Element {
   const changeNickName = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setNickName(e.target.value);
   };
-
   const changeNumber = (e: React.ChangeEvent<HTMLInputElement>): any => {
     setNumber(e.target.value);
   };
@@ -177,8 +179,8 @@ function LoginForm(): JSX.Element {
         <form onSubmit={submitSignup}>
           <div className="inputs">
             <p>이름</p>
-            <Input placeholder="" onChange={changeName} />
-            <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
+            <Input placeholder="" onChange={setNames} />
+            <InputMsg msg={ValidateCommon.nameValidate(name, post)} />
           </div>
           <div className="inputs">
             <p>전화번호</p>
