@@ -22,17 +22,25 @@ function LoginForm(): JSX.Element {
 
   let post = true;
 
-  const [userName, setName] = useState<string>("");
-  const [userNumber, setNumber] = useState<string>("");
-  const [userNickName, setNickName] = useState<string>("");
-  const [userEmail, setEmail] = useState<string>("");
-  const [userPw, setPw] = useState<string>("");
-  const [rePw, setRepw] = useState<string>("");
-  const [check, setCheck] = useState<boolean>(false);
+  // const [userName, setName] = useState<string>("");
+  // const [userNumber, setNumber] = useState<string>("");
+  // const [userNickName, setNickName] = useState<string>("");
+  // const [userEmail, setEmail] = useState<string>("");
+  // const [userPw, setPw] = useState<string>("");
+  // const [rePw, setRepw] = useState<string>("");
+  // const [check, setCheck] = useState<boolean>(false);
 
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
   const [name, setNames] = useInput("");
+  const [userNumber, setNumber] = useInput("");
+  const [userNickName, setNickName] = useInput("");
+  const [userEmail, setEmail] = useInput("");
+  const [userPw, setPw] = useInput("");
+  const [check, setCheck] = useInput("");
+
+  const [rePw, setRePw] = useState("");
+
 
   const changeLoginState = () => {
     setLogin(!check_login);
@@ -47,27 +55,8 @@ function LoginForm(): JSX.Element {
     }
   };
 
-  const changeNickName = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setNickName(e.target.value);
-  };
-  const changeNumber = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setNumber(e.target.value);
-  };
-
-  const changeName = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setName(e.target.value);
-  };
-
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setEmail(e.target.value);
-  };
-
-  const changePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setPw(e.target.value);
-  };
-
   const changeRePw = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    setRepw(e.target.value);
+    setRePw(e.target.value);
   };
 
   const submitSignup = (e: React.ChangeEvent<HTMLFormElement>): any => {
@@ -77,7 +66,7 @@ function LoginForm(): JSX.Element {
       axios
         .post("/signup/post", {
           data: {
-            userName,
+            name,
             userEmail,
             userPw,
             userNickName,
@@ -137,12 +126,12 @@ function LoginForm(): JSX.Element {
         <form onSubmit={submitLogin}>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
-            <Input placeholder="" onChange={changeEmail} />
+            <Input placeholder="" onChange={setEmail} />
             <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
             <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
-            <Input type="password" placeholder="" onChange={changePw} />
+            <Input type="password" placeholder="" onChange={setPw} />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
           <Button disabled={false} id="login-btn" text="로그인" />
@@ -184,22 +173,22 @@ function LoginForm(): JSX.Element {
           </div>
           <div className="inputs">
             <p>전화번호</p>
-            <Input placeholder="" onChange={changeNumber} />
+            <Input placeholder="" onChange={setNumber} />
             <InputMsg msg={ValidateCommon.phonenumValidate(userNumber, post)} />
           </div>
           <div className="inputs">
             <p>닉네임 (특수문자 제외 20자)</p>
-            <Input placeholder="" onChange={changeNickName} />
+            <Input placeholder="" onChange={setNickName} />
             <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
           </div>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
-            <Input placeholder="" onChange={changeEmail} />
+            <Input placeholder="" onChange={setEmail} />
             <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           </div>
           <div className="inputs">
             <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
-            <Input placeholder="" onChange={changePw} type="password" />
+            <Input placeholder="" onChange={setPw} type="password" />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
           <div className="inputs">
