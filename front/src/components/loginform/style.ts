@@ -85,13 +85,14 @@ export const Container = styled.div`
     align-items: center;
 
     h2 {
-      margin-top: 0;
+      margin: 0;  
     }
 
     .social-btn {
       padding: 0;
       li {
         list-style: none;
+        padding: 0.5rem;
       }
 
       button {

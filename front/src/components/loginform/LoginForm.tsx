@@ -1,7 +1,8 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
-import Input from "../input/Input";
-import Button from "../Button";
+// import Input from "../input/Input";
+import {Button, Input} from "antd"
+// import Button from "../Button";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Container } from "./style";
@@ -40,7 +41,6 @@ function LoginForm(): JSX.Element {
   const [check, setCheck] = useInput("");
 
   const [rePw, setRePw] = useState("");
-
 
   const changeLoginState = () => {
     setLogin(!check_login);
@@ -134,7 +134,7 @@ function LoginForm(): JSX.Element {
             <Input type="password" placeholder="" onChange={setPw} />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
-          <Button disabled={false} id="login-btn" text="로그인" />
+          <Button disabled={false} id="login-btn">로그인</Button>
         </form>
         <div className="login-info">
           <Link to="/signup">
@@ -146,13 +146,13 @@ function LoginForm(): JSX.Element {
           <h2>소셜 로그인(Developing...)</h2>
           <ul className="social-btn">
             <li>
-              <Button disabled={false} id="naver-btn" text="네이버 로그인" />
+              <Button disabled={false} id="naver-btn">네이버</Button>
             </li>
             <li>
-              <Button disabled={false} id="kakao-btn" text="카카오 로그인" />
+              <Button disabled={false} id="kakao-btn">카카오</Button>
             </li>
             <li>
-              <Button disabled={false} id="google-btn" text="구글 로그인" />
+              <Button disabled={false} id="google-btn">구글</Button>
             </li>
           </ul>
         </div>
@@ -200,7 +200,7 @@ function LoginForm(): JSX.Element {
             <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
-          <Button disabled={!check} id="login-btn" text="회원가입" />
+          <Button disabled={!check} id="login-btn">회원가입</Button>
         </form>
       </Container>
     );
