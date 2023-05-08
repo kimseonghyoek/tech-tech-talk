@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 // import Input from "../input/Input";
-import {Button, Input} from "antd"
+import {Button, Form, Input} from "antd"
 // import Button from "../Button";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -38,7 +38,7 @@ function LoginForm(): JSX.Element {
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
-  const [check, setCheck] = useInput("");
+  const [check, setCheck] = useState(false);
 
   const [rePw, setRePw] = useState("");
 
@@ -59,9 +59,7 @@ function LoginForm(): JSX.Element {
     setRePw(e.target.value);
   };
 
-  const submitSignup = (e: React.ChangeEvent<HTMLFormElement>): any => {
-    e.preventDefault();
-
+  const submitSignup = (): any => {
     if (post === true) {
       axios
         .post("/signup/post", {
@@ -154,6 +152,9 @@ function LoginForm(): JSX.Element {
             <li>
               <Button disabled={false} id="google-btn">구글</Button>
             </li>
+            <li>
+              <Button disabled={false} id="google-btn">페북</Button>
+            </li>
           </ul>
         </div>
       </Container>
@@ -165,7 +166,7 @@ function LoginForm(): JSX.Element {
           <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
           <h1>Tech-Tech-Talk</h1>
         </div>
-        <form onSubmit={submitSignup}>
+        <Form onFinish={submitSignup}>
           <div className="inputs">
             <p>이름</p>
             <Input placeholder="" onChange={setNames} />
@@ -201,7 +202,7 @@ function LoginForm(): JSX.Element {
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
           <Button disabled={!check} id="login-btn">회원가입</Button>
-        </form>
+        </Form>
       </Container>
     );
   }

@@ -8,7 +8,7 @@ export const Container = styled.div`
   border-radius: 15px;
   flex-direction: column;
   height: 100%;
-
+  
   .logo-layout {
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@ export const Container = styled.div`
     flex-direction: column;
 
     .inputs {
-      margin: 20px;
+      margin: 1rem;
       p {
         font-size: 1.4rem;
         margin: 1rem 0rem;
@@ -89,6 +89,8 @@ export const Container = styled.div`
     }
 
     .social-btn {
+      display: flex;
+      width: 100%;
       padding: 0;
       li {
         list-style: none;
@@ -96,8 +98,8 @@ export const Container = styled.div`
       }
 
       button {
-        width: 38.5rem;
-        height: 4.5rem;
+        width: 6.8rem;
+        height: 6.5rem;
       }
       #naver-btn {
         background-color: ${palette.naver_color};
