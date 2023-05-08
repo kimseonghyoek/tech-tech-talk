@@ -29,7 +29,7 @@ function User(): JSX.Element {
   return (
     <Container>
       <UserInfo>
-        User 입니다.
+        {}
       </UserInfo>
     </Container>
   );
