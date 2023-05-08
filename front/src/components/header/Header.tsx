@@ -13,7 +13,6 @@ import DropDown from "../dropdown/DropDown";
 
 function Header() {
   const public_url = process.env.PUBLIC_URL;
-  const location = useLocation();
   const movePage = useNavigate();
 
   // state

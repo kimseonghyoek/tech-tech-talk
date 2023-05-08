@@ -8,6 +8,7 @@ const style = styled.div`
   display: flex;
   width: 100%;
   height: 10.5rem;
+  z-index: 5;
   flex-direction: column;
   background-color: ${palette.white};
 
