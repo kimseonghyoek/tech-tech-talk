@@ -23,14 +23,6 @@ function LoginForm(): JSX.Element {
 
   let post = true;
 
-  // const [userName, setName] = useState<string>("");
-  // const [userNumber, setNumber] = useState<string>("");
-  // const [userNickName, setNickName] = useState<string>("");
-  // const [userEmail, setEmail] = useState<string>("");
-  // const [userPw, setPw] = useState<string>("");
-  // const [rePw, setRepw] = useState<string>("");
-  // const [check, setCheck] = useState<boolean>(false);
-
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
   const [name, setNames] = useInput("");
