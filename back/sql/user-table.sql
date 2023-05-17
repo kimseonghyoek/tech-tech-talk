@@ -3,7 +3,7 @@ create database talk;
 use talk;
 
 create table user_table (
-    id int not null AUTO_INCREMENT,
+    id int not null AUTO_INCREMENT PRIMARY KEY,
     email varchar(50) not null,
     name varchar(20) not null,
     nickname varchar(35) not null,
