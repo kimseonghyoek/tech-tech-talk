@@ -7,7 +7,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 14rem;
-  background-color: ${palette.main_color2};
+  background-color: ${palette.white};
+  border-top: 0.8px solid #D6E4E5;
 
   h1 {
     text-align: center;
