@@ -74,8 +74,7 @@ function LoginForm(): JSX.Element {
     }
   };
 
-  const submitLogin = (e: React.ChangeEvent<HTMLFormElement>): any => {
-    e.preventDefault();
+  const submitLogin = (): any => {
 
     if (post === true) {
       axios
@@ -113,7 +112,7 @@ function LoginForm(): JSX.Element {
           <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
           <h1>Tech-Tech-Talk</h1>
         </div>
-        <form onSubmit={submitLogin}>
+        <Form onFinish={submitLogin}>
           <div className="inputs">
             <p>이메일 (이메일 주소)</p>
             <Input placeholder="" onChange={setEmail} />
@@ -124,8 +123,8 @@ function LoginForm(): JSX.Element {
             <Input type="password" placeholder="" onChange={setPw} />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
-          <Button disabled={false} id="login-btn">로그인</Button>
-        </form>
+          <Button disabled={false} id="login-btn" htmlType="submit">로그인</Button>
+        </Form>
         <div className="login-info">
           <Link to="/signup">
             <p>회원가입</p>
