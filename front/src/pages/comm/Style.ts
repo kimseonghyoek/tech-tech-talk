@@ -6,6 +6,7 @@ const style = styled.div`
   align-items: center;
   flex: 1;
   flex-direction: column;
+  height: 100vh;
 `;
 
 export default style;
