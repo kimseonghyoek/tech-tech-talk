@@ -20,12 +20,14 @@
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
     "react-responsive": "^9.0.2",
     "react-router": "^6.7.0",
     "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
+    "redux": "^4.2.1",
     "styled-components": "^5.3.6",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
@@ -80,6 +82,7 @@
     "@types/styled-components": "^5.1.26",
     "babel-plugin-named-exports-order": "^0.0.2",
     "prop-types": "^15.8.1",
+    "redux-devtools-extension": "^2.13.9",
     "webpack": "^5.76.1"
   }
 }
