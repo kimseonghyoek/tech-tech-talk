@@ -13,5 +13,4 @@ export const showItem = atom<boolean>({
 export const checkLogin = atom<boolean>({
   key: 'login',
   default: false,
-  effects_UNSTABLE: [persistAtom]
 });
