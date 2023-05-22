@@ -25,7 +25,7 @@ function LoginForm(): JSX.Element {
 
   const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
-  const [name, setNames] = useInput("");
+  const [userName, setNames] = useInput("");
   const [userNumber, setNumber] = useInput("");
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
@@ -56,7 +56,7 @@ function LoginForm(): JSX.Element {
       axios
         .post("/signup/post", {
           data: {
-            name,
+            userName,
             userEmail,
             userPw,
             userNickName,
@@ -88,7 +88,7 @@ function LoginForm(): JSX.Element {
           console.log(user);
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("nickname", user.nickname);
-          movePage("/user");
+          movePage("/comm");
         })
         .catch((err) => {
           const err_msg = err.response.data;
@@ -161,7 +161,7 @@ function LoginForm(): JSX.Element {
           <div className="inputs">
             <p>이름</p>
             <Input placeholder="" onChange={setNames} />
-            <InputMsg msg={ValidateCommon.nameValidate(name, post)} />
+            <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
           </div>
           <div className="inputs">
             <p>전화번호</p>
@@ -192,7 +192,7 @@ function LoginForm(): JSX.Element {
             <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
-          <Button disabled={!check} id="login-btn">회원가입</Button>
+          <Button disabled={!check} id="login-btn" htmlType="submit">회원가입</Button>
         </Form>
       </Container>
     );
