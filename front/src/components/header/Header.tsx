@@ -37,9 +37,8 @@ function Header() {
       <div className="main">
         <Desktop>
           <>
-            <Link to="/">
+            <Link to="/comm">
               <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
-              {/* <h1>Tech-Tech-Talk</h1> */}
             </Link>
             <ul>
               <Link to={"/comm/softwares"}>
@@ -68,13 +67,6 @@ function Header() {
                 </li>
               </Link>
             </ul>
-            {check_login ? (
-              <DropDown title={sessionStorage.getItem("nickname")}/>
-            ) : (
-              <Link to="login">
-                <Button disabled={false} id="header-login" text="로그인" />
-              </Link>
-            )}
           </>
         </Desktop>
 
@@ -92,19 +84,6 @@ function Header() {
                 <img src={`${public_url}/imgs/ttt.png`} alt="logo" />
                 {/* <h1>Tech-Tech-Talk</h1> */}
               </Link>
-              <div className="side-box">
-                {check_login ? (
-                  <p>TEST</p>
-                ) : (
-                  <Link to="/login">
-                    <Button
-                      disabled={false}
-                      id="m-header-login"
-                      text="로그인"
-                    />
-                  </Link>
-                )}
-              </div>
             </div>
           </>
         </Tablet>
