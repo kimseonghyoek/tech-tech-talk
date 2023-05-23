@@ -2,6 +2,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { getCookie } from "../../util/cookie";
 import LocalStorage from "../../util/localstorage";
+import {Link} from "react-router-dom";
+import MyPostCard from "../../components/MyPostCard";
 
 const Container = styled.div`
   display: flex;
@@ -9,28 +11,21 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const UserInfo = styled.div`
-  h1 {
-    font-weight: bold;
-  }
-`;
-
 function User(): JSX.Element {
-  const getUser = {
-    getUserInfo: () => {
-      axios.get("/").then((res) => {
-        console.log(res);
-      })
-    }
+
+  const getUserNickName = () => {
+      const userName = sessionStorage.getItem('nickname');
+      return userName
   }
 
-  getUser.getUserInfo();
+  const user_name = getUserNickName();
 
   return (
     <Container>
-      <UserInfo>
-        {}
-      </UserInfo>
+        <p>
+            <span>어서오세요, </span>
+            <Link to="/user">{user_name} 님</Link>
+        </p>
     </Container>
   );
 } 

@@ -15,8 +15,9 @@ function Comm(): JSX.Element {
         <Content style={{ backgroundColor: `${palette.white}`, padding: "1rem" }}>
             <div style={{ display: "flex", flexDirection: "row"}}>
                 <PostCard title="실시간 핫 글"/>
-                <PostCard title="이 주의 핫 글"/>
+                <PostCard title="광고"/>
             </div>
+                <PostCard title="이 주의 핫 글" />
                 <PostCard title="소프트웨어"/>
                 <PostCard title="하드웨어"/>
         </Content>
