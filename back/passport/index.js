@@ -18,10 +18,8 @@ module.exports = () => {
         console.log("error");
         done(err);
       }
-      console.log(result[0].id);
-      const json = JSON.stringify(result[0]);
-      userInfo = JSON.parse(json);
-      done(null, userInfo.id);
+      userInfo = result[0].id;
+      done(null, userInfo);
     });
   });
   

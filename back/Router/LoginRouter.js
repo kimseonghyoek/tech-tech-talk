@@ -4,7 +4,7 @@ const { isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
 router.post(
-  "/post", isNotLoggedIn,
+  "/post", 
   (req, res, next) => {
     passport.authenticate(
       "local", {session: true},
@@ -33,7 +33,7 @@ router.post(
   },
   (req, res) => {
     if (req.user) {
-      const user = { email: req.user.email, nickname: req.user.nickname };
+      const user = { email: req.user.email, nickname: req.user.nickname, name: req.user.name };
       res.send(user);
     }
     res.end();
@@ -42,7 +42,7 @@ router.post(
 
 router.post("/logout", (req, res) => {
   console.log("back logout");
-  res.clearCookie('connect.sid');
+  res.clearCookie('Cookie!');
   res.send({ msg: "logout"});
 }) 
 

@@ -33,6 +33,7 @@ module.exports = {
                 console.log(`---${rows.length}---`);
                 console.log(rows);
                 reject(rows.length);
+                reject(err);
               } else if (rows.length === 0) {
                 console.log("회원이 없습니다.");
                 con.query(
@@ -44,8 +45,8 @@ module.exports = {
                       reject(err);
                     } else {
                       console.log("가입 완료");
-                      console.log(result);
                       resolve(result);
+
                     }
                     con.release();
                   }
