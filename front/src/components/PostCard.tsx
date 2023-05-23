@@ -2,6 +2,7 @@ import React from 'react';
 import {Divider, List, Typography} from "antd";
 import styled from "styled-components";
 import palette from "../palette";
+import {Link} from "react-router-dom";
 
 const data = [
     'Racing car sprays burning fuel into crowd.',
@@ -44,7 +45,7 @@ function PostCard(props: PostCardProps): JSX.Element {
             <List dataSource={data}
                   bordered
                   renderItem={(item) => (
-                      <List.Item onClick={onClickEvent}>{item}
+                      <List.Item onClick={onClickEvent}><Link to="#">{item}</Link>
                       </List.Item>
                   )}
             />
