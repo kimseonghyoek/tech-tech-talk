@@ -24,7 +24,7 @@ function Comm(): JSX.Element {
         <Sider width="350" style={{ backgroundColor: "white", width: "fit-content" }}>
             <>
                 <SideBar/>
-                <PostCard title="이슈된 기사"/>
+                <PostCard title="이슈된 IT 기사"/>
             </>
         </Sider>
     </Layout>
