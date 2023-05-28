@@ -36,15 +36,15 @@ const onClickEvent = (): any => {
     return console.log('test');
 }
 
-type PostCardProps = { title: string }
+type PostCardProps = { title: string, datas: any }
 
 function PostCard(props: PostCardProps): JSX.Element {
     return (
         <WrapCard>
             <Divider orientation="left">{props.title}</Divider>
-            <List dataSource={data}
+            <List dataSource={props.datas}
                   bordered
-                  renderItem={(item) => (
+                  renderItem={(item: React.ReactNode) => (
                       <List.Item onClick={onClickEvent}><Link to="#">{item}</Link>
                       </List.Item>
                   )}
@@ -54,7 +54,8 @@ function PostCard(props: PostCardProps): JSX.Element {
 }
 
 PostCard.defaultProps = {
-    title: "기본"
+    title: "기본",
+    datas: data
 }
 
 export default  PostCard;
