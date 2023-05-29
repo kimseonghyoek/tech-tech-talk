@@ -10,8 +10,10 @@ bs_object  = BeautifulSoup(html, "html.parser")
 
 news_link = []
 
-for i in range(1, 11):
-    news_link.append(bs_object.select('#main_content > div.list_body.newsflash_body > ul.type06_headline > li:nth-child('+str(i)+') > dl > dt:nth-child(2) > a')[0].attrs['href'])
+with open('./link.json', 'a+', encoding='UTF-8') as make_file:
+    for i in range(1, 11):
+        news_link.append(bs_object.select('#main_content > div.list_body.newsflash_body > ul.type06_headline > li:nth-child('+str(i)+') > dl > dt:nth-child(2) > a')[0].attrs['href'])
+    json.dump(news_link, make_file, ensure_ascii=False)
 
 title_list = []
 
