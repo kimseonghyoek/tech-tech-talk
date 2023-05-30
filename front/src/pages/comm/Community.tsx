@@ -1,13 +1,16 @@
 import React from "react";
 import Container from "../Styled";
 import ContentsLayout from "../../components/contents/ContentsLayout";
-import PostCard from "../../components/PostCard";
+import PostCard from "../../components/postcards/PostCard";
 import {Layout, Menu, Slider} from "antd";
 import {Content} from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import {hover} from "@testing-library/user-event/dist/hover";
 import palette from "../../palette";
 import SideBar from "../../components/SideBar";
+import headlineData from '../../Headline.json'
+import newsLink from '../../link.json';
+import NewsCard from "../../components/postcards/NewsCard";
 
 function Comm(): JSX.Element {
   return (
@@ -24,7 +27,7 @@ function Comm(): JSX.Element {
         <Sider width="350" style={{ backgroundColor: "white", width: "fit-content" }}>
             <>
                 <SideBar/>
-                <PostCard title="이슈된 IT 기사"/>
+                <NewsCard title="이슈된 IT 기사" datas={headlineData} link={newsLink.map((link) => { return link })}/>
             </>
         </Sider>
     </Layout>

@@ -41,7 +41,7 @@ function PostCard(props: PostCardProps): JSX.Element {
             <List dataSource={props.datas}
                   bordered
                   renderItem={(item: React.ReactNode) => (
-                      <List.Item><span onClick={() => {window.open(props.link)}}>{item}</span>
+                      <List.Item><span><Link to={props.link}>{item}</Link></span>
                       </List.Item>
                   )}
             />
