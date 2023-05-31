@@ -22,12 +22,6 @@ def WriteLink():
             news_link.append(bs_object.select('#main_content > div > div._persist > div.section_headline > ul > li:nth-child('+str(i)+') > div.sh_text > a')[0].attrs['href'])
         json.dump(news_link, make_file, ensure_ascii=False)
 
-if dir_news_link.exists() :
-    os.remove('./link.json')
-    WriteLink()
-else :
-    WriteLink()
-
 def WriteHeadLine():
     with open('./Headline.json', 'a+', encoding='UTF-8') as make_file:
         for link in news_link:
@@ -40,8 +34,18 @@ def WriteHeadLine():
             title_list.append(title)
         json.dump(title_list, make_file, ensure_ascii=False)
 
-if dir_title.exists() :
-    os.remove('./Headline.json')
-    WriteHeadLine()
-else :
-    WriteHeadLine()
+def main():
+    if dir_news_link.exists() :
+        os.remove('./link.json')
+        WriteLink()
+    else :
+        WriteLink()
+
+    if dir_title.exists() :
+        os.remove('./Headline.json')
+        WriteHeadLine()
+    else :
+        WriteHeadLine()
+
+if __name__ == '__main__':
+    main()
