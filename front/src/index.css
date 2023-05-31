@@ -8,6 +8,23 @@ html {
   font-family: 'Gothic A1', sans-serif;
 }
 
+* {
+  font-size: 62.5%;
+  font-family: 'Gothic A1', sans-serif;
+}
+
+a {
+  font-size: 1.3rem;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+span {
+  font-size: 1.3rem;
+}
+
 body {
   margin: 0;
   max-width: 100vw;
