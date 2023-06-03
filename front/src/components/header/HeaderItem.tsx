@@ -1,33 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import palette from '../../palette';
-
-const Container = styled.li`
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  align-items: center;
-  width: 100%;
-
-  a {
-     color: ${palette.black};
-     text-decoration: none;
-
-     p {
-      font-size: 1.4rem;
-     }
+export const HeaderData: object = {
+  software: {
+    name: "소프트웨어",
+    link: "/comm/softwares"
+  },
+  keyboard: {
+    name: "키보드",
+    link: "/comm/keyboard"
+  },
+  mouse: {
+    name: "마우스",
+    link: "/comm/mouse"
+  },
+  pc: {
+    name: "pc부품",
+    link: "/comm/pc"
+  },
+  other: {
+    name: "그 외 제품",
+    link: "/comm/other"
   }
-`;
-
-function HeaderItem({item, url} : {item: string, url: string}): JSX.Element {
-  return (
-    <Container>
-      <Link to={url}>
-        <p>{item}</p>
-      </Link>
-    </Container>
-  )
 };
-
-export default HeaderItem;
