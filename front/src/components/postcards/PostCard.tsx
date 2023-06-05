@@ -10,6 +10,7 @@ const data = [
     'Australian walks 100km after outback crash.',
     'Man charged over missing wedding girl.',
     'Los Angeles battles huge wildfires.',
+
 ];
 
 const WrapCard = styled.div`
@@ -20,6 +21,7 @@ const WrapCard = styled.div`
   margin: 0.5rem;
   box-sizing: border-box;
   flex: 1;
+  width: 100%;
   
   .ant-list {
     border: none;
@@ -30,6 +32,14 @@ const WrapCard = styled.div`
   li:hover {
     background-color: ${palette.main_color1};
   }
+
+  p {
+    margin: 0%;
+  }
+
+  a {
+    color: ${palette.black}
+  }
 `;
 
 type PostCardProps = { title: string, datas: any, link: any }
@@ -37,7 +47,7 @@ type PostCardProps = { title: string, datas: any, link: any }
 function PostCard(props: PostCardProps): JSX.Element {
     return (
         <WrapCard>
-            <Divider orientation="left">{props.title}</Divider>
+            <Divider orientation="left"><p>{props.title}</p></Divider>
             <List dataSource={props.datas}
                   bordered
                   renderItem={(item: React.ReactNode) => (

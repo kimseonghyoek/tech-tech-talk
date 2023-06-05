@@ -3,6 +3,19 @@ import styled from "styled-components";
 import palette from "../../palette";
 import { Divider, List } from "antd";
 
+const data = [
+  'Racing car sprays burning fuel into crowd.',
+  'Japanese princess to wed commoner.',
+  'Australian walks 100km after outback crash.',
+  'Man charged over missing wedding girl.',
+  'Los Angeles battles huge wildfires.',
+  'Racing car sprays burning fuel into crowd.',
+  'Japanese princess to wed commoner.',
+  'Australian walks 100km after outback crash.',
+  'Man charged over missing wedding girl.',
+  'Los Angeles battles huge wildfires.',
+];
+
 const WrapCard = styled.div`
   display: flex;
   flex-direction: column;
@@ -21,6 +34,10 @@ const WrapCard = styled.div`
   li:hover {
     background-color: ${palette.main_color1};
   }
+
+  p {
+    margin: 0%;
+  }
 `;
 
 type NewsPostCardProps = { title: string; datas: any; link: any };
@@ -28,7 +45,7 @@ type NewsPostCardProps = { title: string; datas: any; link: any };
 function NewsCard(props: NewsPostCardProps): JSX.Element {
   return (
     <WrapCard>
-      <Divider orientation="left">{props.title}</Divider>
+      <Divider orientation="left"><p>{props.title}</p></Divider>
       <List
         dataSource={props.datas}
         bordered
@@ -39,7 +56,7 @@ function NewsCard(props: NewsPostCardProps): JSX.Element {
                 window.open(props.link);
               }}
             >
-              {item}
+              <p>{item}</p>
             </span>
           </List.Item>
         )}
@@ -47,5 +64,11 @@ function NewsCard(props: NewsPostCardProps): JSX.Element {
     </WrapCard>
   );
 };
+
+NewsCard.defaultProps = {
+  title: "기본",
+  datas: data,
+  link: "#"
+}
 
 export default NewsCard;
