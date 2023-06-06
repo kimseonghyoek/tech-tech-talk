@@ -6,9 +6,10 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: fit-content;
     flex: 1;
-    /* height: 100vh; */
+    margin: auto;
+    height: 100vh;
 `;
 
 function Login() {
