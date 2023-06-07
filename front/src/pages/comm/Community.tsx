@@ -1,18 +1,33 @@
 import React from "react";
-import Container from "../Styled";
-import ContentsLayout from "../../components/contents/ContentsLayout";
 import PostCard from "../../components/postcards/PostCard";
-import { Col, Layout, Menu, Row, Slider } from "antd";
+import { Col, Layout, Row } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import { hover } from "@testing-library/user-event/dist/hover";
 import palette from "../../palette";
 import SideBar from "../../components/SideBar";
+import styled from "styled-components";
+import { Desktop } from "../../util/responsive";
+import { useMediaQuery } from "react-responsive";
+
+const CalcWidth = () => {
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  if (isDesktop) {
+    return "75vw"
+  } else {
+    return "100vw"
+  }
+}
+
+const MainLayout = styled(Layout)`
+  margin: auto;
+  width: ${CalcWidth}
+`;
+
 
 function Comm(): JSX.Element {
   return (
-    <Layout style={{ width: "1200px", margin: "auto" }}>
-      <Content style={{ backgroundColor: `${palette.white}`, padding: "1rem" }}>
+    <MainLayout>
+      <Content style={{ backgroundColor: `${palette.white}`, padding: "0.5rem" }}>
         <Row>
           <Col xs={24} md={12}>
             <PostCard title="실시간 핫 글" />
@@ -25,22 +40,17 @@ function Comm(): JSX.Element {
         <PostCard title="소프트웨어" />
         <PostCard title="하드웨어" />
       </Content>
+      <Desktop>
       <Sider
-        width="350"
+        width="310"
         style={{ backgroundColor: "white", width: "fit-content" }}
       >
         <>
           <SideBar />
-          {/* <NewsCard
-            title="이슈된 IT 기사"
-            datas={headlineData}
-            link={newsLink.map((link) => {
-              return link;
-            })}
-          /> */}
         </>
       </Sider>
-    </Layout>
+      </Desktop>
+    </MainLayout>
   );
 }
 
