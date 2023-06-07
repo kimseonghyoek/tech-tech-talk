@@ -22,6 +22,7 @@ import PC from "./pages/comm/pc/PC";
 import Other from "./pages/comm/other/Other";
 import {Footer} from "antd/es/layout/layout";
 import { Provider } from "react-redux";
+import palette from "./palette";
 
 function App() {
   const my_github_link = "https://github.com/kimseonghyoek/";
@@ -48,7 +49,7 @@ function App() {
                 <Route path="/manage" element={<DevManage/>}/>
                 <Route path="/*" element={<NotFound/>}/>
               </Routes>
-              <Footer style={{textAlign: 'center'}}><h3>Tech-Tech-Talk _ Dev 2023 ~ </h3>
+              <Footer style={{textAlign: 'center', padding: '2rem 5rem', backgroundColor: palette.main_color1 }}><h3>Tech-Tech-Talk _ Dev 2023 ~ </h3>
                 <a href={my_github_link}><p>- Develop & Design by Overloper</p></a></Footer>
             </BrowserRouter>
           </RecoilRoot>
