@@ -1,12 +1,11 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 // import Input from "../input/Input";
-import {Button, Form, Input} from "antd"
+import { Button, DatePicker, Form, Input, Row } from "antd";
 // import Button from "../Button";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Container } from "./style";
-import err_msg from "../../err_msg/error_msg";
+import { Container, WrapMyInfo } from "./style";
 import InputMsg from "../input/InputMsg";
 import axios from "axios";
 import { useRecoilState } from "recoil";
@@ -14,8 +13,13 @@ import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
 import LocalStorage from "../../util/localstorage";
 import useInput from "../../hooks/useInput";
+import dayjs from "dayjs";
+import styled from "styled-components";
 
 const public_url = process.env.PUBLIC_URL;
+
+const dataFormat = "YYYY/MM/DD";
+const now = dayjs();
 
 function LoginForm(): JSX.Element {
   const location = useLocation();
@@ -36,7 +40,7 @@ function LoginForm(): JSX.Element {
 
   const changeLoginState = () => {
     setLogin(!check_login);
-  }
+  };
 
   const checkSignd = (): any => {
     if (!check) {
@@ -75,7 +79,6 @@ function LoginForm(): JSX.Element {
   };
 
   const submitLogin = (): any => {
-
     if (post === true) {
       axios
         .post("/login/post", {
@@ -93,9 +96,9 @@ function LoginForm(): JSX.Element {
         .catch((err) => {
           const err_msg = err.response.data;
           console.log(err_msg);
-          if (err_msg === 'not_match_pw') {
+          if (err_msg === "not_match_pw") {
             alert("비밀번호가 다릅니다");
-          } else if (err_msg === 'no_user') {
+          } else if (err_msg === "no_user") {
             alert("이메일이 존재하지 않습니다.");
           } else if (err_msg === "is_loggedin") {
             // 일단 중복일 경우 alret
@@ -123,31 +126,41 @@ function LoginForm(): JSX.Element {
             <Input type="password" placeholder="" onChange={setPw} />
             <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
           </div>
-          <Button disabled={false} id="login-btn" htmlType="submit">로그인</Button>
+          <Button disabled={false} id="login-btn" htmlType="submit">
+            로그인
+          </Button>
         </Form>
         <div className="login-info">
           <Link to="/signup">
             <p>회원가입</p>
           </Link>
         </div>
-        <hr />
-        <div className="social-login">
+        {/* <hr /> */}
+        {/* <div className="social-login">
           <h2>소셜 로그인(Developing...)</h2>
           <ul className="social-btn">
             <li>
-              <Button disabled={false} id="naver-btn">네이버</Button>
+              <Button disabled={false} id="naver-btn">
+                네이버
+              </Button>
             </li>
             <li>
-              <Button disabled={false} id="kakao-btn">카카오</Button>
+              <Button disabled={false} id="kakao-btn">
+                카카오
+              </Button>
             </li>
             <li>
-              <Button disabled={false} id="google-btn">구글</Button>
+              <Button disabled={false} id="google-btn">
+                구글
+              </Button>
             </li>
             <li>
-              <Button disabled={false} id="google-btn">페북</Button>
+              <Button disabled={false} id="google-btn">
+                페북
+              </Button>
             </li>
           </ul>
-        </div>
+        </div> */}
       </Container>
     );
   } else {
@@ -158,41 +171,65 @@ function LoginForm(): JSX.Element {
           <h1>Tech-Tech-Talk</h1>
         </div>
         <Form onFinish={submitSignup}>
-          <div className="inputs">
-            <p>이름</p>
-            <Input placeholder="" onChange={setNames} />
-            <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
-          </div>
-          <div className="inputs">
-            <p>전화번호</p>
-            <Input placeholder="" onChange={setNumber} />
-            <InputMsg msg={ValidateCommon.phonenumValidate(userNumber, post)} />
-          </div>
-          <div className="inputs">
-            <p>닉네임 (특수문자 제외 20자)</p>
-            <Input placeholder="" onChange={setNickName} />
-            <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
-          </div>
-          <div className="inputs">
-            <p>이메일 (이메일 주소)</p>
-            <Input placeholder="" onChange={setEmail} />
-            <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
-          </div>
-          <div className="inputs">
-            <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
-            <Input placeholder="" onChange={setPw} type="password" />
-            <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
-          </div>
-          <div className="inputs">
-            <p>비밀번호 재확인</p>
-            <Input placeholder="" onChange={changeRePw} type="password" />
-            <InputMsg msg={ValidateCommon.reCheckPwValidate(userPw, rePw, post)} />
-          </div>
+          <Row>
+          <WrapMyInfo>
+            <h1>My Infomation</h1>
+            <div className="inputs">
+              <p>이름</p>
+              <Input placeholder="" onChange={setNames} />
+              <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
+            </div>
+            <div className="inputs">
+              <p>전화번호</p>
+              <Input placeholder="" onChange={setNumber} />
+              <InputMsg
+                msg={ValidateCommon.phonenumValidate(userNumber, post)}
+              />
+            </div>
+            <div className="inputs">
+              <p>생년월일</p>
+              <DatePicker
+                style={{ width: "38rem", height: "4.2rem" }}
+                defaultValue={dayjs(`${now.format()}`, dataFormat)}
+                format={dataFormat}
+              />
+            </div>
+          </WrapMyInfo>
+          <WrapMyInfo>
+            <h1>Service Infomation</h1>
+            <div className="inputs">
+              <p>닉네임 (특수문자 제외 20자)</p>
+              <Input placeholder="" onChange={setNickName} />
+              <InputMsg
+                msg={ValidateCommon.nicknameValidate(userNickName, post)}
+              />
+            </div>
+            <div className="inputs">
+              <p>이메일 (이메일 주소)</p>
+              <Input placeholder="" onChange={setEmail} />
+              <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
+            </div>
+            <div className="inputs">
+              <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
+              <Input placeholder="" onChange={setPw} type="password" />
+              <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
+            </div>
+            <div className="inputs">
+              <p>비밀번호 재확인</p>
+              <Input placeholder="" onChange={changeRePw} type="password" />
+              <InputMsg
+                msg={ValidateCommon.reCheckPwValidate(userPw, rePw, post)}
+              />
+            </div>
+          </WrapMyInfo>
+          </Row>
           <div className="check-sign">
             <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
           </div>
-          <Button disabled={!check} id="login-btn" htmlType="submit">회원가입</Button>
+          <Button disabled={!check} id="login-btn" htmlType="submit">
+            회원가입
+          </Button>
         </Form>
       </Container>
     );

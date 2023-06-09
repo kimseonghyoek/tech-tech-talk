@@ -7,7 +7,8 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 15px;
   flex-direction: column;
-  height: 100%;
+  width: 100%;
+  height: 100vh;
   
   .logo-layout {
     display: flex;
@@ -131,5 +132,16 @@ export const Container = styled.div`
       padding: 0rem 0.9rem;
       font-size: 1.3rem;
     }
+  }
+`;
+
+export const WrapMyInfo = styled.div`
+  border: 0.7px solid black;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+
+  h1 {
+    font-size: large;
   }
 `;
