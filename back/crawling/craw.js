@@ -1,16 +1,12 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const { decode } = require('punycode');
 const iconv = require('iconv-lite')
 
-const headers = {
-  'Content-type': 'text/html;charset=EUC-KR',
-  'Accept': '*/*'
-}
+const headers = { 'Content-Type': 'text/html;charset=EUC-KR' }
 
 const getDocument = () => {
   try {
-    return axios.get("https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=105", { headers });
+    return axios.get("https://news.naver.com/main/main.naver?mode=LSD&mid=shm&sid1=105", {responseType: 'text/html;charset=EUC-KR    ', responseEncoding: 'binary' } );
   } catch (err) {
     return console.log(err);
   };
@@ -21,8 +17,9 @@ getDocument().then(html => {
   const $ = cheerio.load(html.data);
   const $bodyList = $("#main_content > div > div._persist > div.section_headline > ul > li:nth-child(1) > div.sh_text > a");
   $bodyList.each(function(i, elem) {
+    text = iconv.decode($(elem).text(), 'EUC-KR');
     newsList[i] = {
-      title: iconv.decode($(elem).text(), 'EUC-KR'),
+      title: text,
       link: $(elem).attr().href
     };
   });
