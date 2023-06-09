@@ -15,14 +15,16 @@ const getDocument = () => {
 getDocument().then(html => {
   let newsList = [];
   const $ = cheerio.load(html.data);
-  const $bodyList = $("#main_content > div > div._persist > div.section_headline > ul > li:nth-child(1) > div.sh_text > a");
-  $bodyList.each(function(i, elem) {
-    text = iconv.decode($(elem).text(), 'EUC-KR');
-    newsList[i] = {
-      title: text,
-      link: $(elem).attr().href
-    };
-  });
+  for (r=1; r <= 10; r++) {
+    const $bodyList = $(`#main_content > div > div._persist > div.section_headline > ul > li:nth-child(${r}) > div.sh_text > a`);
+    $bodyList.each(function(i, elem) {
+      text = iconv.decode($(elem).text(), 'EUC-KR');
+      newsList[r] = {
+        title: text,
+        link: $(elem).attr().href
+      };
+    });
+  }
   const data = newsList.filter(n => n.title);
   return data;
 }).then(res => {
