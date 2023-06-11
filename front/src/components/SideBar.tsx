@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Button } from "antd";
+import axios from "axios";
 import styled from "styled-components";
 import palette from "../palette";
 import { Link } from "react-router-dom";
@@ -34,6 +35,23 @@ const WrapSideBar = styled.div`
 
 function SideBar(): JSX.Element {
   const [check_login, setCheckLogin] = useRecoilState(checkLogin);
+  const [news, updateNews] = useState();
+
+  useEffect(()=> {
+    axios
+    .get("/comm/news/get")
+    .then((res) => {
+      setTimeout(() => {
+        updateNews(res.data);
+      }, 500);
+    })
+    .catch((err: Error) => {
+      console.log(err);
+    });
+  }, []);
+
+  console.log(news)
+
   return (
     <WrapSideBar>
       {check_login ? (
@@ -42,9 +60,7 @@ function SideBar(): JSX.Element {
         <div className="wrap-login">
           <p>아무나, 누구나 tech-tech-Talk</p>
           <Link to={"/login"}>
-            <Button>
-              텍텍톡 로그인
-            </Button>
+            <Button>텍텍톡 로그인</Button>
           </Link>
           <p
             style={{
@@ -59,7 +75,7 @@ function SideBar(): JSX.Element {
           </p>
         </div>
       )}
-      <NewsCard title="네이버 IT 뉴스"></NewsCard>
+      <NewsCard datas={news}/>
     </WrapSideBar>
   );
 }
