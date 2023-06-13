@@ -1,5 +1,5 @@
 import React from 'react';
-import {Divider, List, Typography} from "antd";
+import {Divider, List} from "antd";
 import styled from "styled-components";
 import palette from "../../palette";
 import {Link} from "react-router-dom";
@@ -21,7 +21,6 @@ const WrapCard = styled.div`
   margin: 0.5rem;
   box-sizing: border-box;
   flex: 1;
-  width: 100%;
   
   .ant-list {
     border: none;
@@ -42,7 +41,7 @@ const WrapCard = styled.div`
   }
 `;
 
-type PostCardProps = { title: string, datas: any, link: any }
+type PostCardProps = { title: string, datas: any, link: any };
 
 function PostCard(props: PostCardProps): JSX.Element {
     return (
