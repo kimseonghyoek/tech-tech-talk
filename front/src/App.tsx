@@ -23,6 +23,8 @@ import Other from "./pages/comm/other/Other";
 import {Footer} from "antd/es/layout/layout";
 import { Provider } from "react-redux";
 import palette from "./palette";
+import Write from "./pages/Write";
+import UserInfo from "./pages/UserInfo";
 
 function App() {
   const my_github_link = "https://github.com/kimseonghyoek/";
@@ -44,7 +46,9 @@ function App() {
                 <Route path="/comm/pc" element={<PC/>}/>
                 <Route path="/comm/other" element={<Other/>}/>
                 <Route path="/used" element={<UsedMarket/>}/>
+                <Route path="/write" element={<Write/>}/>
                 <Route path="/test" element={<Test/>}/>
+                <Route path="/userinfo" element={<UserInfo/>}/>
                 <Route path="/setting" element={<Setting/>}/>
                 <Route path="/manage" element={<DevManage/>}/>
                 <Route path="/*" element={<NotFound/>}/>
