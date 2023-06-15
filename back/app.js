@@ -6,6 +6,7 @@ const signupRouter = require("./Router/signupRouter");
 const loginRouter = require("./Router/LoginRouter");
 const manageRouter = require("./Router/manageRouter");
 const userRouter = require("./Router/userRouter");
+const commRouter = require("./Router/CommRouter");
 const passportConfig = require("./passport/index");
 const passport = require("passport");
 const expressSession = require("express-session");
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
+app.use("/comm", commRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../front/build/index.html"));
