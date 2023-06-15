@@ -10,7 +10,7 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 
 const Container = styled(Content)`
-  width: 70vw;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
   padding: 3rem;
@@ -35,6 +35,9 @@ const Container = styled(Content)`
 
   #submits button {
     width: 14rem;
+    background-color: ${palette.main_color3};
+    color: ${palette.white};
+    margin: 0rem 1rem;
   }
 
   .ql-editor {
@@ -72,6 +75,7 @@ function Write(): JSX.Element {
         </span>
         <div id="submits">
           <Button>등록하기</Button>
+          <Button style={{ backgroundColor: palette.main_color4}}>삭재하기</Button>
         </div>
       </Form>
     </Container>

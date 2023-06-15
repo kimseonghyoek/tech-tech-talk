@@ -27,7 +27,7 @@ const MainLayout = styled(Layout)`
 function Comm(): JSX.Element {
   return (
     <MainLayout>
-      <Content style={{ backgroundColor: `${palette.white}`, padding: "0.5rem" }}>
+      <Content style={{ backgroundColor: `${palette.white}`, padding: "0.5rem 0rem" }}>
         <Row>
           <Col xs={24} md={12}>
             <PostCard title="실시간 핫 글" />
@@ -42,8 +42,8 @@ function Comm(): JSX.Element {
       </Content>
       <Desktop>
       <Sider
-        width="310"
-        style={{ backgroundColor: "white", width: "fit-content" }}
+        width="330"
+        style={{ backgroundColor: "white", width: "fit-content", padding: "1rem" }}
       >
         <>
           <SideBar />
