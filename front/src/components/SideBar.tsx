@@ -13,6 +13,8 @@ import NewsCard from "./postcards/NewsCard";
 
 const WrapSideBar = styled.div`
   .wrap-login {
+    border: 0.07px solid ${palette.main_color3};
+    border-radius: 5px;
     width: 100%;
     padding: 1.3rem 1rem;
   }
@@ -31,6 +33,10 @@ const WrapSideBar = styled.div`
   p {
     text-align: center;
   }
+
+  a {
+    font-size: 1rem;
+  }
 `;
 
 function SideBar(): JSX.Element {
@@ -43,7 +49,7 @@ function SideBar(): JSX.Element {
     .then((res) => {
       setTimeout(() => {
         updateNews(res.data);
-      }, 500);
+      }, 300);
     })
     .catch((err: Error) => {
       console.log(err);

@@ -17,6 +17,7 @@ const WrapCard = styled.div`
   display: flex;
   flex-direction: column;
   border: 0.07rem solid ${palette.main_color3};
+  border-radius: 5px;
   background-color: ${palette.white};
   margin: 0.5rem;
   box-sizing: border-box;
