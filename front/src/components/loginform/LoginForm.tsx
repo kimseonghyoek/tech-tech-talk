@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 // import Input from "../input/Input";
 import { Button, DatePicker, Form, Input, Row } from "antd";
-// import Button from "../Button";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Container, WrapMyInfo } from "./style";
@@ -11,10 +10,8 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
-import LocalStorage from "../../util/localstorage";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
-import styled from "styled-components";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -37,10 +34,6 @@ function LoginForm(): JSX.Element {
   const [check, setCheck] = useState(false);
 
   const [rePw, setRePw] = useState("");
-
-  const changeLoginState = () => {
-    setLogin(!check_login);
-  };
 
   const checkSignd = (): any => {
     if (!check) {
