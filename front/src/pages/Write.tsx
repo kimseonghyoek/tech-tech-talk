@@ -8,6 +8,7 @@ import styled from "styled-components";
 import palette from "../palette";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
+import useInput from "../hooks/useInput";
 
 const Container = styled(Content)`
   width: 100%;
@@ -42,11 +43,20 @@ const Container = styled(Content)`
 
   .ql-editor {
     min-height: 70vh;
+  };
+
+  #title-input {
+    font-weight: bold;
   }
 `;
 
 function Write(): JSX.Element {
+  const [title, setTitle] = useInput('');
   const [value, setValue] = useState<string>('');
+
+  const allRemove = () => {
+    setValue('');
+  };
 
   return (
     
@@ -61,7 +71,7 @@ function Write(): JSX.Element {
         </Select>
         <span>
           <p>제목 입력란</p>
-          <Input placeholder="제목을 입력하세요." />
+          <Input id="title-input" placeholder="제목을 입력하세요." onChange={setTitle}/>
         </span>
         <span>
           <p>사진</p>
@@ -75,7 +85,7 @@ function Write(): JSX.Element {
         </span>
         <div id="submits">
           <Button>등록하기</Button>
-          <Button style={{ backgroundColor: palette.main_color4}}>삭재하기</Button>
+          <Button style={{ backgroundColor: palette.main_color4}} onClick={allRemove}>삭제하기</Button>
         </div>
       </Form>
     </Container>
