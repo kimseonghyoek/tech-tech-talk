@@ -20,11 +20,11 @@ export const loginSuccessAction = (data: object) => {
         type: LOG_IN_SUCCESS,
         data
     }
-}
+};
 
 export const loginFailureAction = (data: object) => {
     return {
         type: LOG_IN_FAILURE,
         data
     }
-}
+};
