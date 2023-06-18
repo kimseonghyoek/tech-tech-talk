@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
 // import Input from "../input/Input";
-import { Button, DatePicker, Form, Input, Row } from "antd";
+import { Button, DatePicker, Divider, Form, Input, Row } from "antd";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Container, WrapMyInfo } from "./style";
@@ -12,6 +12,7 @@ import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
+import KakaoBtn from "../SocialBtn/KakaoBtn";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -128,32 +129,12 @@ function LoginForm(): JSX.Element {
             <p>회원가입</p>
           </Link>
         </div>
-        {/* <hr /> */}
-        {/* <div className="social-login">
-          <h2>소셜 로그인(Developing...)</h2>
-          <ul className="social-btn">
-            <li>
-              <Button disabled={false} id="naver-btn">
-                네이버
-              </Button>
-            </li>
-            <li>
-              <Button disabled={false} id="kakao-btn">
-                카카오
-              </Button>
-            </li>
-            <li>
-              <Button disabled={false} id="google-btn">
-                구글
-              </Button>
-            </li>
-            <li>
-              <Button disabled={false} id="google-btn">
-                페북
-              </Button>
-            </li>
-          </ul>
-        </div> */}
+        <Divider>
+          <p>소셜 로그인</p>
+        </Divider>
+        <div className="social-login">
+          <KakaoBtn/>
+        </div>
       </Container>
     );
   } else {
