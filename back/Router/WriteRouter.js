@@ -1,7 +1,8 @@
 const express = require("express");
+const { isLoggedIn } = require("./middlewares");
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", isLoggedIn, (req, res) => {
     console.log("write");
     res.end();
 });
