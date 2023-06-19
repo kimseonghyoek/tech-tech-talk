@@ -13,6 +13,9 @@ import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
 import KakaoBtn from "../SocialBtn/KakaoBtn";
+import NaverBtn from "../SocialBtn/NaverBtn";
+import FacebookBtn from "../SocialBtn/FaceBookBtn";
+import GoogleBtn from "../SocialBtn/GoogleBtn";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -134,6 +137,9 @@ function LoginForm(): JSX.Element {
         </Divider>
         <div className="social-login">
           <KakaoBtn/>
+          <NaverBtn/>
+          <FacebookBtn/>
+          <GoogleBtn/>
         </div>
       </Container>
     );
@@ -163,7 +169,7 @@ function LoginForm(): JSX.Element {
             <div className="inputs">
               <p>생년월일</p>
               <DatePicker
-                style={{ width: "38rem", height: "4.2rem" }}
+                style={{ width: "100%", height: "4.2rem" }}
                 defaultValue={dayjs(`${now.format()}`, dataFormat)}
                 format={dataFormat}
               />

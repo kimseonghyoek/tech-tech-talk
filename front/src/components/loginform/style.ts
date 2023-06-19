@@ -7,8 +7,6 @@ export const Container = styled.div`
   align-items: center;
   border-radius: 15px;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
   
   .logo-layout {
     display: flex;
@@ -35,7 +33,13 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
 
+    .ant-row {
+      justify-content: center;
+      width: 100%;
+    }
+
     .inputs {
+      width: 90%;
       margin: 1rem;
       p {
         font-size: 1.4rem;
@@ -43,7 +47,6 @@ export const Container = styled.div`
       }
 
       input {
-        width: 38rem;
         height: 4.2rem;
       }
     }
@@ -81,40 +84,9 @@ export const Container = styled.div`
 
   .social-login {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-
-    h2 {
-      margin: 0;  
-    }
-
-    .social-btn {
-      display: flex;
-      width: 100%;
-      padding: 0;
-      li {
-        list-style: none;
-        padding: 0.5rem;
-      }
-
-      button {
-        width: 6.8rem;
-        height: 6.5rem;
-      }
-      #naver-btn {
-        background-color: ${palette.naver_color};
-        color: ${palette.white};
-      }
-      #kakao-btn {
-        background-color: ${palette.kakao_color};
-        color: ${palette.black};
-      }
-      #google-btn {
-        background-color: ${palette.main_color1};
-        color: ${palette.black};
-      }
-    }
   }
 
   .check-sign {
@@ -136,10 +108,11 @@ export const Container = styled.div`
 `;
 
 export const WrapMyInfo = styled.div`
-  border: 0.7px solid black;
+  border: 0.07rem solid ${palette.main_color3};
   padding: 1rem;
   margin: 1rem;
   border-radius: 5px;
+  width: 100%;
 
   h1 {
     font-size: large;
