@@ -27,6 +27,7 @@ export const Container = styled.div`
   }
 
   form {
+    flex: 1 1 auto;
     width: 100%;
     display: flex;
     align-items: center;
@@ -103,15 +104,5 @@ export const Container = styled.div`
       padding: 0rem 0.9rem;
       font-size: 1.3rem;
     }
-  }
-`;
-
-export const WrapMyInfo = styled.div`
-  padding: 1rem;
-  margin: 1rem;
-  width: 100%;
-
-  h1 {
-    font-size: large;
   }
 `;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Button, DatePicker, Divider, Form, Input, Row } from "antd";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Container, WrapMyInfo } from "./style";
+import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
 import axios from "axios";
 import { useRecoilState } from "recoil";
@@ -151,9 +151,7 @@ function LoginForm(): JSX.Element {
           <h1>Tech-Tech-Talk</h1>
         </div>
         <Form onFinish={submitSignup}>
-          <Row>
-          <WrapMyInfo>
-            <h1>My Infomation</h1>
+          <h1>User Infomation</h1>
             <div className="inputs">
               <p>이름</p>
               <Input placeholder="" onChange={setNames} />
@@ -174,8 +172,7 @@ function LoginForm(): JSX.Element {
                 format={dataFormat}
               />
             </div>
-          </WrapMyInfo>
-          <WrapMyInfo>
+
             <h1>Service Infomation</h1>
             <div className="inputs">
               <p>닉네임 (특수문자 제외 20자)</p>
@@ -201,8 +198,6 @@ function LoginForm(): JSX.Element {
                 msg={ValidateCommon.reCheckPwValidate(userPw, rePw, post)}
               />
             </div>
-          </WrapMyInfo>
-          </Row>
           <div className="check-sign">
             <input type="checkbox" checked={check} onChange={checkSignd} />
             <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>
