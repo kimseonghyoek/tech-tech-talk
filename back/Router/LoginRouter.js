@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post(
   "/post", 
+  isNotLoggedIn,
   (req, res, next) => {
     passport.authenticate(
       "local", {session: true},
