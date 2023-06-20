@@ -35,11 +35,10 @@ export const Container = styled.div`
 
     .ant-row {
       justify-content: center;
-      width: 100%;
     }
 
     .inputs {
-      width: 90%;
+      width: 100%;
       margin: 1rem;
       p {
         font-size: 1.4rem;
@@ -53,7 +52,7 @@ export const Container = styled.div`
 
     #login-btn {
       margin: 2rem;
-      width: 38.5rem;
+      width: 100%;
       height: 6rem;
       background-color: ${palette.main_color3};
       color: ${palette.white};
@@ -108,10 +107,8 @@ export const Container = styled.div`
 `;
 
 export const WrapMyInfo = styled.div`
-  border: 0.07rem solid ${palette.main_color3};
   padding: 1rem;
   margin: 1rem;
-  border-radius: 5px;
   width: 100%;
 
   h1 {
