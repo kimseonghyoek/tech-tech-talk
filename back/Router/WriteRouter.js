@@ -1,10 +1,10 @@
 const express = require("express");
-const { isLoggedIn } = require("./middlewares");
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 
-router.get("/", isLoggedIn, (req, res) => {
-    console.log("write");
-    res.end();
-});
+router.post("/post", (req, res) => {
+    console.log("들어옴")
+    console.log(req.body.data);
+})
 
 module.exports = router;
