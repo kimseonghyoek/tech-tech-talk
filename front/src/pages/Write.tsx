@@ -9,6 +9,7 @@ import palette from "../palette";
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import useInput from "../hooks/useInput";
+import axios from "axios";
 
 const Container = styled(Content)`
   width: 100%;
@@ -45,6 +46,10 @@ const Container = styled(Content)`
     min-height: 70vh;
   };
 
+  .ql-editor * {
+    font-size: 1.4rem;
+  }
+
   #title-input {
     font-weight: bold;
   }
@@ -54,6 +59,19 @@ function Write(): JSX.Element {
   const [title, setTitle] = useInput('');
   const [value, setValue] = useState<string>('');
 
+  const postWrite = (): any => {
+    axios.post("/write/post", {
+      data: {
+        title,
+        value
+      },
+    }).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    });
+  };
+
   const allRemove = () => {
     setValue('');
   };
@@ -61,7 +79,7 @@ function Write(): JSX.Element {
   return (
     
     <Container>
-      <Form>
+      <Form onFinish={postWrite}>
         <Select defaultValue={"카테고리"}>
           <Option value="소프트웨어">소프트웨어</Option>
           <Option value="키보드">키보드</Option>
@@ -71,7 +89,7 @@ function Write(): JSX.Element {
         </Select>
         <span>
           <p>제목 입력란</p>
-          <Input id="title-input" placeholder="제목을 입력하세요." onChange={setTitle}/>
+          <Input id="title-input" placeholder="제목을 입력하세요." value={title} onChange={setTitle}/>
         </span>
         <span>
           <p>사진</p>
@@ -84,7 +102,7 @@ function Write(): JSX.Element {
           <ReactQuill theme="snow" value={value} onChange={setValue}/>
         </span>
         <div id="submits">
-          <Button>등록하기</Button>
+          <Button htmlType="submit">등록하기</Button>
           <Button style={{ backgroundColor: palette.main_color4}} onClick={allRemove}>삭제하기</Button>
         </div>
       </Form>
