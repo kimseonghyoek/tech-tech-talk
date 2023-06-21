@@ -56,12 +56,14 @@ const Container = styled(Content)`
 `;
 
 function Write(): JSX.Element {
+  const [cate, setCate] = useState('카테고리');
   const [title, setTitle] = useInput('');
   const [value, setValue] = useState<string>('');
 
   const postWrite = (): any => {
     axios.post("/write/post", {
       data: {
+        cate,
         title,
         value
       },
@@ -77,16 +79,30 @@ function Write(): JSX.Element {
   };
 
   return (
-    
     <Container>
       <Form onFinish={postWrite}>
-        <Select defaultValue={"카테고리"}>
-          <Option value="소프트웨어">소프트웨어</Option>
-          <Option value="키보드">키보드</Option>
-          <Option value="마우스">마우스</Option>
-          <Option value="PC 부품">PC 부품</Option>
-          <Option value="그 외">그 외 제품</Option>
-        </Select>
+        <Select defaultValue={cate} onChange={setCate} options={[
+          {
+            value: 1,
+            label: 'software'
+          },
+          {
+            value: 2,
+            label: 'keyboard'
+            },
+            {
+              value: 3,
+              label: 'mouse'
+            },
+            {
+              value: 4,
+              label: 'pc',
+            },
+            {
+              value: 5,
+              label: 'other'
+            }
+        ]}/>
         <span>
           <p>제목 입력란</p>
           <Input id="title-input" placeholder="제목을 입력하세요." value={title} onChange={setTitle}/>
