@@ -1,3 +1,5 @@
+use talk;
+
 create table post_table (
   id int not null AUTO_INCREMENT PRIMARY KEY,
   nickname varchar(35) not null,
