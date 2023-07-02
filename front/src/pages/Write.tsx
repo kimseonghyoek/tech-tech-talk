@@ -29,6 +29,10 @@ const Container = styled(Content)`
     font-size: 1.8rem;
   }
 
+  #hashtag > input {
+    width: 10%;
+    font-size: 1.5rem;
+  }
 
   #submits {
     text-align: right;
@@ -81,7 +85,9 @@ function Write(): JSX.Element {
   return (
     <Container>
       <Form onFinish={postWrite}>
-        <Select defaultValue={cate} onChange={setCate} options={[
+        <span>
+          <p>카테고리</p>
+          <Select defaultValue={cate} onChange={setCate} options={[
           {
             value: 1,
             label: 'software'
@@ -103,6 +109,7 @@ function Write(): JSX.Element {
               label: 'other'
             }
         ]}/>
+        </span>
         <span>
           <p>제목 입력란</p>
           <Input id="title-input" placeholder="제목을 입력하세요." value={title} onChange={setTitle}/>
@@ -116,6 +123,13 @@ function Write(): JSX.Element {
         <span>
           <p>내용</p>
           <ReactQuill theme="snow" value={value} onChange={setValue}/>
+        </span>
+        <span id="hashtag">
+          <p>해시태그</p>
+          <Input placeholder="해시태그"/>
+          <div className="tags">
+            
+          </div>
         </span>
         <div id="submits">
           <Button htmlType="submit">등록하기</Button>
