@@ -10,6 +10,7 @@ import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import useInput from "../hooks/useInput";
 import axios from "axios";
+import Tags from "../components/[Tags]";
 
 const Container = styled(Content)`
   width: 100%;
@@ -29,9 +30,16 @@ const Container = styled(Content)`
     font-size: 1.8rem;
   }
 
-  #hashtag > input {
-    width: 10%;
+  #hashtag {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+  }
+
+  #hashtag > form > input {
+    width: 8.5rem;
     font-size: 1.5rem;
+    text-align: center;
   }
 
   #submits {
@@ -125,10 +133,12 @@ function Write(): JSX.Element {
           <ReactQuill theme="snow" value={value} onChange={setValue}/>
         </span>
         <span id="hashtag">
+          <Form>
           <p>해시태그</p>
           <Input placeholder="해시태그"/>
+          </Form>
           <div className="tags">
-            
+            <Tags text="콕스"/>
           </div>
         </span>
         <div id="submits">
