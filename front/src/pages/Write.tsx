@@ -101,6 +101,8 @@ function Write(): JSX.Element {
 
   const addTag = (e: React.FormEvent): any => {
     e.preventDefault();
+
+    
   };
 
   return (
@@ -111,7 +113,15 @@ function Write(): JSX.Element {
           <Form onFinish={addTag}>
             <Input placeholder="해시태그" value={tag} onChange={setTag} />
           </Form>
-          <Tags text="콕스" />
+          <div id="tag-list">
+            {
+              tags.map((ele) => {
+                return (
+                  <></>
+                )
+              })
+            }
+          </div>
         </div>
       </span>
       <Form onFinish={postWrite}>
