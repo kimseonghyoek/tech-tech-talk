@@ -58,8 +58,6 @@ const StyledHeader = styled(Header)`
 function HeaderNav(): JSX.Element {
   const navi = useNavigate();
 
-  const [showItem, setShowItem] = useState(false);
-
   const naviToComm = () => {
     navi("/comm");
   };
