@@ -1,11 +1,12 @@
-import react from "react";
+import react, { useState } from "react";
 import styled from "styled-components";
 import palette from "../palette";
 
 const Tag = styled.div`
     background-color: ${palette.pro_back2};
     width: 7rem;
-    padding: 0.5rem;
+    height: 100%;
+    padding: 0.7rem;
     border-radius: 5px;
     margin: 0rem 1rem;
     text-align: center;
@@ -16,11 +17,16 @@ const Tag = styled.div`
     }
 `;
 
-type TagProps = { text: string };
+type TagProps = { text: string, id: any };
 
-const Tags = ({ text }: TagProps): JSX.Element => {
+const Tags = ({ text, id }: TagProps): JSX.Element => {
+
+    const removeTag = () => {
+        
+    }
+    
     return (
-        <Tag>
+        <Tag id={id}>
             <p>{text}</p>
         </Tag>
     )
