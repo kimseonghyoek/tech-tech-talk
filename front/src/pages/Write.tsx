@@ -75,7 +75,7 @@ function Write(): JSX.Element {
   const [cate, setCate] = useState("카테고리");
   const [title, setTitle] = useInput("");
   const [value, setValue] = useState<string>("");
-  const [tag, setTag] = useInput("");
+  const [tag, setTag, setText] = useInput("");
   const [tags, setTags] = useState([]);
 
   const postWrite = (): any => {
@@ -99,10 +99,8 @@ function Write(): JSX.Element {
     setValue("");
   };
 
-  const addTag = (e: React.FormEvent): any => {
-    e.preventDefault();
-
-    
+  const addTag = (): any => {
+    setText("");
   };
 
   return (
