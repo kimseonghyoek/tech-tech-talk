@@ -1,20 +1,30 @@
 import { UploadOutlined } from "@ant-design/icons";
-import { Button, Form, Input, Select, Upload } from "antd";
-import React, { useMemo, useState } from "react";
+import { Button, Form, Input, InputRef, Select, Tag, Upload } from "antd";
+import { useEffect, useRef, useState } from "react";
 import palette from "../../palette";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import useInput from "../../hooks/useInput";
 import axios from "axios";
-import Tags from "../../components/[Tags]";
 import { Container } from "./WriteStyled";
+import { element } from "prop-types";
 
 function Write(): JSX.Element {
   const [cate, setCate] = useState("카테고리");
   const [title, setTitle] = useInput("");
   const [value, setValue] = useState<string>("");
-  const [tag, setTag, setText] = useInput("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<any[]>([]);
+  const [inputVisible, setInputVisible] = useState(false);
+  const [tagValue, setTagValue, setText] = useInput("");
+  const inputRef = useRef<InputRef>(null);
+
+  useEffect(() => {
+    if (inputVisible === true) {
+      inputRef.current?.focus();
+    }
+  }, [inputVisible]);
+
+  const closeTag = (remove: string) => {};
 
   const postWrite = (): any => {
     axios
@@ -37,27 +47,43 @@ function Write(): JSX.Element {
     setValue("");
   };
 
-  const addTag = (): any => {
-    setText("");
+  const showInput = () => {
+    setInputVisible(true);
   };
+
+  const submitTag = () => {
+    if(tagValue && tags.indexOf(tagValue) === -1) {
+      setTags([...tags, tagValue]);
+    }
+    setText("");
+    setInputVisible(false)
+  };  
 
   return (
     <Container>
       <span id="hashtag">
         <p>해시태그</p>
-        <div className="tags">
-          <Form onFinish={addTag}>
-            <Input placeholder="해시태그" value={tag} onChange={setTag} />
-          </Form>
-          <div id="tag-list">
-            {
-              tags.map((ele) => {
-                return (
-               <></>
-                )
-              })
-            }
-          </div>
+        <div id="tag-list">
+          {inputVisible ? (
+            <Input
+              ref={inputRef}
+              value={tagValue}
+              onChange={setTagValue}
+              onPressEnter={submitTag}
+              size="small"
+            />
+          ) : (
+            <Tag onClick={showInput}>태그 추가</Tag>
+          )}
+          <Tag>tag 1</Tag>
+          <Tag>tag 2</Tag>
+          {
+            tags.map((tag) => {
+              return (
+                <Tag>{tag}</Tag>
+              )
+            })
+          }
         </div>
       </span>
       <Form onFinish={postWrite}>
