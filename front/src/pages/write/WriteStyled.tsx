@@ -20,6 +20,13 @@ export const Container = styled(Content)`
     font-size: 1.8rem;
   }
 
+  #tag-list > input {
+    width: 6rem;
+    height: 2.5rem;
+    font-size: 1.2rem;
+    margin-right: 1rem;;
+  }
+
   #hashtag {
     display: flex;
     flex-direction: column;
