@@ -23,7 +23,7 @@ import Other from "./pages/comm/other/Other";
 import {Footer} from "antd/es/layout/layout";
 import { Provider } from "react-redux";
 import palette from "./palette";
-import Write from "./pages/Write";
+import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
 
 function App() {
