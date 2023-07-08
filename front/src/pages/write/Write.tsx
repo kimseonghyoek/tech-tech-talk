@@ -24,23 +24,9 @@ function Write(): JSX.Element {
     }
   }, [inputVisible]);
 
-  const closeTag = (remove: string) => {};
-
-  const postWrite = (): any => {
-    axios
-      .post("/write/post", {
-        data: {
-          cate,
-          title,
-          value,
-        },
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const closeTag = (remove: string) => {
+    const newTag = tags.filter((tag) => tag !== remove);
+    setTags(newTag);
   };
 
   const allRemove = () => {
@@ -59,6 +45,23 @@ function Write(): JSX.Element {
     setInputVisible(false)
   };  
 
+  const postWrite = (): any => {
+    axios
+      .post("/write/post", {
+        data: {
+          cate,
+          title,
+          value,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Container>
       <span id="hashtag">
@@ -75,12 +78,10 @@ function Write(): JSX.Element {
           ) : (
             <Tag onClick={showInput}>태그 추가</Tag>
           )}
-          <Tag>tag 1</Tag>
-          <Tag>tag 2</Tag>
           {
-            tags.map((tag) => {
+            tags.map((tag, key) => {
               return (
-                <Tag>{tag}</Tag>
+                <Tag onClick={() => closeTag(tag)} key={key}>{tag}</Tag>
               )
             })
           }
