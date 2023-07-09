@@ -59,8 +59,20 @@ export const Container = styled(Content)`
     min-height: 70vh;
   }
 
-  .ql-editor * {
-    font-size: 1.4rem;
+  .ql-editor p {
+    font-size: 1.3rem;
+  }
+
+  .ql-editor h1 {
+    font-size: 2rem;
+  }
+
+  .ql-editor h2 {
+    font-size: 1.7rem;
+  }
+
+  .ql-editor h3 {
+    font-size 1.5rem;
   }
 
   #title-input {
