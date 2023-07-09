@@ -52,6 +52,7 @@ function Write(): JSX.Element {
           cate,
           title,
           value,
+          tags,
         },
       })
       .then((res) => {
@@ -95,23 +96,23 @@ function Write(): JSX.Element {
             onChange={setCate}
             options={[
               {
-                value: 1,
+                value: "SW",
                 label: "software",
               },
               {
-                value: 2,
+                value: "KB",
                 label: "keyboard",
               },
               {
-                value: 3,
+                value: "MO",
                 label: "mouse",
               },
               {
-                value: 4,
+                value: "PC",
                 label: "pc",
               },
               {
-                value: 5,
+                value: "OT",
                 label: "other",
               },
             ]}
