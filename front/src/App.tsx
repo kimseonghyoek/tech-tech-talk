@@ -25,13 +25,14 @@ import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
+import store from "./store/ConfigureStore";
 
 function App() {
   const my_github_link = "https://github.com/kimseonghyoek/";
   return (
       <div className="App">
         <CookiesProvider>
-          <RecoilRoot>
+          <Provider store={store}>
             <BrowserRouter>
               <Header/>
               <Routes>
@@ -56,7 +57,7 @@ function App() {
               <Footer style={{textAlign: 'center', padding: '2rem 5rem', backgroundColor: palette.main_color1 }}><h3>Tech-Tech-Talk _ Dev 2023 ~ </h3>
                 <a href={my_github_link}><p>- Develop & Design by Overloper</p></a></Footer>
             </BrowserRouter>
-          </RecoilRoot>
+          </Provider>
         </CookiesProvider>
       </div>
   );
