@@ -72,7 +72,7 @@ export const Container = styled(Content)`
   }
 
   .ql-editor h3 {
-    font-size 1.5rem;
+    font-size: 1.5rem;
   }
 
   #title-input {

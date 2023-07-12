@@ -7,7 +7,6 @@ import "react-quill/dist/quill.snow.css";
 import useInput from "../../hooks/useInput";
 import axios from "axios";
 import { Container } from "./WriteStyled";
-import { element } from "prop-types";
 
 function Write(): JSX.Element {
   const [cate, setCate] = useState("카테고리");
