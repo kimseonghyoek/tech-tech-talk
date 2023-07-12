@@ -1,13 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import axios from "axios";
 import styled from "styled-components";
 import palette from "../palette";
 import { Link } from "react-router-dom";
-import PostCard from "./postcards/PostCard";
 import { useRecoilState } from "recoil";
-import { checkLogin } from "../recoil/store";
-import PreUser from "./user/PreUser";
 import User from "../pages/user/User";
 import NewsCard from "./postcards/NewsCard";
 
@@ -40,7 +37,6 @@ const WrapSideBar = styled.div`
 `;
 
 function SideBar(): JSX.Element {
-  const [check_login, setCheckLogin] = useRecoilState(checkLogin);
   const [news, updateNews] = useState();
 
   useEffect(()=> {
@@ -60,7 +56,7 @@ function SideBar(): JSX.Element {
 
   return (
     <WrapSideBar>
-      {check_login ? (
+      {true ? (
         <User />
       ) : (
         <div className="wrap-login">

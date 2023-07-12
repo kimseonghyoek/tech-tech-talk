@@ -7,7 +7,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Header from "./components/header/Header";
 import NotFound from "./pages/error/404";
-import { RecoilRoot } from "recoil";
 import Test from "./pages/Test";
 import DevManage from "./pages/DevManage";
 import Setting from "./pages/setting/Setting";

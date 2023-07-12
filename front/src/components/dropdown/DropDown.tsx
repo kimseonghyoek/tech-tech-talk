@@ -4,7 +4,6 @@ import palette from "../../palette";
 import cookie from "react-cookie";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { checkLogin } from "../../recoil/store";
 
 export type DropProps = {
   title: string | null;
@@ -33,11 +32,9 @@ const Container = styled.article`
 
 const DropDown = (props: DropProps) => {
   const [visibleItem, setVisible] = useState(false);
-  const [logout, setLogout] = useRecoilState(checkLogin);
 
   const Logout = () => {
     axios.post("/login/logout");
-    setLogout(!logout)
   }
 
   const ChangeVisible = () => {

@@ -8,7 +8,6 @@ import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { checkLogin } from "../../recoil/store";
 import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
@@ -27,8 +26,6 @@ function LoginForm(): JSX.Element {
   const movePage = useNavigate();
 
   let post = true;
-
-  const [check_login, setLogin] = useRecoilState<boolean>(checkLogin);
 
   const [userName, setNames] = useInput("");
   const [userNumber, setNumber] = useInput("");
@@ -83,7 +80,6 @@ function LoginForm(): JSX.Element {
           pw: userPw,
         })
         .then((res) => {
-          setLogin(!check_login);
           const user = res.data;
           console.log(user);
           sessionStorage.setItem("email", user.email);
