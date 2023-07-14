@@ -6,10 +6,11 @@ import AppLayout from "../Layout/AppLayout";
 import PostCard from "../components/postcards/PostCard";
 import User from './user/User';
 import Post from './Post';
+import Weather from '../components/Weather';
 function Test(): JSX.Element {
 
   return (
-    <Post/>
+    <Weather/>
   )
 }
 

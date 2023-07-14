@@ -4,9 +4,9 @@ import axios from "axios";
 import styled from "styled-components";
 import palette from "../palette";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
 import User from "../pages/user/User";
 import NewsCard from "./postcards/NewsCard";
+import Weather from "./Weather";
 
 const WrapSideBar = styled.div`
   .wrap-login {
@@ -78,6 +78,7 @@ function SideBar(): JSX.Element {
         </div>
       )}
       <NewsCard datas={news}/>
+      <Weather/>
     </WrapSideBar>
   );
 }
