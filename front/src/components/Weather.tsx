@@ -13,15 +13,21 @@ const WrapContent = styled(Content)`
 
 const Weather = (): JSX.Element => {
 
-  const WEATHER_API: string | undefined = process.env.REACT_APP_WEATHER;
+  const WEATHER_API: any|string = process.env.REACT_APP_WEATHER;
 
   const [weather, setWeather] = useState({});
 
-    // axios.get(WEATHER_API).then((response: AxiosResponse) => {
-    //   console.log(response.data)
-    //   setWeather(response.data);
-    //   console.log(`---${weather}---`)
-    // })
+  const getWeatherAPI = () => {
+    axios.get(WEATHER_API).then((response: AxiosResponse) => {
+      console.log(response.data)
+      setWeather(response.data);
+      console.log(`---${weather}---`)
+    });
+  }
+
+  useEffect(() => {
+    getWeatherAPI();
+  }, []);
 
   return (
     <WrapContent>
