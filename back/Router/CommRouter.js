@@ -1,9 +1,9 @@
 const express = require("express");
-const Crawling = require("../crawling/craw");
 const router = express.Router();
 const axios = require("axios");
 const cheerio = require("cheerio");
 const iconv = require("iconv-lite");
+const { getWeatherAPI } = require("../API/Weather");
 
 router.get("/news/get", async (req, res) => {
   const getDocument = () => {
@@ -43,6 +43,11 @@ router.get("/news/get", async (req, res) => {
     });
 
     res.send(data);
+});
+
+router.get("/weather/get", async(req, res) => {
+  getWeatherAPI();
+  res.end();
 });
 
 module.exports = router;
