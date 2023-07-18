@@ -45,8 +45,10 @@ router.get("/news/get", async (req, res) => {
     res.send(data);
 });
 
-router.get("/weather/get", async(req, res) => {
-  getWeatherAPI();
+router.get("/weather/get", async (req, res) => {
+  const data = await getWeatherAPI();
+  console.log(data);
+  res.send(data);
   res.end();
 });
 

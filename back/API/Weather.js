@@ -1,12 +1,10 @@
 const axios = require("axios");
 require('dotenv').config();
 
-module.exports.getWeatherAPI = async () => {
+module.exports.getWeatherAPI = () => {
   const WEATHER_API = process.env.WEATHER;
-  console.log("weather")
   try {
-    await axios.get(WEATHER_API).then((res) => {
-      console.log(res.data);
+    return axios.get(WEATHER_API).then((res) => {
       return res.data;
     })
   } catch(err) {
