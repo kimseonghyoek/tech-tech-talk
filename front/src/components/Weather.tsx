@@ -17,14 +17,10 @@ const WrapContent = styled(Content)`
 `;
 
 const Weather = (): JSX.Element => {
-
-  const WEATHER_API: any|string = process.env.REACT_APP_WEATHER;
-
   const [weather, setWeather] = useState(Object);
 
   const getWeatherAPI = () => {
-    axios.get(WEATHER_API).then((response: AxiosResponse) => {
-      console.log(response.data)
+    axios.get("/comm/weather/get").then((response: AxiosResponse) => {
       setWeather(response.data);
       console.log(`---${weather}---`)
     });
@@ -40,8 +36,7 @@ const Weather = (): JSX.Element => {
       <div id='main-content'>
         {
           weather.name
-        },
-
+        }
       </div>
     </WrapContent>
   )
