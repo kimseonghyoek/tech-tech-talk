@@ -45,7 +45,7 @@ function SideBar(): JSX.Element {
     .then((res) => {
       setTimeout(() => {
         updateNews(res.data);
-      }, 300);
+      }, 10);
     })
     .catch((err: Error) => {
       console.log(err);
