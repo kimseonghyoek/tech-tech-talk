@@ -7,6 +7,11 @@ export const Common: any = {
         }
       },
       
+      transKelvin: function(temp: number) {
+        const trans_number: number = 273.15;
+        temp = temp - trans_number;
+        return temp.toFixed(1);
+      }
   },
 
   getDay: {
