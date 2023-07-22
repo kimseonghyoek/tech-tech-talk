@@ -12,10 +12,20 @@ const WrapContent = styled(Content)`
   border-radius: 5px;
 
   #main-content {
+    display: flex;
+    flex-direction: row;
     padding: 2rem;
 
     h2 {
       font-size: 3rem;
+    }
+
+    #temp-info {
+      flex: 1;
+    }
+
+    #wea-icon {
+      flex: 1;
     }
   }
 `;
@@ -50,9 +60,15 @@ const Weather = (): JSX.Element => {
   return (
     <WrapContent>
       <div id="main-content">
+        <div id="temp-info">
         <p>07/20</p>
-        <p>{Common.checkWeather.checkLocation(weather.city_name)}</p>
+        {/* <p>{Common.checkWeather.checkLocation(weather.city_name)}</p> */}
+        <p>서울</p>
         <h2>{Common.checkWeather.transKelvin(weather.temp)}°C</h2>
+        </div>
+        <div id="wea-icon">
+
+        </div>
       </div>
     </WrapContent>
   );
