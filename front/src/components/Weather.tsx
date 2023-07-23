@@ -28,6 +28,8 @@ const WrapContent = styled(Content)`
 
     #wea-icon {
       flex: 1;
+      display: flex;
+      justify-content: center;
     }
   }
 `;
@@ -49,6 +51,7 @@ const Weather = (): JSX.Element => {
   const getWeatherAPI = () => {
     axios.get("/comm/weather/get").then((response: AxiosResponse) => {
       const result = response.data;
+      console.log(result);
       setWeather({
         city_name: result.name,
         temp: result.main.temp,
@@ -61,20 +64,17 @@ const Weather = (): JSX.Element => {
 
   useEffect(() => {
     getWeatherAPI();
-    console.log(weather);
   }, []);
 
   return (
     <WrapContent>
       <div id="main-content">
         <div id="temp-info">
-        <p>07/20</p>
-        {/* <p>{Common.checkWeather.checkLocation(weather.city_name)}</p> */}
-        <p>서울</p>
+        <p>{Common.checkWeather.checkLocation(weather.city_name)}</p>
         <h2>{Common.checkWeather.transKelvin(weather.temp)}°C</h2>
-        </div>
+        </div> 
         <div id="wea-icon">
-
+          <img src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} alt="" />
         </div>
       </div>
     </WrapContent>
