@@ -22,6 +22,8 @@ const WrapContent = styled(Content)`
 
     #temp-info {
       flex: 1;
+      text-align: center;
+      justify-content: center;
     }
 
     #wea-icon {
@@ -34,23 +36,28 @@ const Weather = (): JSX.Element => {
   interface weatherType {
     city_name: string;
     temp: number;
-  }
+    icon: string;
+  };
+
   const [weather, setWeather] = useState<weatherType>({
     city_name: "",
     temp: 0,
+    icon: "",
   });
   const [day, setDay] = useState<string>("");
 
   const getWeatherAPI = () => {
     axios.get("/comm/weather/get").then((response: AxiosResponse) => {
       const result = response.data;
-      console.log(result);
       setWeather({
         city_name: result.name,
-        temp: result.main.temp
+        temp: result.main.temp,
+        icon: result.weather[0].icon
       });
     });
   };
+
+  console.log(weather.icon);
 
   useEffect(() => {
     getWeatherAPI();
