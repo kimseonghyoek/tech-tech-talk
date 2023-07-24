@@ -11,6 +11,10 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { isLoggedOut } from "../../actions";
+import { isLogout } from "../../reducer/user";
 
 const UserCard = styled(Card)`
   border: 0.07rem solid ${palette.main_color3};
@@ -29,6 +33,8 @@ const UserCard = styled(Card)`
 
 function User(): JSX.Element {
   const movePage = useNavigate();
+  const user = useSelector((state: any) => { return state.user});
+  const dispatch = useDispatch();
 
   const getUserNickName = () => {
     const userName = sessionStorage.getItem("nickname");
@@ -48,7 +54,7 @@ function User(): JSX.Element {
         avatar={<Avatar src={"/imgs/admin.png"} size={64} />}
         title={`${user_name} 님`}
       />
-      <Button>로그아웃</Button>
+      <Button onClick={() => {dispatch(isLogout)}}>로그아웃</Button>
     </UserCard>
   );
 }
