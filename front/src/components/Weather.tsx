@@ -51,7 +51,6 @@ const Weather = (): JSX.Element => {
   const getWeatherAPI = () => {
     axios.get("/comm/weather/get").then((response: AxiosResponse) => {
       const result = response.data;
-      console.log(result);
       setWeather({
         city_name: result.name,
         temp: result.main.temp,

@@ -8,11 +8,14 @@ export const initialState = {
   },
 }
 
+export const isLogin = {
+  type: types.IS_LOGGED_IN
+}
+
 const user = (state = initialState.user, action: Action) => {
   switch (action.type) {
     case types.IS_LOGGED_IN:
       return {
-        ...state,
         isLoggedIn: true
       }
     default:

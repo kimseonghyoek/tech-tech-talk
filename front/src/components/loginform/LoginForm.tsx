@@ -15,6 +15,9 @@ import KakaoBtn from "../SocialBtn/KakaoBtn";
 import NaverBtn from "../SocialBtn/NaverBtn";
 import FacebookBtn from "../SocialBtn/FaceBookBtn";
 import GoogleBtn from "../SocialBtn/GoogleBtn";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { isLogin } from "../../reducer/user";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -24,9 +27,11 @@ const now = dayjs();
 function LoginForm(): JSX.Element {
   const location = useLocation();
   const movePage = useNavigate();
+  const dispatch = useDispatch();
 
   let post = true;
 
+  const user = useSelector((state: any) => { return state.user });
   const [userName, setNames] = useInput("");
   const [userNumber, setNumber] = useInput("");
   const [userNickName, setNickName] = useInput("");
@@ -84,6 +89,7 @@ function LoginForm(): JSX.Element {
           console.log(user);
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("nickname", user.nickname);
+          dispatch(isLogin);
           movePage("/comm");
         })
         .catch((err) => {
