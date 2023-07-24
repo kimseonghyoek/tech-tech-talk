@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import User from "../pages/user/User";
 import NewsCard from "./postcards/NewsCard";
 import Weather from "./Weather";
+import { useSelector } from "react-redux";
 
 const WrapSideBar = styled.div`
   .wrap-login {
@@ -37,6 +38,8 @@ const WrapSideBar = styled.div`
 `;
 
 function SideBar(): JSX.Element {
+  const user = useSelector((state: any) => { return state.user });
+  console.log(`=====${JSON.stringify(user)}=====`)
   const [news, updateNews] = useState();
 
   useEffect(()=> {
@@ -52,11 +55,9 @@ function SideBar(): JSX.Element {
     });
   }, []);
 
-  console.log(news)
-
   return (
     <WrapSideBar>
-      {true ? (
+      { user.isLoggedIn ? (
         <User />
       ) : (
         <div className="wrap-login">
