@@ -19,46 +19,59 @@ import KeyBoard from "./pages/comm/keyboard/KeyBoard";
 import Mouse from "./pages/comm/mouse/Mouse";
 import PC from "./pages/comm/pc/PC";
 import Other from "./pages/comm/other/Other";
-import {Footer} from "antd/es/layout/layout";
+import { Footer } from "antd/es/layout/layout";
 import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
-import store from "./store/ConfigureStore";
+import { store, persistor } from "./store/ConfigureStore";
+import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
   const my_github_link = "https://github.com/kimseonghyoek/";
   return (
-      <div className="App">
-        <CookiesProvider>
-          <Provider store={store}>
+    <div className="App">
+      <CookiesProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
             <BrowserRouter>
-              <Header/>
+              <Header />
               <Routes>
-                <Route path="/" element={<Promotion/>}/>
-                <Route path="/login" element={<Login/>}/>
-                <Route path="/signup" element={<Signup/>}/>
-                <Route path="/user" element={<User/>}/>
-                <Route path="/comm" element={<Comm/>}/>
-                <Route path="/comm/softwares" element={<Software/>}/>
-                <Route path="/comm/keyboard" element={<KeyBoard/>}/>
-                <Route path="/comm/mouse" element={<Mouse/>}/>
-                <Route path="/comm/pc" element={<PC/>}/>
-                <Route path="/comm/other" element={<Other/>}/>
-                <Route path="/used" element={<UsedMarket/>}/>
-                <Route path="/write" element={<Write/>}/>
-                <Route path="/test" element={<Test/>}/>
-                <Route path="/userinfo" element={<UserInfo/>}/>
-                <Route path="/setting" element={<Setting/>}/>
-                <Route path="/manage" element={<DevManage/>}/>
-                <Route path="/*" element={<NotFound/>}/>
+                <Route path="/" element={<Promotion />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/user" element={<User />} />
+                <Route path="/comm" element={<Comm />} />
+                <Route path="/comm/softwares" element={<Software />} />
+                <Route path="/comm/keyboard" element={<KeyBoard />} />
+                <Route path="/comm/mouse" element={<Mouse />} />
+                <Route path="/comm/pc" element={<PC />} />
+                <Route path="/comm/other" element={<Other />} />
+                <Route path="/used" element={<UsedMarket />} />
+                <Route path="/write" element={<Write />} />
+                <Route path="/test" element={<Test />} />
+                <Route path="/userinfo" element={<UserInfo />} />
+                <Route path="/setting" element={<Setting />} />
+                <Route path="/manage" element={<DevManage />} />
+                <Route path="/*" element={<NotFound />} />
               </Routes>
-              <Footer style={{textAlign: 'center', padding: '2rem 5rem', backgroundColor: palette.main_color1 }}><h3>Tech-Tech-Talk _ Dev 2023 ~ </h3>
-                <a href={my_github_link}><p>- Develop & Design by Overloper</p></a></Footer>
+              <Footer
+                style={{
+                  textAlign: "center",
+                  padding: "2rem 5rem",
+                  backgroundColor: palette.main_color1,
+                }}
+              >
+                <h3>Tech-Tech-Talk _ Dev 2023 ~ </h3>
+                <a href={my_github_link}>
+                  <p>- Develop & Design by Overloper</p>
+                </a>
+              </Footer>
             </BrowserRouter>
-          </Provider>
-        </CookiesProvider>
-      </div>
+          </PersistGate>
+        </Provider>
+      </CookiesProvider>
+    </div>
   );
 }
 
