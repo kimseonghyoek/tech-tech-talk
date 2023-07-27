@@ -6,7 +6,7 @@ import persistStore from "redux-persist/es/persistStore";
 
 const persistConfig: any = {
   key: "root",
-  stroage: storage,
+  storage: storage,
   whitelist: ["user"],
   blacklist: [],
 };
