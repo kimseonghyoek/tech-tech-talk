@@ -41,7 +41,7 @@ router.post(
   }
 );
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   console.log("back logout");
   res.clearCookie('Cookie!');
   res.send({ msg: "logout"});

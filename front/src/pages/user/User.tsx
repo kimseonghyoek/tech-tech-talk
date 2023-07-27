@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios, AxiosResponse } from "axios";
 import styled from "styled-components";
 import { getCookie } from "../../util/cookie";
 import LocalStorage from "../../util/localstorage";
@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { isLoggedOut } from "../../actions";
 import { isLogout } from "../../reducer/user";
+import { useCookies } from "react-cookie";
 
 const UserCard = styled(Card)`
   border: 0.07rem solid ${palette.main_color3};
@@ -36,12 +37,22 @@ function User(): JSX.Element {
   const user = useSelector((state: any) => { return state.user});
   const dispatch = useDispatch();
 
+  // 후에 하드코딩 깨고 쿠키값 상수화 예정
+  const [,, removeCookie] = useCookies(['Cookie!']);
+
   const getUserNickName = () => {
     const userName = sessionStorage.getItem("nickname");
     return userName;
   };
 
   const user_name = getUserNickName();
+
+  const logout = () => {
+    dispatch(isLogout);
+    axios.get("/login/logout").then((res: AxiosResponse) => {
+      console.log(res);
+    })
+  }
 
   return (
     <UserCard
@@ -54,7 +65,7 @@ function User(): JSX.Element {
         avatar={<Avatar src={"/imgs/admin.png"} size={64} />}
         title={`${user_name} 님`}
       />
-      <Button onClick={() => {dispatch(isLogout)}}>로그아웃</Button>
+      <Button onClick={() => {logout()}}>로그아웃</Button>
     </UserCard>
   );
 }

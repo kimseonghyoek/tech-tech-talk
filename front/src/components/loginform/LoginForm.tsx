@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
 import axios from "axios";
-import { useRecoilState } from "recoil";
 import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
