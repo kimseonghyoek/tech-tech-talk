@@ -4,7 +4,6 @@ const router = express.Router();
 
 router.get("/", isLoggedIn, (req, res) => {
     console.log(req.signedCookies);
-    console.log("~~~~~~~~~~~~~~~")
     console.log(req.session);
     res.redirect("/");
   }

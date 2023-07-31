@@ -17,26 +17,22 @@ router.post(
         if (info) {
           return res.status(401).send(info.message);
         }
-        req.login(user, (loginErr) => {
-          if (loginErr) {
-            return next(loginErr);
-          } else {
-            const data = {
-              email: req.user[0].email,
-              nickname: req.user[0].nickname
+        if (user) {
+          console.log(user)
+          req.login(user, (loginErr) => {
+            if (loginErr) {
+              return next(loginErr);
+            } else {
+              const data = {
+                email: req.user[0].email,
+                nickname: req.user[0].nickname
+              }
+              return res.send(data).end();
             }
-            return res.send(data).end();
-          }
-        });
+          });
+        }
       }
     )(req, res, next);
-  },
-  (req, res) => {
-    if (req.user) {
-      const user = { email: req.user.email, nickname: req.user.nickname, name: req.user.name };
-      res.send(user);
-    }
-    res.end();
   }
 );
 
