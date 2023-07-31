@@ -25,7 +25,6 @@ router.post(
               email: req.user[0].email,
               nickname: req.user[0].nickname
             }
-            console.log(req.user[0].email);
             return res.send(data).end();
           }
         });
