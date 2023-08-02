@@ -28,5 +28,5 @@ getDocument().then(html => {
   const data = newsList.filter(n => n.title);
   return data;
 }).then(res => {
-  console.log(res);
+  res.end();
 })

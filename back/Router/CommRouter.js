@@ -41,15 +41,14 @@ router.get("/news/get", async (req, res) => {
     }).catch((err) => {
       console.log(err);
     });
-
     res.send(data);
+    res.end();
 });
 
-router.get("/weather/get", async (req, res) => {
-  const data = await getWeatherAPI();
-  console.log(data);
-  res.send(data);
-  res.end();
-});
+// router.get("/weather/get", async (req, res) => {
+//   const data = await getWeatherAPI();
+//   res.send(data);
+//   res.end();
+// });
 
 module.exports = router;

@@ -28,7 +28,7 @@ app.use(
     name: "Cookie!",
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true },
+    cookie: { secure: false },
   }),
 );
 app.use(passport.initialize());
