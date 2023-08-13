@@ -9,3 +9,5 @@ CREATE TABLE post_table (
   	hash varchar(50) not null,
   	FOREIGN KEY(nickname) REFERENCES user_table(nickname)
 );
+
+ALTER TABLE post_table ADD register_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
