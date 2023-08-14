@@ -48,7 +48,7 @@ function App() {
                 <Route path="/comm/pc" element={<PC />} />
                 <Route path="/comm/other" element={<Other />} />
                 <Route path="/used" element={<UsedMarket />} />
-                <Route path="/write" element={<Write />} />
+                <Route path="/post" element={<Write />} />
                 <Route path="/test" element={<Test />} />
                 <Route path="/userinfo" element={<UserInfo />} />
                 <Route path="/setting" element={<Setting />} />

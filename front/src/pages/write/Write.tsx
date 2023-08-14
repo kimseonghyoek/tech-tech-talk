@@ -46,7 +46,7 @@ function Write(): JSX.Element {
 
   const postWrite = (): any => {
     axios
-      .post("/write/post", {
+      .post("/post", {
         data: {
           cate,
           title,

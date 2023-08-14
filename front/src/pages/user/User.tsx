@@ -58,7 +58,7 @@ function User(): JSX.Element {
     <UserCard
       actions={[
         <SettingOutlined key="setting" rev={undefined} onClick={() => {movePage("/userinfo")}} />,
-        <EditOutlined key="edit" rev={undefined} onClick={() => {movePage("/write")}} />,
+        <EditOutlined key="edit" rev={undefined} onClick={() => {movePage("/post")}} />,
       ]}
     >
       <Meta
