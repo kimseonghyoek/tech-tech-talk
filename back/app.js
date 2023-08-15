@@ -5,7 +5,6 @@ const cors = require("cors");
 const signupRouter = require("./Router/signupRouter");
 const loginRouter = require("./Router/LoginRouter");
 const userRouter = require("./Router/userRouter");
-const writeRouter = require("./Router/WriteRouter");
 const commRouter = require("./Router/CommRouter");
 const postRouter = require("./Router/PostRouter");
 const passportConfig = require("./passport/index");
@@ -43,7 +42,6 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/user", userRouter);
 app.use("/comm", commRouter);
-app.use("/write", writeRouter);
 app.use("/post", postRouter);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../front/build/index.html"));
