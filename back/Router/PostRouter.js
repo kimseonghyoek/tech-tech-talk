@@ -10,7 +10,7 @@ router.post("/", isLoggedIn, (req, res) => {
   const postDto = {
     category, title, value, tags
   };
-  postService.RegisterPost(postDto);  
+  postService.RegisterPost(postDto, req.user);  
 });
 
 module.exports = router;
