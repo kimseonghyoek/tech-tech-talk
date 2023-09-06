@@ -1,2 +1,3 @@
-export const IS_LOGGED_IN: string = 'IS_LOGGED_IN';
-export const IS_LOGGED_OUT: string = 'IS_LOGGED_OUT';
+export const LOG_IN_REQUEST: string = "LOG_IM_REQUST";
+export const LOG_IN_SUCCESS: string = "LOG_IN_SUCCESS";
+export const LOG_IN_FAILURE: string = "LOG_IN_FAILURE";
