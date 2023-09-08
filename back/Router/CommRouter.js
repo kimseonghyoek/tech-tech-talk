@@ -5,6 +5,7 @@ const cheerio = require("cheerio");
 const iconv = require("iconv-lite");
 const { getWeatherAPI } = require("../API/Weather");
 
+
 router.get("/news/get", async (req, res) => {
   const getDocument = () => {
     try {

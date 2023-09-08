@@ -3,7 +3,7 @@ exports.isLoggedIn = (req, res, next) => {
     console.log("pass");
     next();
   } else {
-    console.log("===== not login =====")
+    console.log("===== not login =====");
     res.redirect("/login");
   }
 }

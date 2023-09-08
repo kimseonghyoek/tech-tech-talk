@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Input from "../input/Input";
 import { Button, DatePicker, Divider, Form, Input } from "antd";
 import { useLocation, useNavigate } from "react-router";
@@ -14,9 +14,9 @@ import KakaoBtn from "../SocialBtn/KakaoBtn";
 import NaverBtn from "../SocialBtn/NaverBtn";
 import FacebookBtn from "../SocialBtn/FaceBookBtn";
 import GoogleBtn from "../SocialBtn/GoogleBtn";
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { isLogin } from "../../reducer/user";
+import { LOG_IN_REQUEST } from "../../actions/ActionTypes";
+import { useSelector } from "react-redux";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -29,13 +29,12 @@ function LoginForm(): JSX.Element {
   const dispatch = useDispatch();
 
   let post = true;
-
-  const user = useSelector((state: any) => { return state.user });
   const [userName, setNames] = useInput("");
   const [userNumber, setNumber] = useInput("");
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
+  const user = useSelector((state) => { return state })
   const [check, setCheck] = useState(false);
 
   const [rePw, setRePw] = useState("");
@@ -78,6 +77,9 @@ function LoginForm(): JSX.Element {
 
   const submitLogin = (): any => {
     if (post === true) {
+      dispatch({
+        type: LOG_IN_REQUEST,
+      });
       axios
         .post("/login/post", {
           email: userEmail,
@@ -88,7 +90,6 @@ function LoginForm(): JSX.Element {
           console.log(user);
           sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("nickname", user.nickname);
-          dispatch(isLogin);
           movePage("/comm");
         })
         .catch((err) => {

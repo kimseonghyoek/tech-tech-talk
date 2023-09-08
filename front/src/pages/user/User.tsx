@@ -13,8 +13,6 @@ import {
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { isLoggedOut } from "../../actions";
-import { isLogout } from "../../reducer/user";
 import { useCookies } from "react-cookie";
 
 const UserCard = styled(Card)`
@@ -34,7 +32,6 @@ const UserCard = styled(Card)`
 
 function User(): JSX.Element {
   const movePage = useNavigate();
-  const user = useSelector((state: any) => { return state.user});
   const dispatch = useDispatch();
 
   // 후에 하드코딩 깨고 쿠키값 상수화 예정
@@ -48,7 +45,6 @@ function User(): JSX.Element {
   const user_name = getUserNickName();
 
   const logout = () => {
-    dispatch(isLogout);
     axios.get("/login/logout").then((res: AxiosResponse) => {
       console.log(res);
     })

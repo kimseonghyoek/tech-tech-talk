@@ -38,8 +38,7 @@ const WrapSideBar = styled.div`
 `;
 
 function SideBar(): JSX.Element {
-  const user = useSelector((state: any) => { return state.user });
-  console.log(`=====${JSON.stringify(user)}=====`)
+  // const user = useSelector((state: any) => { return state.user });
   const [news, updateNews] = useState();
 
   useEffect(()=> {
@@ -57,9 +56,6 @@ function SideBar(): JSX.Element {
 
   return (
     <WrapSideBar>
-      { user.isLoggedIn ? (
-        <User />
-      ) : (
         <div className="wrap-login">
           <p>아무나, 누구나 tech-tech-Talk</p>
           <Link to={"/login"}>
@@ -77,7 +73,6 @@ function SideBar(): JSX.Element {
             </span>
           </p>
         </div>
-      )}
       <NewsCard datas={news}/>
       <Weather/>
     </WrapSideBar>

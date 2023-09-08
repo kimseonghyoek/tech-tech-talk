@@ -3,7 +3,6 @@ import styled from "styled-components";
 import palette from "../../palette";
 import cookie from "react-cookie";
 import axios from "axios";
-import { useRecoilState } from "recoil";
 
 export type DropProps = {
   title: string | null;

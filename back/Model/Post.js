@@ -15,7 +15,6 @@ module.exports = {
           throw err;
         } else {
           const user_id = id;
-          console.log(`-=-=-${user_id}`);
 
           con.query(
             `INSERT INTO post_table (title, text, cate, hash) VALUES ?,?,?,?`,

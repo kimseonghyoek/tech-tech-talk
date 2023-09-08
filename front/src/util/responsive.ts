@@ -1,6 +1,5 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { useRecoilState } from "recoil";
 
 const Desktop = ({
   children,
