@@ -1,4 +1,3 @@
-import { Action } from "redux";
 import * as types from "../actions/ActionTypes";
 
 interface initialStates {
