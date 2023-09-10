@@ -1,3 +1,3 @@
-export const LOG_IN_REQUEST: string = "LOG_IN_REQUST";
-export const LOG_IN_SUCCESS: string = "LOG_IN_SUCCESS";
-export const LOG_IN_FAILURE: string = "LOG_IN_FAILURE";
+export const LOG_IN_REQUEST = "LOG_IN_REQUST" as const;
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS" as const;
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE" as const;
