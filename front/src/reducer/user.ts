@@ -15,6 +15,27 @@ const initialState: initialStates = {
   loginSuccess: false,
 };
 
+export const loginRequestAction = (data: any) => {
+  return {
+    type: types.LOG_IN_REQUEST,
+    data
+  }
+};
+
+export const loginSuccessAction = (data: any) => {
+  return {
+    type: types.LOG_IN_SUCCESS,
+    data
+  }
+};
+
+export const loginFailureAction = (data: any) => {
+  return {
+    type: types.LOG_IN_FAILURE,
+    data
+  }
+};
+
 export const user = (state = initialState, action: any) => {
   switch (action.type) {
     case types.LOG_IN_REQUEST:

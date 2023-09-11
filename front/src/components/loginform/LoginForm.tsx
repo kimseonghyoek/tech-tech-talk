@@ -17,6 +17,8 @@ import GoogleBtn from "../SocialBtn/GoogleBtn";
 import { useDispatch } from "react-redux";
 import { LOG_IN_REQUEST } from "../../actions/ActionTypes";
 import { useSelector } from "react-redux";
+import { RootState } from "../../store/ConfigureStore";
+import { loginRequestAction } from "../../reducer/user";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -34,9 +36,8 @@ function LoginForm(): JSX.Element {
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
-  const user = useSelector((state) => { return state })
+  const user = useSelector((state: RootState) => { return state.user })
   const [check, setCheck] = useState(false);
-
   const [rePw, setRePw] = useState("");
 
   const checkSignd = (): any => {
@@ -77,9 +78,7 @@ function LoginForm(): JSX.Element {
 
   const submitLogin = (): any => {
     if (post === true) {
-      dispatch({
-        type: LOG_IN_REQUEST,
-      });
+      dispatch(loginRequestAction({userEmail, userPw}))
       axios
         .post("/login/post", {
           email: userEmail,
