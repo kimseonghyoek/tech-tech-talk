@@ -24,7 +24,7 @@ import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
-import { store, persistor } from "./store/ConfigureStore";
+import { store } from "./store/ConfigureStore";
 import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <CookiesProvider>
         <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
+          {/* <PersistGate loading={null} persistor={persistor}> */}
             <BrowserRouter>
               <Header />
               <Routes>
@@ -68,7 +68,7 @@ function App() {
                 </a>
               </Footer>
             </BrowserRouter>
-          </PersistGate>
+          {/* </PersistGate> */}
         </Provider>
       </CookiesProvider>
     </div>
