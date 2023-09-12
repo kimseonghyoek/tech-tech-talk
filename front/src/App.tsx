@@ -24,7 +24,7 @@ import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
-import { store } from "./store/ConfigureStore";
+import { store } from "./redux/ConfigureStore";
 import { PersistGate } from 'redux-persist/integration/react';
 
 function App() {
