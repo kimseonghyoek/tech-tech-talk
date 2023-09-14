@@ -5,6 +5,10 @@ export type userState = {
   loginSuccess: boolean
 };
 
+export type userIdData = {
+  id: string
+};
+
 export type signUpData = {
   email: string,
   pw: string,
