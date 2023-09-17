@@ -1,4 +1,6 @@
 import { Action } from 'redux';
+import { takeEvery } from 'redux-saga/effects';
+
 /* interface */
 interface signupUserData {
   email: string,
@@ -9,7 +11,10 @@ interface signupUserData {
 };
 
 /* Action Type */
-const SIGN_UP_REQUEST = "user/SIGN_UP_REQUEST" as const;
+const user: string = "user/";
+const SIGN_UP_REQUEST = `${user}/SIGN_UP_REQUEST` as const;
+const SIGN_UP_SUCCESS = `${user}/SIGN_UP_SUCCESS` as const;
+const SIGN_UP_FAILURE = `${user}/SIGN_UP_FAILURE` as const;
 
 /* Action Create Type */
 export const signUp = (data: signupUserData) => ({
@@ -32,4 +37,9 @@ export default function userReducer(state = initialState, action: Action) {
       default:
         return state;
   }
+};
+
+/* saga functions */
+export function* signUpRequest() {
+  yield takeEvery(SIGN_UP_REQUEST, signUp);
 }
