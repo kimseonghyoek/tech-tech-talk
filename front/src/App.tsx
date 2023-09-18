@@ -24,8 +24,10 @@ import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
 import UserInfo from "./pages/UserInfo";
-import { store } from "./redux/ConfigureStore";
-import { PersistGate } from 'redux-persist/integration/react';
+import configureStores from "./redux/ConfigureStore";
+// import { PersistGate } from 'redux-persist/integration/react';
+
+const store = configureStores();
 
 function App() {
   const my_github_link = "https://github.com/kimseonghyoek/";
