@@ -1,3 +1,4 @@
+import { createAsyncAction } from 'typesafe-actions';
 import { Action } from 'redux';
 import { takeEvery } from 'redux-saga/effects';
 
@@ -10,29 +11,67 @@ interface signupUserData {
   phone_num: number
 };
 
+interface state {
+  loading: boolean,
+  user: object,
+  error: null
+};
+
 /* Action Type */
-const user: string = "user/";
-const SIGN_UP_REQUEST = `${user}/SIGN_UP_REQUEST` as const;
-const SIGN_UP_SUCCESS = `${user}/SIGN_UP_SUCCESS` as const;
-const SIGN_UP_FAILURE = `${user}/SIGN_UP_FAILURE` as const;
+const prefix: string = "user/";
+const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST` as const;
+const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
+const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
 
 /* Action Create Type */
-export const signUp = (data: signupUserData) => ({
-  type: SIGN_UP_REQUEST,
-  data: data
-});
+export function signupUser(data: signupUserData) {
+  return {
+    type: SIGN_UP_REQUEST,
+    data
+  };
+};
+
+export function signupUserSuccess(data: any) {
+  return {
+    type: SIGN_UP_SUCCESS,
+    data
+  };
+};
+
+export function signupUserFailure(error: any) {
+  console.log(error);
+  return {
+    type: SIGN_UP_FAILURE,
+    error
+  };
+};
 
 /* Inital state of the module */
-const initialState: object = {
-  user: []
+const initialState: state = {
+  user: {},
+  loading: false,
+  error: null,
 };
 
 /* reducer */
-export default function userReducer(state = initialState, action: Action) {
+export default function userReducer(state = initialState, action: any) {
   switch (action.type) {
     case SIGN_UP_REQUEST:
       return {
-        ...state
+        ...state,
+        user: null,
+        loading: true,
+        error: null
+      }
+    case SIGN_UP_SUCCESS:
+      return {
+        user: action.data
+      }
+    case SIGN_UP_FAILURE:
+      return {
+        loading: false,
+        user: null,
+        error: action.error
       }
       default:
         return state;
@@ -40,6 +79,3 @@ export default function userReducer(state = initialState, action: Action) {
 };
 
 /* saga functions */
-export function* signUpRequest() {
-  yield takeEvery(SIGN_UP_REQUEST, signUp);
-}
