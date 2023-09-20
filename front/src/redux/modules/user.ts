@@ -1,6 +1,7 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { Action } from 'redux';
-import { takeEvery } from 'redux-saga/effects';
+import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 
 /* interface */
 interface signupUserData {
@@ -36,7 +37,7 @@ export function signupUserSuccess(data: any) {
     type: SIGN_UP_SUCCESS,
     data
   };
-};
+};  
 
 export function signupUserFailure(error: any) {
   console.log(error);
@@ -65,6 +66,7 @@ export default function userReducer(state = initialState, action: any) {
       }
     case SIGN_UP_SUCCESS:
       return {
+        ...state,
         user: action.data
       }
     case SIGN_UP_FAILURE:
@@ -78,4 +80,24 @@ export default function userReducer(state = initialState, action: any) {
   }
 };
 
+/* api address */
+function signupAPI(data: any) {
+  return axios.post("/user/signup", data);
+}
+
 /* saga functions */
+export function* watchSignupUser(action: Action) {
+  try {
+    const result: object =  yield call(signupAPI, signupUser);
+    console.log(result);
+    yield put({
+      type: SIGN_UP_SUCCESS,
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: SIGN_UP_FAILURE,
+      error: err
+    });
+  };
+};
