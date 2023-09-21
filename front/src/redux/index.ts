@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import userReducer, { watchSignupUser } from "./modules/user";
+import userReducer, { userSaga } from "./modules/user";
 import { all } from "redux-saga/effects";
 
 const rootReducer = combineReducers({
@@ -8,6 +8,7 @@ const rootReducer = combineReducers({
 
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;
+
 export function* rootSaga() {
-  yield all([watchSignupUser]);
+  yield all([userSaga]);
 }

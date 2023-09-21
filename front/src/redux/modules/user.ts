@@ -25,7 +25,7 @@ const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
 const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
 
 /* Action Create Type */
-export function signupUser(data: signupUserData) {
+export function signupUserRequest(data: signupUserData) {
   return {
     type: SIGN_UP_REQUEST,
     data
@@ -86,9 +86,9 @@ function signupAPI(data: any) {
 }
 
 /* saga functions */
-export function* watchSignupUser(action: Action) {
+export function* signupUser(action: Action) {
   try {
-    const result: object =  yield call(signupAPI, signupUser);
+    const result: object =  yield call(signupAPI, action);
     console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
@@ -101,3 +101,12 @@ export function* watchSignupUser(action: Action) {
     });
   };
 };
+
+function* watchSignupUser() {
+  yield takeLatest(SIGN_UP_REQUEST, signupUser);
+}
+
+/* export usersaga */
+export function* userSaga() {
+  yield all([watchSignupUser]);
+}
