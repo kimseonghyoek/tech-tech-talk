@@ -23,6 +23,9 @@ const prefix: string = "user/";
 const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST` as const;
 const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
 const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
+const LOGIN_REQUEST = `${prefix}/LOGIN_REQUEST` as const;
+const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS` as const;
+const LOGIN_FAILURE = `${prefix}/LOGIN_FAILURE` as const;
 
 /* Action Create Type */
 export function signupUserRequest(data: signupUserData) {
