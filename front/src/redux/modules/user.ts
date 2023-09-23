@@ -27,12 +27,12 @@ interface loginUserData {
 
 /* Action Type */
 const prefix: string = "user/";
-const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST` as const;
-const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
-const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
-const LOGIN_REQUEST = `${prefix}/LOGIN_REQUEST` as const;
-const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS` as const;
-const LOGIN_FAILURE = `${prefix}/LOGIN_FAILURE` as const;
+export const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST` as const;
+export const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
+export const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
+export const LOGIN_REQUEST = `${prefix}/LOGIN_REQUEST` as const;
+export const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS` as const;
+export const LOGIN_FAILURE = `${prefix}/LOGIN_FAILURE` as const;
 
 /* Action Create Type */
 export function signupUserRequest(data: signupUserData) {
@@ -57,7 +57,7 @@ export function signupUserFailure(error: any) {
   };
 };
 
-export function loginUserRequest(data: any) {
+export function loginUserRequest(data: loginUserData) {
   return {
     type: LOGIN_REQUEST,
     data
@@ -79,7 +79,7 @@ export function loginUserFailure(data: any) {
 };
 
 /* Inital state of the module */
-const initialState: state = {
+export const initialState: state = {
   user: {},
   signupLoading: false,
   signupError: null,
@@ -88,7 +88,7 @@ const initialState: state = {
 };
 
 /* reducer */
-export default function userReducer(state = initialState, action: any) {
+export default function user(state = initialState, action: any) {
   switch (action.type) {
     case SIGN_UP_REQUEST:
       return {
@@ -145,6 +145,7 @@ export function* signupUser(action: Action) {
     console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
+      data: result
     });
   } catch (err) {
     console.error(err);
@@ -160,7 +161,8 @@ export function* loginUser(action: Action) {
     const result: object = yield call(loginAPI, action);
     console.log(result);
     yield put({
-      type: LOGIN_SUCCESS
+      type: LOGIN_SUCCESS,
+      data: result
     });
   } catch (err) {
     console.error(err);

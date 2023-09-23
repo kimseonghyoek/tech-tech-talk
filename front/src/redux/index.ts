@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-import userReducer, { userSaga } from "./modules/user";
+import user, { userSaga } from "./modules/user";
 import { all } from "redux-saga/effects";
 
 const rootReducer = combineReducers({
-  userReducer
+  user
 });
 
 export default rootReducer;
