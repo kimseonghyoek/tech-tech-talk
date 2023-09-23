@@ -13,10 +13,17 @@ interface signupUserData {
 };
 
 interface state {
-  loading: boolean,
+  signupLoading: boolean,
   user: object,
-  error: null
+  signupError: null,
+  loginLoading: boolean,
+  loginError: boolean,
 };
+
+interface loginUserData {
+  email: string,
+  pw: string
+}
 
 /* Action Type */
 const prefix: string = "user/";
@@ -50,11 +57,34 @@ export function signupUserFailure(error: any) {
   };
 };
 
+export function loginUserRequest(data: any) {
+  return {
+    type: LOGIN_REQUEST,
+    data
+  };
+};
+
+export function loginUserSuccess(data: any) {
+  return {
+    type: LOGIN_SUCCESS,
+    data
+  };
+};
+
+export function loginUserFailure(data: any) {
+  return {
+    type: LOGIN_FAILURE,
+    data
+  };
+};
+
 /* Inital state of the module */
 const initialState: state = {
   user: {},
-  loading: false,
-  error: null,
+  signupLoading: false,
+  signupError: null,
+  loginLoading: false,
+  loginError: false,
 };
 
 /* reducer */
@@ -64,8 +94,8 @@ export default function userReducer(state = initialState, action: any) {
       return {
         ...state,
         user: null,
-        loading: true,
-        error: null
+        signupLoading: true,
+        signupError: null
       }
     case SIGN_UP_SUCCESS:
       return {
@@ -74,9 +104,25 @@ export default function userReducer(state = initialState, action: any) {
       }
     case SIGN_UP_FAILURE:
       return {
-        loading: false,
+        signupLoading: false,
         user: null,
-        error: action.error
+        signupError: action.error
+      }
+    case LOGIN_REQUEST:
+      return {
+        ...state,
+        user: null
+      }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        user: action.data
+      }
+    case LOGIN_FAILURE:
+      return {
+        loginUserRequest: false,
+        user: null,
+        loginUserFailure: action.error
       }
       default:
         return state;
@@ -86,7 +132,11 @@ export default function userReducer(state = initialState, action: any) {
 /* api address */
 function signupAPI(data: any) {
   return axios.post("/user/signup", data);
-}
+};
+
+function loginAPI(data: any) {
+  return axios.post("/user/login", data);
+};
 
 /* saga functions */
 export function* signupUser(action: Action) {
@@ -105,11 +155,31 @@ export function* signupUser(action: Action) {
   };
 };
 
+export function* loginUser(action: Action) {
+  try {
+    const result: object = yield call(loginAPI, action);
+    console.log(result);
+    yield put({
+      type: LOGIN_SUCCESS
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOGIN_FAILURE,
+      eror: err
+    });
+  };
+};
+
 function* watchSignupUser() {
   yield takeLatest(SIGN_UP_REQUEST, signupUser);
 }
 
+function* watchLoginUser() {
+  yield takeLatest(LOGIN_REQUEST, loginUser);
+}
+
 /* export usersaga */
 export function* userSaga() {
-  yield all([watchSignupUser]);
+  yield all([watchSignupUser, watchLoginUser]);
 }
