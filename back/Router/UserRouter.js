@@ -39,6 +39,8 @@ router.post("/signup", async (req, res, next) => {
 // 로그인
 router.post("/login", async (req, res, next) => {
   try {
+    console.log("요청 옴");
+    res.send({msg: "posts"})
   } catch (err) {
     console.error(err);
     next(err);
