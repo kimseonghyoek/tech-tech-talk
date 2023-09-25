@@ -111,6 +111,7 @@ export default function user(state = initialState, action: any) {
     case LOGIN_REQUEST:
       return {
         ...state,
+        loginUserRequest: true,
         user: null
       }
     case LOGIN_SUCCESS:
@@ -183,5 +184,8 @@ function* watchLoginUser() {
 
 /* export usersaga */
 export function* userSaga() {
-  yield all([watchSignupUser, watchLoginUser]);
+  yield all([
+    fork(watchSignupUser),
+    fork(watchLoginUser),
+  ]);
 }
