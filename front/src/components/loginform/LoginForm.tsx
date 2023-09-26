@@ -15,10 +15,9 @@ import NaverBtn from "../SocialBtn/NaverBtn";
 import FacebookBtn from "../SocialBtn/FaceBookBtn";
 import GoogleBtn from "../SocialBtn/GoogleBtn";
 import { useDispatch } from "react-redux";
-import { LOG_IN_REQUEST } from "../../actions/ActionTypes";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/ConfigureStore";
-import { loginRequestAction } from "../../reducer/user";
+import { RootState } from "../../redux";
+import { LOGIN_REQUEST, SIGN_UP_REQUEST } from "../../redux/modules/user";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -36,9 +35,9 @@ function LoginForm(): JSX.Element {
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
-  const user = useSelector((state: RootState) => { return state.user })
   const [check, setCheck] = useState(false);
   const [rePw, setRePw] = useState("");
+  const user = useSelector((state: RootState) => (state.user));
 
   const checkSignd = (): any => {
     if (!check) {
@@ -55,55 +54,20 @@ function LoginForm(): JSX.Element {
 
   const submitSignup = (): any => {
     if (post === true) {
-      axios
-        .post("/signup/post", {
-          data: {
-            userName,
-            userEmail,
-            userPw,
-            userNickName,
-            userNumber,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          alert("회원가입이 정상적으로 처리 되었습니다.");
-          movePage("/login");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { userName, userEmail, userPw, userNickName, userNumber },
+      });
+    };
   };
 
   const submitLogin = (): any => {
     if (post === true) {
-      dispatch(loginRequestAction({userEmail, userPw}))
-      axios
-        .post("/login/post", {
-          email: userEmail,
-          pw: userPw,
-        })
-        .then((res) => {
-          const user = res.data;
-          console.log(user);
-          sessionStorage.setItem("email", user.email);
-          sessionStorage.setItem("nickname", user.nickname);
-          movePage("/comm");
-        })
-        .catch((err) => {
-          const err_msg = err.response.data;
-          console.log(err_msg);
-          if (err_msg === "not_match_pw") {
-            alert("비밀번호가 다릅니다");
-          } else if (err_msg === "no_user") {
-            alert("이메일이 존재하지 않습니다.");
-          } else if (err_msg === "is_loggedin") {
-            // 일단 중복일 경우 alret
-            alert("로그인이 이미 되어있습니다.");
-          }
-        });
-    }
+      dispatch({
+        type: LOGIN_REQUEST,
+        data: { email: userEmail, pw: userPw },
+      });
+    };
   };
 
   if (location.pathname === "/login") {

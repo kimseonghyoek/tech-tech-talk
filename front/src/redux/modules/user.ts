@@ -16,8 +16,10 @@ interface state {
   signupLoading: boolean,
   user: object,
   signupError: null,
+  signupDone: boolean,
   loginLoading: boolean,
-  loginError: boolean,
+  loginError: null,
+  loginDone: boolean,
 };
 
 interface loginUserData {
@@ -83,8 +85,10 @@ export const initialState: state = {
   user: {},
   signupLoading: false,
   signupError: null,
+  signupDone: false,
   loginLoading: false,
-  loginError: false,
+  loginError: null,
+  loginDone: false,
 };
 
 /* reducer */
@@ -95,34 +99,34 @@ export default function user(state = initialState, action: any) {
         ...state,
         user: null,
         signupLoading: true,
-        signupError: null
+        signupError: false,
+        signupDone: false,
       }
     case SIGN_UP_SUCCESS:
       return {
-        ...state,
-        user: action.data
+        signupLoading: false,
+        signupDone: true,
       }
     case SIGN_UP_FAILURE:
       return {
         signupLoading: false,
-        user: null,
         signupError: action.error
       }
     case LOGIN_REQUEST:
       return {
-        ...state,
-        loginUserRequest: true,
-        user: null
+        loginLoading: true,
+        loginError: null,
+        loginDone: false,
       }
     case LOGIN_SUCCESS:
       return {
-        ...state,
-        user: action.data
+        loginLoading: false,
+        user: action.data,
+        loginDone: true,
       }
     case LOGIN_FAILURE:
       return {
         loginUserRequest: false,
-        user: null,
         loginUserFailure: action.error
       }
       default:
