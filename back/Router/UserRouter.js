@@ -25,11 +25,12 @@ router.get("/:id", async (req, res, next) => {
 // 회원가입
 router.post("/signup", async (req, res, next) => {
   try {
-    const { userName, userEmail, userPw, userNickname } = req.body.data;
+    const { userName, userEmail, userPw, userNickName, userNumber } = req.body.data;
     const salt = 12;
     const hashed = await bcrypt.hash(userPw, salt);
-    const userObject = { userEmail, hashed, userNickname, userName };
-    UserService.Signup(userObject);
+    const userObject = { userName, userEmail, hashed, userNickName, userNumber };
+    const userService = new UserService();
+    await userService.Signup(userObject);
   } catch (err) {
     console.error(err);
     next(err);

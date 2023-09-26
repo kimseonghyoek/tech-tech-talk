@@ -7,6 +7,7 @@ module.exports = {
     const pw = userDto.hashed;
     const nickname = userDto.userNickName;
     const phone_num = userDto.userNumber;
+    console.log(userDto);
     //급한대로 Insert 파라미터 뭉치기(나중에 개선 작업)
     const sqlInsert = {
       email: email,
