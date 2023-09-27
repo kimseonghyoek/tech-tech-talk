@@ -12,7 +12,7 @@ interface signupUserData {
   phone_num: number
 };
 
-interface state {
+export interface state {
   signupLoading: boolean,
   user: object,
   signupError: null,
