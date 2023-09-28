@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 // import Input from "../input/Input";
 import { Button, DatePicker, Divider, Form, Input } from "antd";
 import { useLocation, useNavigate } from "react-router";
@@ -17,7 +17,7 @@ import GoogleBtn from "../SocialBtn/GoogleBtn";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
-import { LOGIN_REQUEST, SIGN_UP_REQUEST } from "../../redux/modules/user";
+import { LOGIN_REQUEST, SIGN_UP_REQUEST, state } from "../../redux/modules/user";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -37,7 +37,14 @@ function LoginForm(): JSX.Element {
   const [userPw, setPw] = useInput("");
   const [check, setCheck] = useState(false);
   const [rePw, setRePw] = useState("");
-  const user = useSelector((state: RootState) => (state.user));
+  const user: state = useSelector((state: RootState) => (state.user));
+
+  useEffect(() => {
+    console.log(user.signupDone);
+    if(user.signupDone) {
+      movePage("/");
+    }
+  }, [user.signupDone]);
 
   const checkSignd = (): any => {
     if (!check) {
@@ -52,15 +59,6 @@ function LoginForm(): JSX.Element {
     setRePw(e.target.value);
   };
 
-  const submitSignup = (): any => {
-    if (post === true) {
-      dispatch({
-        type: SIGN_UP_REQUEST,
-        data: { userName, userEmail, userPw, userNickName, userNumber },
-      });
-    };
-  };
-
   const submitLogin = (): any => {
     if (post === true) {
       dispatch({
@@ -69,6 +67,15 @@ function LoginForm(): JSX.Element {
       });
     };
   };
+
+  const submitSignup = useCallback(() => {
+    if(post === true) {
+      dispatch({
+        type: SIGN_UP_REQUEST,
+        data: { userName, userEmail, userPw, userNickName, userNumber },
+      });
+    };
+  }, [userName, userEmail, userPw, userNickName, userNumber]);
 
   if (location.pathname === "/login") {
     return (
