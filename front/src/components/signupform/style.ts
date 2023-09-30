@@ -107,4 +107,9 @@ export const Container = styled(Layout)`
       font-size: 1.3rem;
     }
   }
+
+  h1 {
+    font-size: 2.2rem;
+    margin: 0%;
+  }
 `;
