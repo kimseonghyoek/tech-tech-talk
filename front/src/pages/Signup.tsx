@@ -1,21 +1,22 @@
 import React from 'react';
 import LoginForm from '../components/loginform/LoginForm';
 import styled from 'styled-components';
+import SignupForm from '../components/signupform/SignupForm';
 
 const Container = styled.div`
     display: flex;
-    flex: 1;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    flex: 1;
     margin: auto;
+    height: 100vh;
 `;
 
 function Signup(): JSX.Element {
   return (
     <Container>
-      <LoginForm/>
+      <SignupForm/>
     </Container>
   )
 }
