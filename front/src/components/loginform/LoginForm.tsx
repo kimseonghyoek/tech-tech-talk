@@ -39,8 +39,6 @@ function LoginForm(): JSX.Element {
   const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
-  const [check, setCheck] = useState(false);
-  const [rePw, setRePw] = useState("");
   const user: state = useSelector((state: RootState) => state.user);
 
   const submitLogin = (): any => {
@@ -49,17 +47,9 @@ function LoginForm(): JSX.Element {
         type: LOGIN_REQUEST,
         data: { email: userEmail, pw: userPw },
       });
+      movePage("/");
     }
   };
-
-  const submitSignup = useCallback(() => {
-    if (post === true) {
-      dispatch({
-        type: SIGN_UP_REQUEST,
-        data: { userName, userEmail, userPw, userNickName, userNumber },
-      });
-    }
-  }, [userName, userEmail, userPw, userNickName, userNumber]);
 
   return (
     <Container>
