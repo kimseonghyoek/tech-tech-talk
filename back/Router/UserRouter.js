@@ -1,8 +1,9 @@
 const express = require("express");
-const { isLoggedIn } = require("./middlewares");
+const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const UserService = require("../Service/User");
+const passport = require("passport");
 
 // user 로그인 여부 확인
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -25,10 +26,17 @@ router.get("/:id", async (req, res, next) => {
 // 회원가입
 router.post("/signup", async (req, res, next) => {
   try {
-    const { userName, userEmail, userPw, userNickName, userNumber } = req.body.data;
+    const { userName, userEmail, userPw, userNickName, userNumber } =
+      req.body.data;
     const salt = 12;
     const hashed = await bcrypt.hash(userPw, salt);
-    const userObject = { userName, userEmail, hashed, userNickName, userNumber };
+    const userObject = {
+      userName,
+      userEmail,
+      hashed,
+      userNickName,
+      userNumber,
+    };
     const userService = new UserService();
     await userService.Signup(userObject);
   } catch (err) {
@@ -38,14 +46,31 @@ router.post("/signup", async (req, res, next) => {
 });
 
 // 로그인
-router.post("/login", async (req, res, next) => {
-  try {
-    console.log("요청 옴");
-    res.send({msg: "posts"})
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
+router.post("/login", isNotLoggedIn, async (req, res, next) => {
+  passport.authenticate("local", { session: true }, (err, user, info) => {
+    if (err) {
+      console.error(err);
+      next(err);
+    }
+    if (info) {
+      return res.status(401).send(info.message);
+    }
+    if (user) {
+      req.login(user, async (loginErr) => {
+        if (loginErr) {
+          console.log(loginErr);
+          return next(loginErr);
+        } else {
+          const data = {
+            email: req.user[0].email,
+            nickname: req.user[0].nickname,
+          };
+          console.log(data);
+          return res.send(data).end();
+        }
+      });
+    }
+  })(req, res, next);
 });
 
 // 유저 정보 수정
