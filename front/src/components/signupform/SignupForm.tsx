@@ -1,5 +1,5 @@
 import { Button, DatePicker, Form, Input, Layout } from "antd";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
@@ -7,8 +7,10 @@ import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
-import { SIGN_UP_REQUEST } from "../../redux/modules/user";
+import { SIGN_UP_REQUEST, state } from "../../redux/modules/user";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -24,6 +26,7 @@ const SignupForm = () => {
   const [userPw, setPw] = useInput("");
   const [check, setCheck] = useState(false);
   const [rePw, setRePw] = useState("");
+  const user: state = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
   const movePage = useNavigate();
@@ -47,10 +50,15 @@ const SignupForm = () => {
         type: SIGN_UP_REQUEST,
         data: { userName, userEmail, userPw, userNickName, userNumber },
       });
-      movePage("/login");
     };
-
   }, [userName, userEmail, userPw, userNickName, userNumber]);
+
+  useEffect(() => {
+    console.log(user.signupDone);
+    if (user.signupDone) {
+      movePage("/login");
+  };
+  }, [user.signupDone]);
 
   return (
     <Container>
