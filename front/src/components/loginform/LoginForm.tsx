@@ -1,15 +1,13 @@
 /* eslint-disable no-useless-escape */
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 // import Input from "../input/Input";
-import { Button, DatePicker, Divider, Form, Input } from "antd";
-import { useLocation, useNavigate } from "react-router";
+import { Button, Divider, Form, Input } from "antd";
+import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
-import axios from "axios";
 import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
-import dayjs from "dayjs";
 import KakaoBtn from "../SocialBtn/KakaoBtn";
 import NaverBtn from "../SocialBtn/NaverBtn";
 import FacebookBtn from "../SocialBtn/FaceBookBtn";
@@ -19,37 +17,34 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import {
   LOGIN_REQUEST,
-  SIGN_UP_REQUEST,
   state,
 } from "../../redux/modules/user";
 
 const public_url = process.env.PUBLIC_URL;
 
-const dataFormat = "YYYY/MM/DD";
-const now = dayjs();
-
 function LoginForm(): JSX.Element {
-  const location = useLocation();
   const movePage = useNavigate();
   const dispatch = useDispatch();
 
   let post = true;
-  const [userName, setNames] = useInput("");
-  const [userNumber, setNumber] = useInput("");
-  const [userNickName, setNickName] = useInput("");
   const [userEmail, setEmail] = useInput("");
   const [userPw, setPw] = useInput("");
   const user: state = useSelector((state: RootState) => state.user);
 
-  const submitLogin = (): any => {
-    if (post === true) {
+  const submitLogin = useCallback(() => {
+    if (post === true) { 
       dispatch({
         type: LOGIN_REQUEST,
-        data: { email: userEmail, pw: userPw },
+        email: userEmail, pw: userPw
       });
+    }
+  }, [userEmail, userPw]);
+
+  useEffect(() => {
+    if(user.loginDone) {
       movePage("/");
     }
-  };
+  })
 
   return (
     <Container>
