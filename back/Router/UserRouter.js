@@ -39,6 +39,7 @@ router.post("/signup", async (req, res, next) => {
     };
     const userService = new UserService();
     await userService.Signup(userObject);
+    res.json();
   } catch (err) {
     console.error(err);
     next(err);
