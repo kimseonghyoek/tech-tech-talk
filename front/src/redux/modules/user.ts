@@ -121,13 +121,13 @@ export default function user(state = initialState, action: any) {
     case LOGIN_SUCCESS:
       return {
         loginLoading: false,
-        user: action.data,
+        user: action.data.data,
         loginDone: true,
       }
     case LOGIN_FAILURE:
       return {
-        loginUserRequest: false,
-        loginUserFailure: action.error
+        loginLoading: false,
+        loginError: action.error
       }
       default:
         return state;
@@ -147,7 +147,6 @@ function loginAPI(data: any) {
 export function* signupUser(action: Action) {
   try {
     const result: object =  yield call(signupAPI, action);
-    console.log(result);
     yield put({
       type: SIGN_UP_SUCCESS,
       data: result
@@ -164,7 +163,6 @@ export function* signupUser(action: Action) {
 export function* loginUser(action: Action) {
   try {
     const result: object = yield call(loginAPI, action);
-    console.log(result);
     yield put({
       type: LOGIN_SUCCESS,
       data: result
