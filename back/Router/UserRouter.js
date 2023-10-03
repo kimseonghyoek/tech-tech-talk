@@ -93,8 +93,11 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 // 로그아웃
-router.post("/logout", async (req, res, next) => {
+router.post("/logout", isLoggedIn, (req, res, next) => {
   try {
+    req.logout();
+    req.session.destory();
+    res.send({ msg: 'logout' });
   } catch (err) {
     console.error(err);
     next(err);
