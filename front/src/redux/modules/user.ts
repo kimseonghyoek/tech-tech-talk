@@ -1,8 +1,6 @@
-import { createAsyncAction } from 'typesafe-actions';
 import { Action } from 'redux';
-import { all, call, fork, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-
 /* interface */
 interface signupUserData {
   email: string,
@@ -20,6 +18,12 @@ export interface state {
   loginLoading: boolean,
   loginError: null,
   loginDone: boolean,
+  logoutLoading: boolean,
+  logoutDone: boolean,
+  logoutError: null,
+  loadUserLoading: boolean,
+  loadUserDone: boolean,
+  loadUserError: null
 };
 
 interface loginUserData {
@@ -32,9 +36,18 @@ const prefix: string = "user/";
 export const SIGN_UP_REQUEST = `${prefix}/SIGN_UP_REQUEST` as const;
 export const SIGN_UP_SUCCESS = `${prefix}/SIGN_UP_SUCCESS` as const;
 export const SIGN_UP_FAILURE = `${prefix}/SIGN_UP_FAILURE` as const;
+
 export const LOGIN_REQUEST = `${prefix}/LOGIN_REQUEST` as const;
 export const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS` as const;
 export const LOGIN_FAILURE = `${prefix}/LOGIN_FAILURE` as const;
+
+export const LOGOUT_REQUEST = `${prefix}/LOGOUT_REQUEST` as const;
+export const LOGOUT_SUCCESS = `${prefix}/LOGOUT_SUCCESS` as const;
+export const LOGOUT_FAILURE = `${prefix}/LOGOUT_FAILURE` as const;
+
+export const LOAD_MY_INFO_REQUEST = `${prefix}/LOAD_MY_INFO_REQUEST` as const;
+export const LOAD_MY_INFO_SUCCESS = `${prefix}/LOAD_MY_INFO_SUCCESS` as const;
+export const LOAD_MY_INFO_FAILURE = `${prefix}/LOAD_MY_INFO_FAILURE` as const;
 
 /* Action Create Type */
 export function signupUserRequest(data: signupUserData) {
@@ -80,6 +93,24 @@ export function loginUserFailure(data: any) {
   };
 };
 
+export function logoutUserRequest() {
+  return {
+    type: LOGOUT_REQUEST,
+  };
+};
+
+export function logoutUserSuccess() {
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};
+
+export function logoutUserFailure() {
+  return {
+    type: LOGOUT_FAILURE,
+  };
+};
+
 /* Inital state of the module */
 export const initialState: state = {
   user: {},
@@ -89,6 +120,12 @@ export const initialState: state = {
   loginLoading: false,
   loginError: null,
   loginDone: false,
+  logoutLoading: false,
+  logoutDone: false,
+  logoutError: null,
+  loadUserLoading: false,
+  loadUserDone: false,
+  loadUserError: null,
 };
 
 /* reducer */
@@ -129,6 +166,39 @@ export default function user(state = initialState, action: any) {
         loginLoading: false,
         loginError: action.error
       }
+    case LOGOUT_REQUEST:
+      return {
+        logoutLoading: true,
+        logoutError: null,
+        logoutDone: true,
+      }
+    case LOGOUT_SUCCESS:
+      return {
+        logoutLoading: false,
+        logoutDone: true,
+      }
+    case LOGOUT_FAILURE:
+      return {
+        logoutLoading: false,
+        logoutError: action.error
+      }
+    case LOAD_MY_INFO_REQUEST:
+      return {
+        loadUserLoading: true,
+        loadUserDone: false,
+        loadUserError: null,
+      }
+    case LOAD_MY_INFO_SUCCESS:
+      return {
+        loadUserLoading: false,
+        loadUserDone: true,
+        user: action.data.data,
+      }
+    case LOAD_MY_INFO_FAILURE:
+      return {
+        loadUserLoading: false,
+        loadUserError: action.error,
+      }
       default:
         return state;
   }
@@ -141,6 +211,14 @@ function signupAPI(data: any) {
 
 function loginAPI(data: any) {
   return axios.post("/user/login", data);
+};
+
+function logoutAPI() {
+  return axios.post("/user/logout");
+};
+
+function loadUserAPI(data: any) {
+  return axios.get("/user", data);
 };
 
 /* saga functions */
@@ -171,23 +249,64 @@ export function* loginUser(action: Action) {
     console.error(err);
     yield put({
       type: LOGIN_FAILURE,
-      eror: err
+      error: err
     });
   };
 };
 
+export function* logoutUser() {
+  try {
+    yield call(logoutAPI);
+    yield put({
+      type: LOGOUT_SUCCESS
+    });
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOGOUT_FAILURE,
+      error: err
+    });
+  };
+};
+
+export function* loadUser(action: Action) {
+  try {
+    const result: object = yield call(loadUserAPI, action);
+    yield put({
+      type: LOAD_MY_INFO_SUCCESS,
+      data: result
+    })
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: LOAD_MY_INFO_FAILURE,
+      error: err
+    })
+  }
+}
+
 function* watchSignupUser() {
   yield takeLatest(SIGN_UP_REQUEST, signupUser);
-}
+};
 
 function* watchLoginUser() {
   yield takeLatest(LOGIN_REQUEST, loginUser);
-}
+};
+
+function* watchLogoutUser() {
+  yield takeLatest(LOGOUT_REQUEST, logoutUser);
+};
+
+function* watchLoadUser() {
+  yield takeLatest(LOAD_MY_INFO_REQUEST, loadUser);
+};
 
 /* export usersaga */
 export function* userSaga() {
   yield all([
     fork(watchSignupUser),
     fork(watchLoginUser),
+    fork(watchLogoutUser),
+    fork(watchLoadUser),
   ]);
-}
+};
