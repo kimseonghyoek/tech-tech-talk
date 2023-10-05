@@ -14,6 +14,7 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useCookies } from "react-cookie";
+import { RootState } from "../../redux";
 
 const UserCard = styled(Card)`
   border: 0.07rem solid ${palette.main_color3};
@@ -33,22 +34,7 @@ const UserCard = styled(Card)`
 function User(): JSX.Element {
   const movePage = useNavigate();
   const dispatch = useDispatch();
-
-  // 후에 하드코딩 깨고 쿠키값 상수화 예정
-  const [,, removeCookie] = useCookies(['Cookie!']);
-
-  const getUserNickName = () => {
-    const userName = sessionStorage.getItem("nickname");
-    return userName;
-  };
-
-  const user_name = getUserNickName();
-
-  const logout = () => {
-    axios.get("/login/logout").then((res: AxiosResponse) => {
-      console.log(res);
-    })
-  }
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <UserCard
@@ -59,7 +45,7 @@ function User(): JSX.Element {
     >
       <Meta
         avatar={<Avatar src={"/imgs/admin.png"} size={64} />}
-        title={`${user_name} 님`}
+        // title={`${user_name} 님`}
       />
       <Button onClick={() => {logout()}}>로그아웃</Button>
     </UserCard>
