@@ -8,6 +8,8 @@ import User from "../pages/user/User";
 import NewsCard from "./postcards/NewsCard";
 import Weather from "./Weather";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux";
+import UserInfo from "../pages/UserInfo";
 
 const WrapSideBar = styled.div`
   .wrap-login {
@@ -40,22 +42,24 @@ const WrapSideBar = styled.div`
 function SideBar(): JSX.Element {
   // const user = useSelector((state: any) => { return state.user });
   const [news, updateNews] = useState();
+  const user = useSelector((state: RootState) => state.user);
 
-  useEffect(()=> {
+  useEffect(() => {
     axios
-    .get("/comm/news/get")
-    .then((res) => {
-      setTimeout(() => {
-        updateNews(res.data);
-      }, 10);
-    })
-    .catch((err: Error) => {
-      console.log(err);
-    });
+      .get("/comm/news/get")
+      .then((res) => {
+        setTimeout(() => {
+          updateNews(res.data);
+        }, 10);
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <WrapSideBar>
+      {user ? (
         <div className="wrap-login">
           <p>아무나, 누구나 tech-tech-Talk</p>
           <Link to={"/login"}>
@@ -73,8 +77,11 @@ function SideBar(): JSX.Element {
             </span>
           </p>
         </div>
-      <NewsCard datas={news}/>
-      <Weather/>
+      ) : (
+        <UserInfo />
+      )}
+      <NewsCard datas={news} />
+      <Weather />
     </WrapSideBar>
   );
 }
