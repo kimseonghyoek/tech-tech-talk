@@ -47,7 +47,6 @@ module.exports = {
                     } else {
                       console.log("가입 완료");
                       resolve(result);
-
                     }
                     con.release();
                   }
@@ -77,6 +76,31 @@ module.exports = {
               reject({ msg: "no_user" });
             } else {
               // console.log(rows);
+              resolve(rows);
+            }
+          });
+        }
+        con.release();
+      });
+    });
+  },
+
+  findUser: (userId) => {
+    console.log(userId);
+    return new Promise((resolve, rejcet) => {
+      conn.getConnection((err, con) => {
+        if (err) {
+          console.log(err);
+          rejcet(err);
+        } else {
+          const sql = `SELECT id FROM user_table where id=?`;
+          con.query(sql, userId, (err, rows) => {
+            if (err) {
+              console.log(err);
+              rejcet(err);
+            } else if (rows.length) {
+              console.log('id 존재함');
+              console.log(rows);
               resolve(rows);
             }
           });

@@ -10,4 +10,8 @@ module.exports = class UserService {
     const userRecord = await users.getAllUser();
     return userRecord;
   };
+
+  async getUser(userId) {
+    const userRecord = await users.findUser(userId);
+  };
 };

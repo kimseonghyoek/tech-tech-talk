@@ -6,8 +6,13 @@ const UserService = require("../Service/User");
 const passport = require("passport");
 
 // user 로그인 여부 확인
-router.get("/", isLoggedIn, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
+    if(req.user) {
+      console.log(req.user);
+      const userService = new UserService();
+      userService.getUser(req.user);
+    }
   } catch (err) {
     console.error(err);
     next(err);
