@@ -10,6 +10,8 @@ import Weather from "./Weather";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
 import UserInfo from "../pages/UserInfo";
+import { useDispatch } from "react-redux";
+import { LOAD_MY_INFO_REQUEST } from "../redux/modules/user";
 
 const WrapSideBar = styled.div`
   .wrap-login {
@@ -40,9 +42,12 @@ const WrapSideBar = styled.div`
 `;
 
 function SideBar(): JSX.Element {
-  // const user = useSelector((state: any) => { return state.user });
   const [news, updateNews] = useState();
-  const user = useSelector((state: RootState) => state.user);
+  const user: any = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
+  console.log(user);
+  console.log(user.loginDone);
 
   useEffect(() => {
     axios
@@ -57,28 +62,34 @@ function SideBar(): JSX.Element {
       });
   }, []);
 
+  useEffect(() => {
+    dispatch({
+      type: LOAD_MY_INFO_REQUEST,
+    })
+  }, []);
+
   return (
     <WrapSideBar>
-      {user ? (
-        <div className="wrap-login">
-          <p>아무나, 누구나 tech-tech-Talk</p>
-          <Link to={"/login"}>
-            <Button>텍텍톡 로그인</Button>
-          </Link>
-          <p
-            style={{
-              textAlign: "right",
-              fontSize: "1.1rem",
-              margin: "1rem 0.5rem",
-            }}
-          >
-            <span>
-              <Link to="/signup">회원가입</Link>
-            </span>
-          </p>
-        </div>
+      {user.loginDone === true ? (
+        <UserInfo/>
       ) : (
-        <UserInfo />
+        <div className="wrap-login">
+        <p>아무나, 누구나 tech-tech-Talk</p>
+        <Link to={"/login"}>
+          <Button>텍텍톡 로그인</Button>
+        </Link>
+        <p
+          style={{
+            textAlign: "right",
+            fontSize: "1.1rem",
+            margin: "1rem 0.5rem",
+          }}
+        >
+          <span>
+            <Link to="/signup">회원가입</Link>
+          </span>
+        </p>
+      </div>
       )}
       <NewsCard datas={news} />
       <Weather />
