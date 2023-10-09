@@ -13,8 +13,9 @@ import {
 } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useCookies } from "react-cookie";
 import { RootState } from "../../redux";
+import { useEffect } from "react";
+import { LOAD_MY_INFO_REQUEST } from "../../redux/modules/user";
 
 const UserCard = styled(Card)`
   border: 0.07rem solid ${palette.main_color3};
@@ -36,6 +37,12 @@ function User(): JSX.Element {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
 
+  useEffect(() => {
+    dispatch({
+      type: LOAD_MY_INFO_REQUEST
+    });
+  });
+
   return (
     <UserCard
       actions={[
@@ -45,9 +52,9 @@ function User(): JSX.Element {
     >
       <Meta
         avatar={<Avatar src={"/imgs/admin.png"} size={64} />}
-        // title={`${user_name} 님`}
+        
       />
-      <Button onClick={() => {logout()}}>로그아웃</Button>
+      {/* <Button onClick={() => {logout()}}>로그아웃</Button> */}
     </UserCard>
   );
 }
