@@ -12,6 +12,7 @@ router.get("/", async (req, res, next) => {
       console.log(req.user);
       const userService = new UserService();
       userService.getUser(req.user);
+      return res.send({ msg: req.user });
     }
   } catch (err) {
     console.error(err);
