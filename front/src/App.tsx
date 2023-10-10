@@ -23,7 +23,6 @@ import { Footer } from "antd/es/layout/layout";
 import { Provider } from "react-redux";
 import palette from "./palette";
 import Write from "./pages/write/Write";
-import UserInfo from "./pages/UserInfo";
 import configureStores from "./redux/ConfigureStore";
 // import { PersistGate } from 'redux-persist/integration/react';
 
@@ -50,7 +49,6 @@ function App() {
           <Route path="/used" element={<UsedMarket />} />
           <Route path="/post" element={<Write />} />
           <Route path="/test" element={<Test />} />
-          <Route path="/userinfo" element={<UserInfo />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/manage" element={<DevManage />} />
           <Route path="/*" element={<NotFound />} />

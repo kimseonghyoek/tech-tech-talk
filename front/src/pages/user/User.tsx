@@ -24,7 +24,7 @@ const UserCard = styled(Card)`
   button {
     margin-top: 1.5rem;
   }
-
+  
   .ant-card-meta-detail {
     display: flex;
     align-items: center;
@@ -37,11 +37,11 @@ function User(): JSX.Element {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
 
-  useEffect(() => {
-    dispatch({
-      type: LOAD_MY_INFO_REQUEST
-    });
-  });
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_MY_INFO_REQUEST
+  //   });
+  // });
 
   return (
     <UserCard

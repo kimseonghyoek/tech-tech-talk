@@ -9,7 +9,6 @@ import NewsCard from "./postcards/NewsCard";
 import Weather from "./Weather";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
-import UserInfo from "../pages/UserInfo";
 import { useDispatch } from "react-redux";
 import { LOAD_MY_INFO_REQUEST } from "../redux/modules/user";
 
@@ -44,7 +43,6 @@ const WrapSideBar = styled.div`
 function SideBar(): JSX.Element {
   const [news, updateNews] = useState();
   const user: any = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
 
   console.log(user);
   console.log(user.loginDone);
@@ -62,16 +60,10 @@ function SideBar(): JSX.Element {
       });
   }, []);
 
-  useEffect(() => {
-    dispatch({
-      type: LOAD_MY_INFO_REQUEST,
-    })
-  }, []);
-
   return (
     <WrapSideBar>
-      {user.loginDone === true ? (
-        <UserInfo/>
+      {user.user ? (
+        <User/>
       ) : (
         <div className="wrap-login">
         <p>아무나, 누구나 tech-tech-Talk</p>

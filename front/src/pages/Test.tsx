@@ -10,7 +10,7 @@ import Weather from '../components/Weather';
 function Test(): JSX.Element {
 
   return (
-    <Weather/>
+    <User/>
   )
 }
 
