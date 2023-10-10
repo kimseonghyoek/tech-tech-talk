@@ -12,7 +12,7 @@ interface signupUserData {
 
 export interface state {
   signupLoading: boolean,
-  user: object,
+  user: null,
   signupError: null,
   signupDone: boolean,
   loginLoading: boolean,
@@ -113,7 +113,7 @@ export function logoutUserFailure() {
 
 /* Inital state of the module */
 export const initialState: state = {
-  user: {},
+  user: null,
   signupLoading: false,
   signupError: null,
   signupDone: false,
