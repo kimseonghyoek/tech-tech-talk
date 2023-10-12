@@ -42,10 +42,9 @@ const WrapSideBar = styled.div`
 
 function SideBar(): JSX.Element {
   const [news, updateNews] = useState();
-  const user: any = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state.user);
 
   console.log(user);
-  console.log(user.loginDone);
 
   useEffect(() => {
     axios
@@ -62,7 +61,7 @@ function SideBar(): JSX.Element {
 
   return (
     <WrapSideBar>
-      {user.user ? (
+      {user ? (
         <User/>
       ) : (
         <div className="wrap-login">
