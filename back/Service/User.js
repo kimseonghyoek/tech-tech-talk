@@ -13,5 +13,6 @@ module.exports = class UserService {
 
   async getUser(userId) {
     const userRecord = await users.findUser(userId);
+    return userRecord;
   };
 };
