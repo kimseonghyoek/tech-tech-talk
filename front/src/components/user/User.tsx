@@ -35,13 +35,15 @@ const UserCard = styled(Card)`
 function User(): JSX.Element {
   const movePage = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const user: any = useSelector((state: RootState) => state.user);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: LOAD_MY_INFO_REQUEST
-  //   });
-  // });
+  useEffect(() => {
+    dispatch({
+      type: LOAD_MY_INFO_REQUEST
+    });
+  })
+
+  console.log(user.user);
 
   return (
     <UserCard
