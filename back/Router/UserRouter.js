@@ -8,7 +8,7 @@ const passport = require("passport");
 // user 로그인 여부 확인
 router.get("/", async (req, res, next) => {
   try {
-    if(req.user) {
+    if (req.user) {
       console.log(req.user);
       const userService = new UserService();
       userService.getUser(req.user);
@@ -49,7 +49,8 @@ router.post("/signup", async (req, res, next) => {
   } catch (err) {
     console.error(err);
     next(err);
-  }ç
+  }
+  ç;
 });
 
 // 로그인
@@ -101,9 +102,14 @@ router.delete("/:id", async (req, res, next) => {
 // 로그아웃
 router.post("/logout", isLoggedIn, (req, res, next) => {
   try {
-    req.logout();
-    req.session.destory();
-    res.send({ msg: 'logout' });
+    req.logout((err) => {
+      if (err) {
+        {
+          return next(err);
+        }
+      }
+      res.send({ msg: "logout" });
+    });
   } catch (err) {
     console.error(err);
     next(err);
