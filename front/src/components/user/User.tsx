@@ -43,11 +43,11 @@ function User(): JSX.Element {
     })
   }, []);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: LOAD_MY_INFO_REQUEST
-  //   });
-  // }, []);
+  useEffect(() => {
+    dispatch({
+      type: LOAD_MY_INFO_REQUEST
+    });
+  }, []);
 
   console.log(user.user);
 

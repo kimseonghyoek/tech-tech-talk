@@ -4,13 +4,11 @@ import axios from "axios";
 import styled from "styled-components";
 import palette from "../palette";
 import { Link } from "react-router-dom";
-import User from "../pages/user/User";
+import User from "./user/User";
 import NewsCard from "./postcards/NewsCard";
 import Weather from "./Weather";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
-import { useDispatch } from "react-redux";
-import { LOAD_MY_INFO_REQUEST } from "../redux/modules/user";
 
 const WrapSideBar = styled.div`
   .wrap-login {
