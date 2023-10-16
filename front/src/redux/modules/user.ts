@@ -170,7 +170,7 @@ export default function user(state = initialState, action: any) {
       return {
         logoutLoading: true,
         logoutError: null,
-        logoutDone: true,
+        logoutDone: false,
       }
     case LOGOUT_SUCCESS:
       return {
@@ -275,7 +275,7 @@ export function* loadUser(action: Action) {
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
       data: result
-    })
+    });
   } catch (err) {
     console.error(err);
     yield put({
