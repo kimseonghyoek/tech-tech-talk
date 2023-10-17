@@ -43,13 +43,11 @@ function User(): JSX.Element {
     })
   }, []);
 
-  useEffect(() => {
-    dispatch({
-      type: LOAD_MY_INFO_REQUEST
-    });
-  }, []);
-
-  console.log(user.user);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: LOAD_MY_INFO_REQUEST
+  //   });
+  // }, []);
 
   return (
     <UserCard
