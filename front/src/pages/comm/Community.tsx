@@ -16,13 +16,12 @@ const CalcWidth = () => {
   } else {
     return "100vw"
   }
-}
+};
 
 const MainLayout = styled(Layout)`
   margin: auto;
   width: ${CalcWidth}
 `;
-
 
 function Comm(): JSX.Element {
   return (

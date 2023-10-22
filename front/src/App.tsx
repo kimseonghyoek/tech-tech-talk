@@ -10,7 +10,7 @@ import NotFound from "./pages/error/404";
 import Test from "./pages/Test";
 import DevManage from "./pages/DevManage";
 import Setting from "./pages/setting/Setting";
-import User from "./pages/user/User";
+import User from "./components/user/User";
 import Comm from "./pages/comm/Community";
 import UsedMarket from "./pages/used/UsedMarket";
 import { CookiesProvider } from "react-cookie";

@@ -59,9 +59,9 @@ function SideBar(): JSX.Element {
 
   return (
     <WrapSideBar>
-      {user ? (
+      {user ? 
         <User/>
-      ) : (
+       : (
         <div className="wrap-login">
         <p>아무나, 누구나 tech-tech-Talk</p>
         <Link to={"/login"}>
