@@ -48,3 +48,27 @@ export function getNewsFailure(data: any) {
 function getNewsAPI() {
   return axios.get("/comm/news/get");
 };
+
+/* reducer */
+export default function news(state = initialState, action: any) {
+  switch(action.type) {
+    case GET_NEWS_REQUEST:
+      return {
+        getNewsLoading: true,
+        getNewsError: null,
+        getNewsDone: false,
+        newsData: null,
+      }
+    case GET_NEWS_SUCCESS:
+      return {
+        getNewsLoading: false,
+        getNewsDone: true,
+        newsData: action.data,
+      }
+    case GET_NEWS_FAILURE: 
+      return {
+        getNewsLoading: false,
+        getNewsError: action.error
+      }
+  }
+};
