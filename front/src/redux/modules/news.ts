@@ -1,4 +1,6 @@
 import axios from "axios";
+import { Action } from "redux";
+import { call } from "redux-saga/effects";
 
 // state interface
 interface Istate {
@@ -45,9 +47,18 @@ export function getNewsFailure(data: any) {
 };
 
 // api address
-function getNewsAPI() {
-  return axios.get("/comm/news/get");
+function getNewsAPI(data: any) {
+  return axios.get("/comm/news/get", data);
 };
+
+/* saga functions */
+export function* getNews(action: Action) {
+  try {
+    const result: object = yield call(getNewsAPI, action);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 /* reducer */
 export default function news(state = initialState, action: any) {
