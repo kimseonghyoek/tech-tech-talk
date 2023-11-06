@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Action } from "redux";
-import { call } from "redux-saga/effects";
+import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 
 // state interface
 interface Istate {
@@ -8,14 +8,6 @@ interface Istate {
   getNewsLoading: boolean,
   getNewsError: null,
   getNewsDone: boolean
-};
-
-// initializing state
-export const initialState: Istate = {
-  newsData: null,
-  getNewsLoading: false,
-  getNewsError: null,
-  getNewsDone: false
 };
 
 /* Action Type */
@@ -46,19 +38,13 @@ export function getNewsFailure(data: any) {
   };
 };
 
-// api address
-function getNewsAPI(data: any) {
-  return axios.get("/comm/news/get", data);
+// initializing state
+export const initialState: Istate = {
+  newsData: null,
+  getNewsLoading: false,
+  getNewsError: null,
+  getNewsDone: false
 };
-
-/* saga functions */
-export function* getNews(action: Action) {
-  try {
-    const result: object = yield call(getNewsAPI, action);
-  } catch (err) {
-    console.error(err);
-  }
-}
 
 /* reducer */
 export default function news(state = initialState, action: any) {
@@ -83,3 +69,36 @@ export default function news(state = initialState, action: any) {
       }
   }
 };
+
+// api address
+function getNewsAPI(data: any) {
+  return axios.get("/comm/news/get", data);
+};
+
+/* saga functions */
+export function* getNews(action: Action) {
+  try {
+    const result: object = yield call(getNewsAPI, action);
+    yield put({
+      type: GET_NEWS_SUCCESS,
+      data: result
+    })
+  } catch (err) {
+    console.error(err);
+    yield put({
+      type: GET_NEWS_FAILURE,
+      error: err
+    });
+  };
+};
+
+function* watchGetNews() {
+  yield takeLatest(GET_NEWS_REQUEST, getNews);
+};
+
+/* export newssaga */
+export function* newsSaga() {
+  yield all([
+    fork(watchGetNews),
+  ])
+}
