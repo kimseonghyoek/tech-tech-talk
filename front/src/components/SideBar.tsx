@@ -9,6 +9,8 @@ import NewsCard from "./postcards/NewsCard";
 import Weather from "./Weather";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux";
+import { useDispatch } from "react-redux";
+import { GET_NEWS_REQUEST } from "../redux/modules/news";
 
 const WrapSideBar = styled.div`
   .wrap-login {
@@ -41,21 +43,28 @@ const WrapSideBar = styled.div`
 function SideBar(): JSX.Element {
   const [news, updateNews] = useState();
   const { user } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
 
   console.log(user);
 
-  useEffect(() => {
-    axios
-      .get("/comm/news/get")
-      .then((res) => {
-        setTimeout(() => {
-          updateNews(res.data);
-        }, 10);
-      })
-      .catch((err: Error) => {
-        console.log(err);
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get("/comm/news/get")
+  //     .then((res) => {
+  //       setTimeout(() => {
+  //         updateNews(res.data);
+  //       }, 10);
+  //     })
+  //     .catch((err: Error) => {
+  //       console.log(err);
+  //     });
   }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: GET_NEWS_REQUEST
+    })
+  });
 
   return (
     <WrapSideBar>
