@@ -58,7 +58,7 @@ function SideBar(): JSX.Element {
   //     .catch((err: Error) => {
   //       console.log(err);
   //     });
-  }, []);
+  // }, []);
 
   useEffect(() => {
     dispatch({
