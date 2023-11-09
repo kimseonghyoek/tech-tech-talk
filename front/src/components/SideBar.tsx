@@ -63,7 +63,7 @@ function SideBar(): JSX.Element {
   useEffect(() => {
     dispatch({
       type: GET_NEWS_REQUEST
-    })
+    });
   });
 
   return (
