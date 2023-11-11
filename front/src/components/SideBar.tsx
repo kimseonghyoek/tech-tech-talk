@@ -41,8 +41,8 @@ const WrapSideBar = styled.div`
 `;
 
 function SideBar(): JSX.Element {
-  const [news, updateNews] = useState();
   const { user } = useSelector((state: RootState) => state.user);
+  const { news } = useSelector((state: RootState) => state.news)
   const dispatch = useDispatch();
 
   console.log(user);
@@ -62,7 +62,7 @@ function SideBar(): JSX.Element {
 
   useEffect(() => {
     dispatch({
-      type: GET_NEWS_REQUEST
+      type: GET_NEWS_REQUEST,
     });
   });
 
