@@ -1,6 +1,9 @@
 // state interface
 interface Istate {
-  
+  weatherData: null,
+  getWeatherLoading: boolean,
+  getWeatherError: null,
+  getWeatherDone: boolean,
 };
 
 // Action Type
@@ -10,8 +13,35 @@ export const GET_WEATHER_SUCCESS = `${prefix}/GET_WEATHER_SUCCESS` as const;
 export const GET_WEATHER_FAILURE = `${prefix}/GET_WEATHER_FAILURE` as const;
 
 // Action Create Type
+export function getWeatherRequest(data: any) {
+  return {
+    type: GET_WEATHER_REQUEST,
+    data
+  };
+};
+
+export function getWeatherSuccess(data: any) {
+  return {
+    type: GET_WEATHER_SUCCESS,
+    data
+  };
+};
+
+export function getWeatherFailure(data: any) {
+  return {
+    type: GET_WEATHER_FAILURE,
+    data,
+  };
+};
 
 // initializing state
+export const initialState: Istate = {
+  weatherData: null,
+  getWeatherLoading: false,
+  getWeatherError: null,
+  getWeatherDone: false
+}
+
 
 // reducer
 
