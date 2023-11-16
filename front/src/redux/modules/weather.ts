@@ -1,3 +1,5 @@
+import axios from "axios"
+
 // state interface
 interface Istate {
   weatherData: null,
@@ -46,6 +48,9 @@ export const initialState: Istate = {
 // reducer
 
 // api address
+function getWeatherAPI(data: any) {
+  return axios.get("/weather/get", data);
+};
 
 // saga functions
 
