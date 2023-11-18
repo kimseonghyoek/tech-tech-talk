@@ -42,7 +42,7 @@ const WrapSideBar = styled.div`
 
 function SideBar(): JSX.Element {
   const { user } = useSelector((state: RootState) => state.user);
-  const { news } = useSelector((state: RootState) => state.news)
+  // const { news } = useSelector((state: RootState) => state.news)
   const dispatch = useDispatch();
 
   console.log(user);
@@ -89,7 +89,7 @@ function SideBar(): JSX.Element {
         </p>
       </div>
       )}
-      <NewsCard datas={news} />
+      {/* <NewsCard datas={news} /> */}
       <Weather />
     </WrapSideBar>
   );
