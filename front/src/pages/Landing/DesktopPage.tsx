@@ -4,6 +4,8 @@ import palette from "../../palette";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 
+const public_url = process.env.PUBLIC_URL;
+
 const Container = styled.div`
   display: flex;
   width: 100%;
@@ -11,12 +13,14 @@ const Container = styled.div`
   flex: 1;
   justify-content: center;
   align-items: center;
+  background-image: url(${public_url}/imgs/techBack.svg);
 
   .introd-site {
     padding: 5rem;
     display: flex;
     justify-content: center;
     width: 55%;
+    background-color: ${palette.white};
     height: 100%;
 
     .wrap-introd {
@@ -69,7 +73,6 @@ const Container = styled.div`
 `;
 
 function DesktopPage(): JSX.Element {
-  const public_url = process.env.PUBLIC_URL;
   return (
     <Container>
       <div className="introd-site">
