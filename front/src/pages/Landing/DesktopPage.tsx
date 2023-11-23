@@ -19,9 +19,14 @@ const Container = styled.div`
     padding: 5rem;
     display: flex;
     justify-content: center;
-    width: 55%;
     background-color: ${palette.white};
     height: 100%;
+    flex-direction: column;
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+    }
 
     .wrap-introd {
       width: fit-content;
@@ -76,6 +81,7 @@ function DesktopPage(): JSX.Element {
   return (
     <Container>
       <div className="introd-site">
+        <div className="page">
         <div className="wrap-introd">
           <img src={`${public_url}/imgs/tech-tech-talk.png`} alt="logo" />
           <span>
@@ -98,6 +104,8 @@ function DesktopPage(): JSX.Element {
             </div>
           </span>
         </div>
+        </div>
+        <div className="page"/>
       </div>
     </Container>
   );
