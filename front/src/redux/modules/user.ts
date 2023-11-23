@@ -80,6 +80,7 @@ export function loginUserRequest(data: loginUserData) {
 };
 
 export function loginUserSuccess(data: any) {
+  console.log("로그인 완료");
   return {
     type: LOGIN_SUCCESS,
     data
@@ -241,10 +242,7 @@ export function* signupUser(action: Action) {
 export function* loginUser(action: Action) {
   try {
     const result: object = yield call(loginAPI, action);
-    yield put({
-      type: LOGIN_SUCCESS,
-      data: result
-    });
+    yield put(loginUserSuccess(result));
   } catch (err) {
     console.error(err);
     yield put({

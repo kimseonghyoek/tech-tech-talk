@@ -79,16 +79,10 @@ function getNewsAPI(data: any) {
 export function* getNews(action: Action) {
   try {
     const result: object = yield call(getNewsAPI, action);
-    yield put({
-      type: GET_NEWS_SUCCESS,
-      data: result
-    })
+    yield put(getNewsSuccess(result))
   } catch (err) {
     console.error(err);
-    yield put({
-      type: GET_NEWS_FAILURE,
-      error: err
-    });
+    yield put(getNewsFailure(err));
   };
 };
 
