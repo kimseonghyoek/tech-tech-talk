@@ -16,7 +16,6 @@ const Container = styled.div`
   background-image: url(${public_url}/imgs/techBack.svg);
 
   .introd-site {
-    padding: 5rem;
     display: flex;
     justify-content: center;
     background-color: ${palette.white};
@@ -27,6 +26,7 @@ const Container = styled.div`
       width: 100vw;
       height: 100vh;
       display: flex;
+      justify-content: center;
     }
 
     .wrap-introd {
