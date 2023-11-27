@@ -10,6 +10,7 @@ const WrapContent = styled(Content)`
   flex-direction: column;
   border: 0.07rem solid ${palette.main_color3};
   border-radius: 5px;
+  margin: 1rem 0rem;
 
   #main-content {
     display: flex;
