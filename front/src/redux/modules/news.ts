@@ -67,6 +67,8 @@ export default function news(state = initialState, action: any) {
         getNewsLoading: false,
         getNewsError: action.error
       }
+    default:
+      return state;
   }
 };
 

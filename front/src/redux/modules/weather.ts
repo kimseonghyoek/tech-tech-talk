@@ -67,6 +67,8 @@ export default function weather(state = initialState, action: any) {
         getWeatherLoading: false,
         getWeatherError: action.error,
       };
+    default:
+      return state;
   }
 }
 
