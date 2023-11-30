@@ -23,6 +23,8 @@ const StyledHeader = styled(Header)`
   padding: 0rem 3.5rem;
   background-color: ${palette.main_color1};
   justify-content: space-between;
+  top: 0;
+  position: sticky;
 
   img {
     width: 9rem;
