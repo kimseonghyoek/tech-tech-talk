@@ -21,11 +21,10 @@ const StyledHeader = styled(Header)`
   display: flex;
   align-items: center;
   padding: 0rem 3.5rem;
-  background-color: ${palette.main_color1};
+  background-color: rgba(239, 245, 245, 0.9);
   justify-content: space-between;
   top: 0;
   position: sticky;
-  opacity: 0.5;
 
   img {
     width: 9rem;
