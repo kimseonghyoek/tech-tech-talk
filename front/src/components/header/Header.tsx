@@ -25,6 +25,7 @@ const StyledHeader = styled(Header)`
   justify-content: space-between;
   top: 0;
   position: sticky;
+  z-index: 5;
 
   img {
     width: 9rem;
