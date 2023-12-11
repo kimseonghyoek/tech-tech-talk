@@ -21,7 +21,7 @@ const StyledHeader = styled(Header)`
   display: flex;
   align-items: center;
   padding: 0rem 3.5rem;
-  background-color: ${palette.main_color1};
+  background-color: ${palette.main_color2};
   justify-content: space-between;
   top: 0;
   position: sticky;
@@ -32,11 +32,11 @@ const StyledHeader = styled(Header)`
   }
 
   ul {
-    background-color: ${palette.main_color1};
+    background-color: ${palette.main_color2};
 
     li {
       span {
-        color: ${palette.main_color3};
+        color: ${palette.black};
       }
     }
   }
