@@ -226,16 +226,12 @@ function loadUserAPI(data: any) {
 export function* signupUser(action: Action) {
   try {
     const result: object =  yield call(signupAPI, action);
-    yield put({
-      type: SIGN_UP_SUCCESS,
-      data: result
-    });
+    ///  action create function 집어넣을 곳
+    yield put(
+      signupUserSuccess(result));
   } catch (err) {
     console.error(err);
-    yield put({
-      type: SIGN_UP_FAILURE,
-      error: err
-    });
+    yield put(signupUserFailure(err));
   };
 };
 
@@ -245,10 +241,7 @@ export function* loginUser(action: Action) {
     yield put(loginUserSuccess(result));
   } catch (err) {
     console.error(err);
-    yield put({
-      type: LOGIN_FAILURE,
-      error: err
-    });
+    yield put(loginUserFailure(err));
   };
 };
 
