@@ -1,34 +1,34 @@
-import { Action } from 'redux';
-import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
+import { Action } from "redux";
+import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import axios from "axios";
 /* interface */
 interface signupUserData {
-  email: string,
-  pw: string,
-  nickname: string,
-  name: string,
-  phone_num: number
-};
+  email: string;
+  pw: string;
+  nickname: string;
+  name: string;
+  phone_num: number;
+}
 
 export interface state {
-  signupLoading: boolean,
-  user: null,
-  signupError: null,
-  signupDone: boolean,
-  loginLoading: boolean,
-  loginError: null,
-  loginDone: boolean,
-  logoutLoading: boolean,
-  logoutDone: boolean,
-  logoutError: null,
-  loadUserLoading: boolean,
-  loadUserDone: boolean,
-  loadUserError: null
-};
+  signupLoading: boolean;
+  user: null;
+  signupError: null;
+  signupDone: boolean;
+  loginLoading: boolean;
+  loginError: null;
+  loginDone: boolean;
+  logoutLoading: boolean;
+  logoutDone: boolean;
+  logoutError: null;
+  loadUserLoading: boolean;
+  loadUserDone: boolean;
+  loadUserError: null;
+}
 
 interface loginUserData {
-  email: string,
-  pw: string
+  email: string;
+  pw: string;
 }
 
 /* Action Type */
@@ -53,64 +53,67 @@ export const LOAD_MY_INFO_FAILURE = `${prefix}/LOAD_MY_INFO_FAILURE` as const;
 export function signupUserRequest(data: signupUserData) {
   return {
     type: SIGN_UP_REQUEST,
-    data
+    data,
   };
-};
+}
 
 export function signupUserSuccess(data: any) {
   return {
     type: SIGN_UP_SUCCESS,
-    data
+    data,
   };
-};  
+}
 
 export function signupUserFailure(error: any) {
   console.log(error);
   return {
     type: SIGN_UP_FAILURE,
-    error
+    error,
   };
-};
+}
 
 export function loginUserRequest(data: loginUserData) {
   return {
     type: LOGIN_REQUEST,
-    data
+    data,
   };
-};
+}
 
 export function loginUserSuccess(data: any) {
   console.log("로그인 완료");
   return {
     type: LOGIN_SUCCESS,
-    data
+    data,
   };
-};
+}
 
 export function loginUserFailure(data: any) {
   return {
     type: LOGIN_FAILURE,
-    data
+    data,
   };
-};
+}
 
-export function logoutUserRequest() {
+export function logoutUserRequest(data: any) {
   return {
     type: LOGOUT_REQUEST,
+    data,
   };
-};
+}
 
-export function logoutUserSuccess() {
+export function logoutUserSuccess(data: any) {
   return {
     type: LOGOUT_SUCCESS,
+    data,
   };
-};
+}
 
-export function logoutUserFailure() {
+export function logoutUserFailure(error: any) {
   return {
     type: LOGOUT_FAILURE,
+    error,
   };
-};
+}
 
 /* Inital state of the module */
 export const initialState: state = {
@@ -139,101 +142,100 @@ export default function user(state = initialState, action: any) {
         signupLoading: true,
         signupError: false,
         signupDone: false,
-      }
+      };
     case SIGN_UP_SUCCESS:
       return {
         signupLoading: false,
         signupDone: true,
-      }
+      };
     case SIGN_UP_FAILURE:
       return {
         signupLoading: false,
-        signupError: action.error
-      }
+        signupError: action.error,
+      };
     case LOGIN_REQUEST:
       return {
         loginLoading: true,
         loginError: null,
         loginDone: false,
-      }
+      };
     case LOGIN_SUCCESS:
       return {
         loginLoading: false,
         user: action.data.data,
         loginDone: true,
-      }
+      };
     case LOGIN_FAILURE:
       return {
         loginLoading: false,
-        loginError: action.error
-      }
+        loginError: action.error,
+      };
     case LOGOUT_REQUEST:
       return {
         logoutLoading: true,
         logoutError: null,
         logoutDone: false,
-      }
+      };
     case LOGOUT_SUCCESS:
       return {
         logoutLoading: false,
         logoutDone: true,
-      }
+      };
     case LOGOUT_FAILURE:
       return {
         logoutLoading: false,
-        logoutError: action.error
-      }
+        logoutError: action.error,
+      };
     case LOAD_MY_INFO_REQUEST:
       return {
         loadUserLoading: true,
         loadUserDone: false,
         loadUserError: null,
-      }
+      };
     case LOAD_MY_INFO_SUCCESS:
       return {
         loadUserLoading: false,
         loadUserDone: true,
         user: action.data.data,
-      }
+      };
     case LOAD_MY_INFO_FAILURE:
       return {
         loadUserLoading: false,
         loadUserError: action.error,
-      }
-      default:
-        return state;
+      };
+    default:
+      return state;
   }
-};
+}
 
 /* api address */
 function signupAPI(data: any) {
   return axios.post("/user/signup", data);
-};
+}
 
 function loginAPI(data: any) {
   return axios.post("/user/login", data);
-};
+}
 
 function logoutAPI() {
   return axios.post("/user/logout");
-};
+}
 
 function loadUserAPI(data: any) {
   return axios.get("/user", data);
-};
+}
 
 /* saga functions */
 export function* signupUser(action: Action) {
   try {
-    const result: object =  yield call(signupAPI, action);
+    const result: object = yield call(signupAPI, action);
     ///  action create function 집어넣을 곳
-    yield put(
-      signupUserSuccess(result));
+    yield put(signupUserSuccess(result));
   } catch (err) {
     console.error(err);
     yield put(signupUserFailure(err));
-  };
-};
+  }
+}
 
 export function* loginUser(action: Action) {
   try {
@@ -242,55 +244,50 @@ export function* loginUser(action: Action) {
   } catch (err) {
     console.error(err);
     yield put(loginUserFailure(err));
-  };
-};
+  }
+}
 
 export function* logoutUser() {
   try {
-    yield call(logoutAPI);
-    yield put({
-      type: LOGOUT_SUCCESS
-    });
+    const result: object = yield call(logoutAPI);
+    yield put(logoutUserSuccess(result));
   } catch (err) {
     console.error(err);
-    yield put({
-      type: LOGOUT_FAILURE,
-      error: err
-    });
-  };
-};
+    yield put(logoutUserFailure(err));
+  }
+}
 
 export function* loadUser(action: Action) {
   try {
     const result: object = yield call(loadUserAPI, action);
     yield put({
       type: LOAD_MY_INFO_SUCCESS,
-      data: result
+      data: result,
     });
   } catch (err) {
     console.error(err);
     yield put({
       type: LOAD_MY_INFO_FAILURE,
-      error: err
-    })
+      error: err,
+    });
   }
 }
 
 function* watchSignupUser() {
   yield takeLatest(SIGN_UP_REQUEST, signupUser);
-};
+}
 
 function* watchLoginUser() {
   yield takeLatest(LOGIN_REQUEST, loginUser);
-};
+}
 
 function* watchLogoutUser() {
   yield takeLatest(LOGOUT_REQUEST, logoutUser);
-};
+}
 
 function* watchLoadUser() {
   yield takeLatest(LOAD_MY_INFO_REQUEST, loadUser);
-};
+}
 
 /* export usersaga */
 export function* userSaga() {
@@ -300,4 +297,4 @@ export function* userSaga() {
     fork(watchLogoutUser),
     fork(watchLoadUser),
   ]);
-};
+}
