@@ -60,34 +60,34 @@ function SideBar(): JSX.Element {
   //     });
   // }, []);
 
-  useEffect(() => {
-    dispatch({
-      type: GET_NEWS_REQUEST,
-    });
-  });
+  // useEffect(() => {
+  //   dispatch({
+  //     type: GET_NEWS_REQUEST,
+  //   });
+  // });
 
   return (
     <WrapSideBar>
-      {user ? 
-        <User/>
-       : (
+      {user ? (
+        <User />
+      ) : (
         <div className="wrap-login">
-        <p>아무나, 누구나 tech-tech-Talk</p>
-        <Link to={"/login"}>
-          <Button>텍텍톡 로그인</Button>
-        </Link>
-        <p
-          style={{
-            textAlign: "right",
-            fontSize: "1.1rem",
-            margin: "1rem 0.5rem",
-          }}
-        >
-          <span>
-            <Link to="/signup">회원가입</Link>
-          </span>
-        </p>
-      </div>
+          <p>아무나, 누구나 tech-tech-Talk</p>
+          <Link to={"/login"}>
+            <Button>텍텍톡 로그인</Button>
+          </Link>
+          <p
+            style={{
+              textAlign: "right",
+              fontSize: "1.1rem",
+              margin: "1rem 0.5rem",
+            }}
+          >
+            <span>
+              <Link to="/signup">회원가입</Link>
+            </span>
+          </p>
+        </div>
       )}
       {/* <NewsCard datas={news} /> */}
       <Weather />
