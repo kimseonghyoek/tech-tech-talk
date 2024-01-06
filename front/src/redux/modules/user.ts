@@ -1,6 +1,8 @@
 import { Action } from "redux";
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
+import { error } from "console";
+
 /* interface */
 interface signupUserData {
   email: string;
@@ -24,6 +26,9 @@ export interface state {
   loadUserLoading: boolean;
   loadUserDone: boolean;
   loadUserError: null;
+  checkEmailLoading: boolean;
+  checkEmailDone: boolean;
+  checkEmailError: null;
 }
 
 interface loginUserData {
@@ -48,6 +53,14 @@ export const LOGOUT_FAILURE = `${prefix}/LOGOUT_FAILURE` as const;
 export const LOAD_MY_INFO_REQUEST = `${prefix}/LOAD_MY_INFO_REQUEST` as const;
 export const LOAD_MY_INFO_SUCCESS = `${prefix}/LOAD_MY_INFO_SUCCESS` as const;
 export const LOAD_MY_INFO_FAILURE = `${prefix}/LOAD_MY_INFO_FAILURE` as const;
+
+// 이메일 중복 확인
+export const CHECK_DUP_EMAIL_REQUEST =
+  `${prefix}/CHECK_DUP_EMAIL_REQUEST` as const;
+export const CHECK_DUP_EMAIL_SUCCESS =
+  `${prefix}/CHECK_DUP_EMAIL_SUCCESS` as const;
+export const CHECK_DUP_EMAiL_FAILURE =
+  `${prefix}/CHECK_DUP_EMAIL_FAILURE` as const;
 
 /* Action Create Type */
 export function signupUserRequest(data: signupUserData) {
@@ -115,6 +128,27 @@ export function logoutUserFailure(error: any) {
   };
 }
 
+export function checkDupEmailRequest(data: any) {
+  return {
+    type: CHECK_DUP_EMAIL_REQUEST,
+    data,
+  };
+}
+
+export function checkDupEmailSuccess(data: any) {
+  return {
+    type: CHECK_DUP_EMAIL_SUCCESS,
+    data,
+  };
+}
+
+export function checkDupEmailFailure(error: any) {
+  return {
+    type: CHECK_DUP_EMAiL_FAILURE,
+    error,
+  };
+}
+
 /* Inital state of the module */
 export const initialState: state = {
   user: null,
@@ -130,6 +164,9 @@ export const initialState: state = {
   loadUserLoading: false,
   loadUserDone: false,
   loadUserError: null,
+  checkEmailLoading: false,
+  checkEmailDone: false,
+  checkEmailError: null,
 };
 
 /* reducer */
@@ -203,6 +240,22 @@ export default function user(state = initialState, action: any) {
         loadUserLoading: false,
         loadUserError: action.error,
       };
+    case CHECK_DUP_EMAIL_REQUEST:
+      return {
+        checkEmailLoading: true,
+        checkEmailDone: false,
+        checkEmailError: null,
+      };
+    case CHECK_DUP_EMAIL_SUCCESS:
+      return {
+        checkEmailLoading: false,
+        checkEmailDone: true,
+      };
+    case CHECK_DUP_EMAiL_FAILURE:
+      return {
+        checkEmailLoading: false,
+        checkEmailError: action.error,
+      };
     default:
       return state;
   }
@@ -223,6 +276,10 @@ function logoutAPI() {
 
 function loadUserAPI(data: any) {
   return axios.get("/user", data);
+}
+
+function checkEamilAPI(data: any) {
+  return axios.get("/user/dupemail");
 }
 
 /* saga functions */
@@ -273,6 +330,16 @@ export function* loadUser(action: Action) {
   }
 }
 
+export function* checkEmailUser(action: Action) {
+  try {
+    const result: object = yield call(checkEamilAPI, action);
+    yield put(checkDupEmailSuccess(result));
+  } catch (err) {
+    console.log(err);
+    yield put(checkDupEmailFailure(err));
+  }
+}
+
 function* watchSignupUser() {
   yield takeLatest(SIGN_UP_REQUEST, signupUser);
 }
@@ -289,6 +356,10 @@ function* watchLoadUser() {
   yield takeLatest(LOAD_MY_INFO_REQUEST, loadUser);
 }
 
+function* watchCheckEmailUser() {
+  yield takeLatest(CHECK_DUP_EMAIL_REQUEST, checkEmailUser);
+}
+
 /* export usersaga */
 export function* userSaga() {
   yield all([
@@ -296,5 +367,6 @@ export function* userSaga() {
     fork(watchLoginUser),
     fork(watchLogoutUser),
     fork(watchLoadUser),
+    fork(watchCheckEmailUser),
   ]);
 }
