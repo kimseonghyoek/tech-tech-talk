@@ -1,6 +1,5 @@
-import { Button, DatePicker, Form, Input, Layout } from "antd";
+import { Button, DatePicker, Form, Input } from "antd";
 import React, { useCallback, useEffect, useState } from "react";
-import styled from "styled-components";
 import { Container } from "./style";
 import InputMsg from "../input/InputMsg";
 import { ValidateCommon } from "../../util/common/Validate";
@@ -93,11 +92,16 @@ const SignupForm = () => {
           <Input placeholder="" onChange={setNickName} />
           <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
         </div>
+        <Form onFinish={()=>{}}>
         <div className="inputs">
           <p>이메일 (이메일 주소)</p>
           <Input placeholder="" onChange={setEmail} />
           <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
+          <div style={{ textAlign: "right"}}>
+          <Button>이메일 중복 확인</Button>
+          </div>
         </div>
+        </Form>
         <div className="inputs">
           <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
           <Input placeholder="" onChange={setPw} type="password" />
