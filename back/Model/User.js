@@ -99,7 +99,32 @@ module.exports = {
               console.log(err);
               rejcet(err);
             } else if (rows.length) {
-              console.log('id 존재함');
+              console.log("id 존재함");
+              console.log(rows);
+              resolve(rows);
+            }
+          });
+        }
+        con.release();
+      });
+    });
+  },
+
+  checkDupEmail: (email) => {
+    console.log(email);
+    return new Promise((resolve, reject) => {
+      conn.getConnection((err, con) => {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          const sql = "SELECT email from user_table where email=?";
+          con.query(sql, email, (err, rows) => {
+            if (err) {
+              console.log(err);
+              reject(err);
+            } else if (rows.length) {
+              console.log("email 중복!");
               console.log(rows);
               resolve(rows);
             }
