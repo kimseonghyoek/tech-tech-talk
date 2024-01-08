@@ -115,4 +115,15 @@ router.post("/logout", isLoggedIn, (req, res, next) => {
   }
 });
 
+// 이메일 중복 확인
+router.post("/dupemail", async(req, res, next) => {
+  try {
+    return console.log(req.body);
+    // req로 email 받아서 로직 처리
+  } catch(err) {
+    console.log(err);
+    next(err);
+  }
+})
+
 module.exports = router;
