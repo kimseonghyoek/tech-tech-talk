@@ -15,4 +15,10 @@ module.exports = class UserService {
     const userRecord = await users.findUser(userId);
     return userRecord;
   };
+
+  async checkEmail(email) {
+    console.log('UserService check email method')
+    const userRecord = await users.checkDupEmail(email);
+    return userRecord;
+  };
 };
