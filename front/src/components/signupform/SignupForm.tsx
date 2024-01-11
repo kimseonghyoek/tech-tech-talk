@@ -6,10 +6,11 @@ import { ValidateCommon } from "../../util/common/Validate";
 import useInput from "../../hooks/useInput";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
-import { SIGN_UP_REQUEST, state } from "../../redux/modules/user";
+import { CHECK_DUP_EMAIL_REQUEST, SIGN_UP_REQUEST, state } from "../../redux/modules/user";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
+import Inputs from "../inputs/Inputs";
 
 const public_url = process.env.PUBLIC_URL;
 
@@ -53,11 +54,18 @@ const SignupForm = () => {
   }, [userName, userEmail, userPw, userNickName, userNumber]);
 
   useEffect(() => {
-    console.log(user.signupDone);
     if (user.signupDone) {
       movePage("/login");
   };
   }, [user.signupDone]);
+
+  const checkDuplicationEmail = (() => {
+    console.log("Check duplication email");
+    dispatch({
+      type: CHECK_DUP_EMAIL_REQUEST,
+      data: userEmail
+    });
+  });
 
   return (
     <Container>
@@ -67,16 +75,16 @@ const SignupForm = () => {
       </div>
       <Form onFinish={submitSignup}>
         <h1>User Infomation</h1>
-        <div className="inputs">
+        <Inputs>
           <p>이름</p>
           <Input placeholder="" onChange={setNames} />
           <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
-        </div>
-        <div className="inputs">
+        </Inputs>
+        <Inputs>
           <p>전화번호</p>
           <Input placeholder="" onChange={setNumber} />
           <InputMsg msg={ValidateCommon.phonenumValidate(userNumber, post)} />
-        </div>
+        </Inputs>
         <div className="inputs">
           <p>생년월일</p>
           <DatePicker
@@ -87,33 +95,31 @@ const SignupForm = () => {
         </div>
 
         <h1>Service Infomation</h1>
-        <div className="inputs">
+        <Inputs>
           <p>닉네임 (특수문자 제외 20자)</p>
           <Input placeholder="" onChange={setNickName} />
           <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
-        </div>
-        <Form onFinish={()=>{}}>
-        <div className="inputs">
+        </Inputs>
+        <Inputs>
           <p>이메일 (이메일 주소)</p>
           <Input placeholder="" onChange={setEmail} />
           <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           <div style={{ textAlign: "right"}}>
-          <Button>이메일 중복 확인</Button>
+          <Button onClick={checkDuplicationEmail}>이메일 중복 확인</Button>
           </div>
-        </div>
-        </Form>
-        <div className="inputs">
+        </Inputs>
+        <Inputs>
           <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
           <Input placeholder="" onChange={setPw} type="password" />
           <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
-        </div>
-        <div className="inputs">
+        </Inputs>
+        <Inputs>
           <p>비밀번호 재확인</p>
           <Input placeholder="" onChange={changeRePw} type="password" />
           <InputMsg
             msg={ValidateCommon.reCheckPwValidate(userPw, rePw, post)}
           />
-        </div>
+        </Inputs>
         <div className="check-sign">
           <input type="checkbox" checked={check} onChange={checkSignd} />
           <p> Tech-Tech-Talk(이하 텍텍톡) 회원가입에 동의하십니까?</p>

@@ -40,19 +40,6 @@ export const Container = styled(Layout)`
       justify-content: center;
     }
 
-    .inputs {
-      width: 100%;
-      margin: 1rem;
-      p {
-        font-size: 1.4rem;
-        margin: 1rem 0rem;
-      }
-
-      input {
-        height: 4.2rem;
-      }
-    }
-
     #login-btn {
       margin: 2rem;
       width: 100%;
