@@ -118,7 +118,16 @@ router.post("/logout", isLoggedIn, (req, res, next) => {
 // 이메일 중복 확인
 router.post("/dupemail", async(req, res, next) => {
   try {
-    return console.log(req.body);
+    const userEmail = req.body.data;
+    const userService = new UserService();
+    const checkEamil = await userService.checkEmail(userEmail);
+    if (checkEamil.length > 0) {
+      console.log('이메일이 존재합니다.');
+      res.send({msg: 1});
+    } else if (checkEamil.length === 0) {
+      console.log('이메일이 존재하지 않습니다.');
+      res.send({msg: 0});
+    }
     // req로 email 받아서 로직 처리
   } catch(err) {
     console.log(err);
