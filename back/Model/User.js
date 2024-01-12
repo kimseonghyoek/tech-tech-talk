@@ -111,7 +111,6 @@ module.exports = {
   },
 
   checkDupEmail: (email) => {
-    console.log(email);
     return new Promise((resolve, reject) => {
       conn.getConnection((err, con) => {
         if (err) {
@@ -125,9 +124,11 @@ module.exports = {
               reject(err);
             } else if (rows.length) {
               console.log("email 중복!");
-              console.log(rows);
               resolve(rows);
-            }
+            } else if (rows.length == 0) {
+              console.log("등록되지 않은 email");
+              resolve(rows);
+            } 
           });
         }
         con.release();
