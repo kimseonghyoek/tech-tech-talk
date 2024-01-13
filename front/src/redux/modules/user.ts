@@ -1,7 +1,6 @@
 import { Action } from "redux";
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
-import { error } from "console";
 
 /* interface */
 interface signupUserData {
@@ -136,9 +135,11 @@ export function checkDupEmailRequest(data: any) {
 }
 
 export function checkDupEmailSuccess(data: any) {
+  console.log(data.data.msg);
+  const msg = data.data.msg
   return {
     type: CHECK_DUP_EMAIL_SUCCESS,
-    data,
+    msg,
   };
 }
 
@@ -279,7 +280,7 @@ function loadUserAPI(data: any) {
 }
 
 function checkEamilAPI(data: any) {
-  return axios.get("/user/dupemail");
+  return axios.post("/user/dupemail", data);
 }
 
 /* saga functions */
@@ -333,6 +334,7 @@ export function* loadUser(action: Action) {
 export function* checkEmailUser(action: Action) {
   try {
     const result: object = yield call(checkEamilAPI, action);
+    console.log(result)
     yield put(checkDupEmailSuccess(result));
   } catch (err) {
     console.log(err);
