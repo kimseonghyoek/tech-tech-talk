@@ -2,12 +2,13 @@ import React, { ReactNode } from 'react';
 import { Container } from './style';
 
 type inputsPropsType = {
-  children: ReactNode
+  children: ReactNode,
+  label: string
 }
 
-function Inputs({children}: inputsPropsType): JSX.Element {
+function Inputs({children, label}: inputsPropsType) {
   return (
-    <Container>
+    <Container label={label}>
       {children}
     </Container>  
   );
