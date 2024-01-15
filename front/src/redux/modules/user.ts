@@ -135,8 +135,13 @@ export function checkDupEmailRequest(data: any) {
 }
 
 export function checkDupEmailSuccess(data: any) {
-  console.log(data.data.msg);
-  const msg = data.data.msg
+  const msg = data.data.msg;
+  // 후에 action에서 접근하여 작업 처리 예정
+  if (msg === 1) {
+    alert("사용 중인 이메일 입니다.");
+  } else if (msg === 0) {
+    alert("사용하셔도 되는 이메일 입니다.");
+  }
   return {
     type: CHECK_DUP_EMAIL_SUCCESS,
     msg,
@@ -334,7 +339,7 @@ export function* loadUser(action: Action) {
 export function* checkEmailUser(action: Action) {
   try {
     const result: object = yield call(checkEamilAPI, action);
-    console.log(result)
+    console.log(result);
     yield put(checkDupEmailSuccess(result));
   } catch (err) {
     console.log(err);
