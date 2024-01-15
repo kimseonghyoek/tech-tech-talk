@@ -73,52 +73,38 @@ const SignupForm = () => {
         <img src={`${public_url}/imgs/Tech-Tech-Talk.png`} alt="logo" />
         <h1>Tech-Tech-Talk</h1>
       </div>
-      <Form onFinish={submitSignup}>
+      <Form onFinish={submitSignup} layout="vertical">
         <h1>User Infomation</h1>
-        <Inputs>
-          <p>이름</p>
+        <Inputs label="이름">
           <Input placeholder="" onChange={setNames} />
-          <InputMsg msg={ValidateCommon.nameValidate(userName, post)} />
         </Inputs>
-        <Inputs>
-          <p>전화번호</p>
+        <Inputs label="전화번호">
           <Input placeholder="" onChange={setNumber} />
-          <InputMsg msg={ValidateCommon.phonenumValidate(userNumber, post)} />
         </Inputs>
-        <div className="inputs">
-          <p>생년월일</p>
+        <Inputs label="생년월일">
           <DatePicker
-            style={{ width: "100%", height: "4.2rem" }}
+            style={{ width: "100%" }}
             defaultValue={dayjs(`${now.format()}`, dataFormat)}
             format={dataFormat}
           />
-        </div>
+        </Inputs>
 
         <h1>Service Infomation</h1>
-        <Inputs>
-          <p>닉네임 (특수문자 제외 20자)</p>
+        <Inputs label="닉네임 (특수문자 제외 20자)">
           <Input placeholder="" onChange={setNickName} />
-          <InputMsg msg={ValidateCommon.nicknameValidate(userNickName, post)} />
         </Inputs>
-        <Inputs>
-          <p>이메일 (이메일 주소)</p>
+        <Inputs label="이메일">
           <Input placeholder="" onChange={setEmail} />
           <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
           <div style={{ textAlign: "right"}}>
           <Button onClick={checkDuplicationEmail}>이메일 중복 확인</Button>
           </div>
         </Inputs>
-        <Inputs>
-          <p>비밀번호 (영 소문자, 특수문자 포함 8자 이상)</p>
+        <Inputs label="비밀번호 (영 소문자, 특수문자 포함 8자 이상)">
           <Input placeholder="" onChange={setPw} type="password" />
-          <InputMsg msg={ValidateCommon.passwordValidate(userPw, post)} />
         </Inputs>
-        <Inputs>
-          <p>비밀번호 재확인</p>
+        <Inputs label="비밀번호 재확인">
           <Input placeholder="" onChange={changeRePw} type="password" />
-          <InputMsg
-            msg={ValidateCommon.reCheckPwValidate(userPw, rePw, post)}
-          />
         </Inputs>
         <div className="check-sign">
           <input type="checkbox" checked={check} onChange={checkSignd} />
