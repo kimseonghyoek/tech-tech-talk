@@ -95,8 +95,7 @@ const SignupForm = () => {
         </Inputs>
         <Inputs label="이메일">
           <Input placeholder="" onChange={setEmail} />
-          <InputMsg msg={ValidateCommon.emailValidate(userEmail, post)} />
-          <div style={{ textAlign: "right"}}>
+          <div style={{ textAlign: "right", paddingTop: "1rem" }}>
           <Button onClick={checkDuplicationEmail}>이메일 중복 확인</Button>
           </div>
         </Inputs>
