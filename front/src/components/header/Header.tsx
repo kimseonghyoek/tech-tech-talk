@@ -26,7 +26,6 @@ const StyledHeader = styled(Header)`
   top: 0;
   position: sticky;
   z-index: 5;
-  height: fit-content;
 
   img {
     width: 9rem;

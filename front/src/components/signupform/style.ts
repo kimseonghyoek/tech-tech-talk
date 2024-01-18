@@ -36,10 +36,6 @@ export const Container = styled(Layout)`
     justify-content: center;
     flex-direction: column;
 
-    .ant-row {
-      justify-content: center;
-    }
-
     #login-btn {
       margin: 2rem;
       width: 100%;
